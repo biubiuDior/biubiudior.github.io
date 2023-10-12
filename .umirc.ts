@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import routers from './config/routes'
 
 export default defineConfig({
   antd: {},
@@ -7,28 +8,19 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: 'biubiu',
+    name: 'Ant Design Pro',
+    logo: 'https://preview.pro.ant.design/static/logo.f0355d39.svg',
+    // copy from pro site
+    navTheme: 'dark',
+    primaryColor: '#1890ff',
+    layout: 'sidemenu',
+    contentWidth: 'Fluid',
+    fixedHeader: false,
+    fixSiderbar: false,
+    title: 'Ant Design Pro',
+    pwa: false,
+    iconfontUrl: '',
   },
-  routes: [
-    {
-      path: '/',
-      redirect: '/home',
-    },
-    {
-      name: '首页',
-      path: '/home',
-      component: './Home',
-    },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
-    },
-  ],
+  routes: routers,
   npmClient: 'npm',
 });
