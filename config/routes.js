@@ -10,23 +10,26 @@ export default [
     redirect: '/home',
   },
   {
-    name: '首页11',
+    name: '首页',
     path: '/home',
-    component: './index',
+    component: '../layout/Header',
+    routes: [
+      {
+        name: '权限演示',
+        path: '/access',
+        component: './Access',
+      },
+      {
+        name: ' CRUD 示例',
+        path: '/table',
+        component: './Table',
+      },
+      {
+        name: 'Echarts',
+        path: '/echarts',
+        component: './Echarts',
+      },
+    ]
   },
-  {
-    name: '权限演示',
-    path: '/access',
-    component: './Access',
-  },
-  {
-    name: ' CRUD 示例',
-    path: '/table',
-    component: './Table',
-  },
-  {
-    name: 'Echarts',
-    path: '/echarts',
-    component: './Echarts',
-  },
+
 ]
