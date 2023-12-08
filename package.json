@@ -14,7 +14,11 @@
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-components": "^2.4.4",
     "@umijs/max": "^4.0.83",
-    "antd": "^5.4.0"
+    "antd": "^5.4.0",
+    "postcss-px-to-viewport": "^1.1.1",
+    "rc-field-form": "^1.41.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",
