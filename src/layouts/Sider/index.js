@@ -9,8 +9,9 @@ import React, {useEffect, useState} from "react";
 import styles from "./index.less";
 import { Menu, Layout } from "antd";
 import routes from "../../../config/routes";
-import {history} from "umi";
-const {  Sider } = Layout;
+import { history, Outlet } from "umi";
+import { Scrollbars } from "react-custom-scrollbars";
+const { Sider } = Layout;
 
 const SiderLayout = (props) => {
   const [menuList, setMenuList] = useState([]);// 菜单列表
@@ -24,7 +25,7 @@ const SiderLayout = (props) => {
     getMenuList();
     // 设置当前活动页
     const pathName = window.location.pathname;
-    if(routesList[0].redirect){// 判断重定向
+    if(pathnameList.length < 3 && routesList[0].redirect){// 判断重定向
       history.push(routesList[0].redirect);
     }
     setCurrentKey(pathName)
@@ -67,6 +68,11 @@ const SiderLayout = (props) => {
             onClick={e => menuClick(e)}
           />
         </Sider>
+        <Layout className={styles.content}>
+          <Scrollbars>
+            <Outlet />
+          </Scrollbars>
+        </Layout>
       </Layout>
     </div>
   )

@@ -13,8 +13,16 @@ export default defineConfig({
     layout: defaultSetting['layout'],
     title: defaultSetting['title'],
   },
+  dva: {},
   routes: routers,
   npmClient: 'npm',
+  proxy: {
+    '/api': {
+      'target': 'http://localhost:8000/',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api' : '' },
+    },
+  },
   extraPostCSSPlugins: [
     px2vw({
       unitToConvert: 'px', // 要转化的单位

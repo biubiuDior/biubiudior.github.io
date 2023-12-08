@@ -1,0 +1,19 @@
+.atlas {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-tabs-tab {
+      font-family: "Source Han Sans CN-Regular";
+      padding: 6px 12px !important;
+      font-size: 14px !important;
+
+      .anticon {
+        margin-right: 8px;
+      }
+    }
+    :where(.css-dev-only-do-not-override-amq5gd).ant-tabs-card.ant-tabs-top >.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab {
+      margin-left: 4px;
+    }
+  }
+}

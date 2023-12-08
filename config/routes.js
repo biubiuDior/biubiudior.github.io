@@ -31,12 +31,12 @@ export default [
           {
             name: '图集',
             path: '/echarts/atlas',
-            component: './Echarts',
+            component: './Echarts/atlas',
           },
           {
             name: '编辑',
             path: '/echarts/edit',
-            component: './Echarts',
+            component: './Echarts/edit',
           },
         ]
       },
