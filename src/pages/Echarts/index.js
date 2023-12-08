@@ -1,17 +1,19 @@
 /*
- * @Name: Echarts
- * @Description: Echarts模块
+ * @Name: 模块名称
+ * @Description: 描述信息
  * @Author: biubiu
- * @Date: 2023-10-12
+ * @Date: 2023-12-06
 */
 
 import React from "react";
 import styles from "./index.less";
 
-const EchartsPage = () => {
+const Echarts = () => {
 
   return(
-    <div className={styles.echartsPage}>Echarts</div>
+    <div>
+      Echarts
+    </div>
   )
 }
-export default EchartsPage;
+export default Echarts;

@@ -7,29 +7,39 @@
 export default [
   {
     path: '/',
-    redirect: '/home',
-  },
-  {
-    name: '首页',
-    path: '/home',
-    component: '../layout/Header',
+    layout: false,// 取消默认布局
+    component: '../layouts',
     routes: [
       {
-        name: '权限演示',
-        path: '/access',
-        component: './Access',
+        path: '/',
+        redirect: '/home',
       },
       {
-        name: ' CRUD 示例',
-        path: '/table',
-        component: './Table',
+        name: '首页',
+        path: '/home',
+        component: './Home',
       },
       {
         name: 'Echarts',
         path: '/echarts',
-        component: './Echarts',
+        component: '../layouts/Sider',
+        routes: [
+          {
+            path: '/echarts',
+            redirect: '/echarts/atlas',
+          },
+          {
+            name: '图集',
+            path: '/echarts/atlas',
+            component: './Echarts',
+          },
+          {
+            name: '编辑',
+            path: '/echarts/edit',
+            component: './Echarts',
+          },
+        ]
       },
     ]
   },
-
 ]
