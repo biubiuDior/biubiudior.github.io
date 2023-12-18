@@ -8,12 +8,12 @@
 import React from "react";
 import styles from "./index.less";
 
-const Edit = () => {
+const Document = () => {
 
   return(
-    <div className={styles.edit}>
-      Edit
+    <div className={styles.document}>
+      <iframe src={"https://echarts.apache.org/zh/option.html"}></iframe>
     </div>
   )
 }
-export default Edit;
+export default Document;

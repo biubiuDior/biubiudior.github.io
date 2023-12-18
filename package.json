@@ -16,10 +16,17 @@
     "@umijs/max": "^4.0.83",
     "antd": "^5.4.0",
     "axios": "^1.6.2",
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
+    "moment": "^2.29.4",
+    "monaco-editor": "^0.30.1",
+    "monaco-editor-webpack-plugin": "^6.0.0",
     "postcss-px-to-viewport": "^1.1.1",
     "rc-field-form": "^1.41.0",
     "react-custom-scrollbars": "^4.2.1",
-    "react-router-dom": "^6.20.1"
+    "react-monaco-editor": "^0.55.0",
+    "react-router-dom": "^6.20.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

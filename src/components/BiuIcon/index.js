@@ -27,7 +27,7 @@ const iconList = {
   elseIcon: elseIcon,
 }
 
-const BIcon = props => {
+const BiuIcon = props => {
   const { type, ...other } = props;
   if (iconList[type]) {
     return <Icon component={iconList[type]} {...other} />;
@@ -36,4 +36,4 @@ const BIcon = props => {
   }
 };
 
-export default BIcon;
+export default BiuIcon;

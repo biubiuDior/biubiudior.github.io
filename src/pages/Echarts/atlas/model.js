@@ -1,14 +1,44 @@
 import {
-  reqGetAtlasType
+  reqGetAtlasType,
+  reqGetCodeList,
 } from '@/services/echarts';
 import { Message } from 'antd';
+import { jsonSort } from "@/utils/utils";
 
 export default {
-  namespace: 'echartsAtlas',
+  namespace: 'EchartsAtlas',
   state: {
-    atlasTypeList: []
+    atlasTypeList: [],
+    codeList: [],
+    codePage: false,// 代码页面展示
+    currentCode: {},// 当前展示代码
   },
   effects: {
+    *fetchGetCodeList({ payload }, { call, put, select}) {
+      const { data, code, message, meta } = yield call(reqGetCodeList,payload);
+      let list = [];
+      const { type= "" } = payload;
+      if (data && code === 200) {
+        // 判断类型
+        if(type === "all"){
+          list = data;
+        }else {
+          list = data.filter(item => item.type === type);
+        }
+        // 按时间排序
+        list.map(item => item.date = new Date(item.date).getTime());
+        list = jsonSort(list,"date",true)
+        yield put({
+          type: 'save',
+          payload: {
+            codeList: list || [] // 防止返回为null
+          }
+        })
+      } else {
+        Message.error(meta.messages || '获取失败')
+      }
+      return list
+    },
     *fetchGetAtlasType({ payload }, { call, put, select}) {
       const { data, code, message, meta } = yield call(reqGetAtlasType,payload);
       if (data && code === 200) {
@@ -22,7 +52,7 @@ export default {
         Message.error(meta.messages || '获取失败')
       }
       return data
-    }
+    },
   },
   // reducers: Reducer 是 Action 处理器，用来处理同步操作，可以看做是 state 的计算器。它的作用是根据 Action，从上一个 State 算出当前 State
   reducers: {

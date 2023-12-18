@@ -6,3 +6,7 @@ let baseAPI = `/api/echarts`;
 export const reqGetAtlasType = params => {
   return query(`${baseAPI}/queryAtlasType`, params);
 };
+// Echarts代码集
+export const reqGetCodeList = params => {
+  return query(`${baseAPI}/queryCodeList`, params);
+};

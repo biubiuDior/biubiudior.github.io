@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import webpackConfig from './webpack.config';
 import px2vw from 'postcss-px-to-viewport';
 import defaultSetting from './defaultSetting'; // 默认配置
 import routers from './routes'; // 路由菜单
@@ -9,6 +10,7 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
+  title: "biubiu",
   layout: {
     layout: defaultSetting['layout'],
     title: defaultSetting['title'],
@@ -16,6 +18,12 @@ export default defineConfig({
   dva: {},
   routes: routers,
   npmClient: 'npm',
+  jsMinifier: 'none',
+  // 注入HTML
+  scripts: [
+    { src: 'http://localhost:8000' },
+  ],
+  // 转发代理
   proxy: {
     '/api': {
       'target': 'http://localhost:8000/',
@@ -23,6 +31,10 @@ export default defineConfig({
       'pathRewrite': { '^/api' : '' },
     },
   },
+  chainWebpack: webpackConfig,
+  plugins: [
+
+  ],
   extraPostCSSPlugins: [
     px2vw({
       unitToConvert: 'px', // 要转化的单位

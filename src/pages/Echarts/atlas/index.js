@@ -7,48 +7,67 @@
 
 import React, {useEffect, useState} from "react";
 import styles from "./index.less";
-import BIcon from "@/components/BIcon";
+import BiuIcon from "@/components/BiuIcon";
 import { Tabs } from 'antd';
 import { useDispatch, useSelector } from 'umi';
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import CardList from "@/pages/Echarts/atlas/cardList";
+import CodeShow from "@/pages/Echarts/atlas/codeShow";
 
 const Atlas = () => {
   const dispatch = useDispatch();
-  const { atlasTypeList } = useSelector(state => state.echartsAtlas);
+  const { atlasTypeList, codePage } = useSelector(state => state.EchartsAtlas);
   const [tabActiveKey, setTabActiveKey] = useState("");// 当前标签页
 
   useEffect(()=>{
-    fetchTest();
+    fetchGetAtlasType();
   },[])
 
   // 获取图集类型
-  const fetchTest = () => {
+  const fetchGetAtlasType = () => {
     dispatch({
-      type: 'echartsAtlas/fetchGetAtlasType'
+      type: 'EchartsAtlas/fetchGetAtlasType'
     }).then(res => {
       setTabActiveKey(res[0].name)
     })
   }
-  //获取当前图集类型卡片List
-  const getTypeCard = () => {
-
+  // 改变共享状态
+  const setShareData = (params) => {
+    dispatch({
+      type: 'EchartsAtlas/save',
+      payload: params
+    });
   }
 
   return(
     <div className={styles.atlas}>
-      <Tabs
-        type="card"
-        size="small"
-        activeKey={tabActiveKey}
-        onChange={tab => setTabActiveKey(tab)}
-        items={atlasTypeList.map((item, index) => {
-          return {
-            label: <div><BIcon type={item.icon}/>{item.name}</div>,
-            key: item.name,
-            children: <CardList type={tabActiveKey}/>,
-          };
-        })}
-      />
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={codePage}
+          classNames="codeShow"
+          timeout={500}
+          appear={true}
+        >
+          <>
+            {codePage ? <CodeShow /> :
+              <Tabs
+                type="card"
+                size="small"
+                destroyInactiveTabPane={true}
+                activeKey={tabActiveKey}
+                onChange={tab => setTabActiveKey(tab)}
+                items={atlasTypeList.map((item, index) => {
+                  return {
+                    label: <div><BiuIcon type={item.icon}/>{item.name}</div>,
+                    key: item.name,
+                    children: <CardList type={item['type']}/>,
+                  };
+                })}
+              />
+            }
+          </>
+        </CSSTransition>
+      </SwitchTransition>
     </div>
   )
 }

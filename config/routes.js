@@ -34,9 +34,9 @@ export default [
             component: './Echarts/atlas',
           },
           {
-            name: '编辑',
-            path: '/echarts/edit',
-            component: './Echarts/edit',
+            name: '文档',
+            path: '/echarts/document',
+            component: './Echarts/document',
           },
         ]
       },
