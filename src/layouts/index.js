@@ -15,10 +15,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 const PageLayout = (props) => {
 
-  useEffect(() => {
-
-  })
-
   return(
     <div className={styles.pageLayout}>
       <Layout>

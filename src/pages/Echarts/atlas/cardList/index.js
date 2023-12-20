@@ -33,9 +33,9 @@ const CardList = (props) => {
     })
   }
   // 改变共享状态
-  const setShareData = (params) => {
+  const setShareData = (params,type) => {
     dispatch({
-      type: 'EchartsAtlas/save',
+      type: `${type}/save`,
       payload: params
     });
   }
@@ -52,8 +52,10 @@ const CardList = (props) => {
         dataSource={codeList}
         renderItem={(item,index) => (
           <List.Item>
-            <div className={styles.card} onClick={() => setShareData({codePage: true, currentCode: item})}>
-              <BiuEcharts optionCode={eval(unicodeToChinese(item['code']))()}/>
+            <div className={styles.card} onClick={() => setShareData({codePage: true, currentCode: item},"EchartsAtlas")}>
+              <div className={styles.echarts}>
+                <BiuEcharts optionCode={eval(unicodeToChinese(item['code']))()}/>
+              </div>
               <div className={styles.infoBox}>
                 <div className={styles.content}>
                   <div className={styles.flexRow}>

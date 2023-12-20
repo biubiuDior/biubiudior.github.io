@@ -9,10 +9,20 @@ const EchartsAtlasType = [
 ];
 
 // Echarts图集展示
-import {BarCodeList} from "./code/bar";
+import {BarCodeList} from "./code/bar";// 柱状图
+import {LineCodeList} from "./code/line";// 折线图
+import {PieCodeList} from "./code/pie";// 饼图
+import {SunburstCodeList} from "./code/sunburst";// 旭日图
+import {RadarCodeList} from "./code/radar";// 雷达图
+import {GraphCodeList} from "./code/graph";// 关系图
 
 const EchartsCodeList = [
   ...BarCodeList,
+  ...PieCodeList,
+  ...SunburstCodeList,
+  ...LineCodeList,
+  ...RadarCodeList,
+  ...GraphCodeList,
 ]
 
 

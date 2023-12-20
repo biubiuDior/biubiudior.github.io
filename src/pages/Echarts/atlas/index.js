@@ -28,19 +28,26 @@ const Atlas = () => {
     dispatch({
       type: 'EchartsAtlas/fetchGetAtlasType'
     }).then(res => {
-      setTabActiveKey(res[0].name)
+      setTabActiveKey(res[0].name);
     })
-  }
-  // 改变共享状态
-  const setShareData = (params) => {
-    dispatch({
-      type: 'EchartsAtlas/save',
-      payload: params
-    });
   }
 
   return(
     <div className={styles.atlas}>
+      <Tabs
+        type="card"
+        size="small"
+        destroyInactiveTabPane={true}
+        activeKey={tabActiveKey}
+        onChange={tab => setTabActiveKey(tab)}
+        items={atlasTypeList.map((item, index) => {
+          return {
+            label: <div><BiuIcon type={item.icon}/>{item.name}</div>,
+            key: item.name,
+            children: <CardList type={item['type']}/>,
+          };
+        })}
+      />
       <SwitchTransition mode="out-in">
         <CSSTransition
           key={codePage}
@@ -49,22 +56,7 @@ const Atlas = () => {
           appear={true}
         >
           <>
-            {codePage ? <CodeShow /> :
-              <Tabs
-                type="card"
-                size="small"
-                destroyInactiveTabPane={true}
-                activeKey={tabActiveKey}
-                onChange={tab => setTabActiveKey(tab)}
-                items={atlasTypeList.map((item, index) => {
-                  return {
-                    label: <div><BiuIcon type={item.icon}/>{item.name}</div>,
-                    key: item.name,
-                    children: <CardList type={item['type']}/>,
-                  };
-                })}
-              />
-            }
+            {codePage && <CodeShow />}
           </>
         </CSSTransition>
       </SwitchTransition>

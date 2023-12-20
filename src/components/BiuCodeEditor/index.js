@@ -30,7 +30,7 @@ const BiuCodeEditor = (props) => {
 
   // 组件加载前
   const editorDidMount = (editor) => {
-    console.log("editorDidMount", editor, editor.getValue(), editor.getModel());
+    // console.log("editorDidMount", editor, editor.getValue(), editor.getModel());
     editor.focus();
   };
 

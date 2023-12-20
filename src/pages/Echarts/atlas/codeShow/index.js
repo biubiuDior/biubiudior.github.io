@@ -31,9 +31,9 @@ const CodeShow = (props) => {
   },[])
 
   // 改变共享状态
-  const setShareData = (params) => {
+  const setShareData = (params,type) => {
     dispatch({
-      type: 'EchartsAtlas/save',
+      type: `${type}/save`,
       payload: params
     });
   }
@@ -73,7 +73,7 @@ const CodeShow = (props) => {
     <div className={styles.codeShow}>
       <div className={styles.header}>
         <Tooltip title="返回">
-          <ArrowLeftOutlined onClick={() => setShareData({codePage: false})} className={styles.goBack}/>
+          <ArrowLeftOutlined onClick={() => setShareData({codePage: false},"EchartsAtlas")} className={styles.goBack}/>
         </Tooltip>
         <div className={styles.function}>
           <Tooltip title="复制代码">

@@ -10,10 +10,11 @@ import styles from "./index.less";
 import { Menu, Layout } from "antd";
 const { Header } = Layout;
 import routes from "../../../config/routes";
-import {history} from "umi";
+import { history, useDispatch } from "umi";
 import luckyImg from "@/assets/image/lucky头像.jpg";
 
 const HeaderLayout = (props) => {
+  const dispatch = useDispatch();
   const [menuList, setMenuList] = useState([]);// 菜单列表
   const [currentKey, setCurrentKey] = useState([]);// 当前选中
 
@@ -58,6 +59,15 @@ const HeaderLayout = (props) => {
     history.push({
       pathname: e.key,
     })
+    setShareData({codePage: false},"EchartsAtlas");
+  }
+
+  // 改变共享状态
+  const setShareData = (params,type) => {
+    dispatch({
+      type: `${type}/save`,
+      payload: params
+    });
   }
 
   return(

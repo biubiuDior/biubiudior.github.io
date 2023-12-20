@@ -19,11 +19,17 @@ export default {
       let list = [];
       const { type= "" } = payload;
       if (data && code === 200) {
+        // 目前分类类型
+        const existType = ["bar", "line", "pie", "map"];
         // 判断类型
         if(type === "all"){
           list = data;
         }else {
-          list = data.filter(item => item.type === type);
+          if(existType.indexOf(type) > -1){
+            list = data.filter(item => item.type === type);
+          }else {
+            list = data.filter(item => existType.indexOf(item.type) < 0);
+          }
         }
         // 按时间排序
         list.map(item => item.date = new Date(item.date).getTime());
