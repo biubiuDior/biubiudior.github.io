@@ -7,7 +7,7 @@
 
 /* 旭日图图例 */
 // 教职工年龄分布图
-const SunburstCode1 = () => {
+const SunburstCode1 = (myChart) => {
   /* 数据 */
   let jbList = ['中青年教书', '其他']; // 年龄段
   let djgsList = [3, 3]; // 年龄段类型数

@@ -5,9 +5,12 @@
  * @Date: 2023-12-12
 */
 
-/* 柱状图图例 */
+/**
+ * 柱状图图例
+ * @params  myChart echarts图实例
+ * */
 // 单条形占比图
-const BarCode1 = () => {
+const BarCode1 = (myChart) => {
   let value = [65];
 
   const option = {
@@ -64,7 +67,7 @@ const BarCode1 = () => {
   return option;
 };
 // 单柱状分布图
-const BarCode2 = () => {
+const BarCode2 = (myChart) => {
   let nameList = ["历史学", "文学", "管理学", "法学", "经济学"]; // 学科类别
   let valueList = [48, 48, 30, 45, 75]; // 人数
 
@@ -186,7 +189,7 @@ const BarCode2 = () => {
   return option;
 }
 // 办理进度条
-const BarCode3 = () => {
+const BarCode3 = (myChart) => {
   const data = 85;
   const name = "办理进度"
 
@@ -302,7 +305,7 @@ const BarCode3 = () => {
   return option;
 }
 // 横向柱状图
-const BarCode4 = () => {
+const BarCode4 = (myChart) => {
   /* 数据 */
   let nameList = [
     '总学分预警',
@@ -429,7 +432,7 @@ const BarCode4 = () => {
   return option;
 }
 // 民族人数占比图
-const BarCode5 = () => {
+const BarCode5 = (myChart) => {
   /* 数据 */
   const nameList = ['壮族', '维吾尔族', '傣族', '藏族', '苗族', '回族']; // y轴名称
   const valueList = [3.12, 2.98, 2.52, 2.11, 1.55, 1.03]; // 占比
@@ -532,7 +535,7 @@ const BarCode5 = () => {
   return option;
 }
 // 人数排名分布图
-const BarCode6 = () => {
+const BarCode6 = (myChart) => {
   /* 数据 */
   const nameList = ['公派留学', '提前毕业', '停学实践', '复读', '疾病']; // 类型
   const valueList = [80, 70, 60, 50, 40]; // 对应人数
@@ -725,7 +728,7 @@ const BarCode6 = () => {
   return option;
 }
 // 主题访问人次排名
-const BarCode7 = () => {
+const BarCode7 = (myChart) => {
   const nameList = [
     '数字高校',
     '数字学工',
@@ -936,7 +939,7 @@ const BarCode7 = () => {
   return option;
 }
 // 环形占比图
-const BarCode8 = () => {
+const BarCode8 = (myChart) => {
   const data = '86';
 
   const option = {
@@ -1018,7 +1021,7 @@ const BarCode8 = () => {
   return option;
 }
 // 各省招生分数区间
-const BarCode9 = () => {
+const BarCode9 = (myChart) => {
   const nameList = ['广东省', '湖南省', '浙江省', '福建省', '安徽省', '湖北省'];
   const lowestMarkData = [430, 460, 505, 480, 470, 550]; // 最低分
   const topScoreData = [690, 700, 720, 655, 710, 740]; // 最高分
@@ -1219,7 +1222,7 @@ const BarCode9 = () => {
   return option;
 }
 // 岗位招聘趋势
-const BarCode10 = () => {
+const BarCode10 = (myChart) => {
   /* 数据 */
   const nameList = ['2018', '2019', '2020', '2021', '2022'];
   const barData1 = [20, 52, 67, 33, 39]; // 柱子信息1,外层
@@ -1416,7 +1419,7 @@ const BarCode10 = () => {
   return option;
 }
 // 多柱状基础图
-const BarCode11 = () => {
+const BarCode11 = (myChart) => {
   const nameList = ['2017年', '2018年', '2019年', '2020年', '2021年']; // 类型
   const data1Arr = [810, 815, 800, 580, 900]; // 数据1
   const data2Arr = [800, 580, 900, 720, 700]; // 数据2
@@ -1532,7 +1535,7 @@ const BarCode11 = () => {
 
   return option;
 }
-
+// 
 
 export const BarCodeList = [
   {name: "多柱状基础图", type: "bar", author: "biubiu", date: "2023.12.20", remark: "多柱状基础图", code: `${BarCode11}`},

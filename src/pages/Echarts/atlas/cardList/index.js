@@ -7,11 +7,11 @@
 
 import React, {useEffect, useState} from "react";
 import styles from './index.less';
-import { Card, List } from 'antd';
+import { List, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import BiuEcharts from "@/components/BiuEcharts";
 import { useDispatch, useSelector } from 'umi';
 import moment from 'moment'
-import {unicodeToChinese} from "@/utils/utils";
 
 const CardList = (props) => {
   const {
@@ -19,6 +19,7 @@ const CardList = (props) => {
   } = props;
   const dispatch = useDispatch();
   const { codeList } = useSelector(state => state.EchartsAtlas);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // 获取数据
@@ -30,6 +31,8 @@ const CardList = (props) => {
     dispatch({
       type: 'EchartsAtlas/fetchGetCodeList',
       payload: {type},
+    }).then(res => {
+      setLoading(false)
     })
   }
   // 改变共享状态
@@ -54,7 +57,7 @@ const CardList = (props) => {
           <List.Item>
             <div className={styles.card} onClick={() => setShareData({codePage: true, currentCode: item},"EchartsAtlas")}>
               <div className={styles.echarts}>
-                <BiuEcharts optionCode={eval(unicodeToChinese(item['code']))()}/>
+                {loading ? <Spin tip="加载中"/> : <BiuEcharts code={item['code']}/>}
               </div>
               <div className={styles.infoBox}>
                 <div className={styles.content}>

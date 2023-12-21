@@ -7,7 +7,7 @@
 
 /* 饼图图例 */
 // 在岗在编教职工类型分布占比图
-const PieCode1 = () => {
+const PieCode1 = (myChart) => {
   const numList = [1002, 540]; // 数量
   const nameList = ["教学科研岗", "非教学科研岗"]; // 类别
 
@@ -81,7 +81,7 @@ const PieCode1 = () => {
   return option;
 };
 // 占比进度条
-const PieCode2 = () => {
+const PieCode2 = (myChart) => {
   const data = 60;
 
   const option = {
@@ -237,7 +237,7 @@ const PieCode2 = () => {
   return option;
 }
 // 男女比例分布图
-const PieCode3 = () => {
+const PieCode3 = (myChart) => {
   const menNum = 650; //男性
   const womenNum = 350; //女性
   const xbRate = [65, 35]; // 占比
@@ -331,7 +331,7 @@ const PieCode3 = () => {
   return option;
 }
 // 岗位分布图
-const PieCode4 = () => {
+const PieCode4 = (myChart) => {
   /* 数据 */
   const nameList = ["岗位1", "岗位", "岗位3", "岗位4"];
   const valueList = [50, 40, 30, 20];
@@ -408,7 +408,7 @@ const PieCode4 = () => {
   return option;
 }
 // 精品课程类型占比图01
-const PieCode5 = () => {
+const PieCode5 = (myChart) => {
   const nameList = ['国家级', '省部级', '学会/协会类', '校级', '其他']; // 课程名
   const valueList = [11.24, 13.68, 20.7, 21.41, 32.95]; // 比例
 
@@ -606,7 +606,7 @@ const PieCode5 = () => {
   return option;
 }
 // 精品课程类型占比图02
-const PieCode6 = () => {
+const PieCode6 = (myChart) => {
   const nameList = ['国家级', '省部级', '学会/协会类', '校级', '其他']; // 课程名
   const valueList = [11.24, 13.68, 20.7, 21.41, 32.95]; // 比例
   const numList = [8, 9, 16, 21, 26]; // 数量

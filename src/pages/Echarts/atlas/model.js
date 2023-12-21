@@ -33,7 +33,7 @@ export default {
         }
         // 按时间排序
         list.map(item => item.date = new Date(item.date).getTime());
-        list = jsonSort(list,"date",true)
+        list = jsonSort(list,"date",true);
         yield put({
           type: 'save',
           payload: {

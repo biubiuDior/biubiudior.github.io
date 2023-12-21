@@ -7,7 +7,7 @@
 
 /* 雷达图图例 */
 // 教学评教分布
-const RadarCode1 = () => {
+const RadarCode1 = (myChart) => {
   const nameList =["教学态度","教学内容","教学方式","教学基本功","教学效果"]; // 名字
   const valueList = [85,80,60,76,85]; // 分数,最大值为100
 

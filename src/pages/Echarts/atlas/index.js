@@ -40,6 +40,7 @@ const Atlas = () => {
         destroyInactiveTabPane={true}
         activeKey={tabActiveKey}
         onChange={tab => setTabActiveKey(tab)}
+        animated={true}
         items={atlasTypeList.map((item, index) => {
           return {
             label: <div><BiuIcon type={item.icon}/>{item.name}</div>,

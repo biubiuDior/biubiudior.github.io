@@ -19,7 +19,7 @@ const webpackConfig = (memo, { env, webpack, createCSSRule }) => {
   // 代码编辑器高亮显示
   memo.plugin('react-monaco-editor').use(MonacoWebpackPlugin, [
     {
-      languages: ['javascript', 'typescript', 'json'], // 支持高亮显示的代码语言
+      languages: ['javascript', 'typescript', 'json', 'echarts'], // 支持高亮显示的代码语言
       features: ["coreCommands", "find", "format", "folding", 'smartSelect', 'snippets', 'suggest', 'hover']
     }
   ])

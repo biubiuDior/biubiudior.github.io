@@ -8,16 +8,25 @@
 import React, {useEffect, useState, useRef} from "react";
 import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
+import {unicodeToChinese} from "@/utils/utils";
 
 const BiuEcharts = (props) => {
   const {
-    optionCode = {},// Echarts代码
+    code = "",// 原始代码
     renderer = 'svg',// 默认渲染方式svg
   } = props;
+  const echartsRef = useRef(null);
+  const [option, setOption] = useState({})
+
+  useEffect(() => {
+    let myChart = echartsRef.current.getEchartsInstance();
+    myChart.setOption(eval(unicodeToChinese(code))(myChart));
+  },[code])
 
   return (
     <ReactEcharts
-      option={optionCode}
+      ref={echartsRef}
+      option={option}
       style={{ width: "100%", height: "100%" }}
       notMerge={true} // option不合并
       opts={{

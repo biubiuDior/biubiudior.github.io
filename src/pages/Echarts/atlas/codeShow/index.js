@@ -5,7 +5,7 @@
  * @Date: 2023-12-12
 */
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import styles from "./index.less";
 import { useDispatch, useSelector } from 'umi';
 import { Tooltip, Divider, message } from "antd";
@@ -13,6 +13,7 @@ import {ArrowLeftOutlined} from "@ant-design/icons";
 import BiuCodeEditor from "@/components/BiuCodeEditor";
 import {unicodeToChinese} from "@/utils/utils";
 import BiuEcharts from "@/components/BiuEcharts";
+import {debounce} from "lodash";
 
 const CodeShow = (props) => {
   const dispatch = useDispatch();
@@ -21,13 +22,12 @@ const CodeShow = (props) => {
   const codeTimer = useRef(null);
   // 状态state
   const [showCode, setShowCode] = useState("");// 展示代码
-  const [newOption, setNewOption] = useState();// 新option
+  const [newOption, setNewOption] = useState(currentCode['code']);// 新option
   const [codeError, setCodeError] = useState(false);// 编辑代码错误
 
   useEffect(() => {
-    let str = unicodeToChinese(currentCode['code']).replace("() => {\n","").replace("return option;\n}","").replace("const option","option");
+    let str = unicodeToChinese(currentCode['code']).replace("(myChart) => {\n","").replace("return option;","").replace("const option","option").slice(0, -1);
     setShowCode(str)
-    setNewOption(eval(unicodeToChinese(currentCode['code']))())
   },[])
 
   // 改变共享状态
@@ -39,20 +39,15 @@ const CodeShow = (props) => {
   }
 
   // 代码编辑改变时
-  const codeChange = (newCode) => {
-    clearTimeout(codeTimer.current)
-    let getOption = () => {}
-    codeTimer.current = setTimeout(() => {
-      // 异常处理
-      try {
-        getOption = eval(`() => {${newCode.replace("option", "const option")} return option}`);
-        setCodeError(false);
-        setNewOption(getOption())
-      } catch (error) {
-        setCodeError(true);
-      }
-    }, 1000)
-  }
+  const codeChange = useCallback(debounce(newCode => {
+    try {
+      eval(`() => {${newCode.replace("option", "const option")} return option}`)
+      setCodeError(false);
+      setNewOption(`() => {${newCode.replace("option", "const option")} return option}`)
+    } catch (error) {
+      setCodeError(true);
+    }
+  }, 500),[newOption])
 
   // 代码复制
   const copyUrl = (text) => {
@@ -88,7 +83,7 @@ const CodeShow = (props) => {
         </div>
         <div className={styles.echarts}>
           {codeError ? <div className={styles.tips}>编辑器内容有误！</div> :
-            <BiuEcharts optionCode={newOption} />
+            <BiuEcharts key={newOption} code={newOption} />
           }
         </div>
       </div>

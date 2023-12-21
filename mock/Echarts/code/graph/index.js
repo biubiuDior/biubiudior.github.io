@@ -7,7 +7,7 @@
 
 /* 关系图图例 */
 // 教学评教分布
-const GraphCode1 = () => {
+const GraphCode1 = (myChart) => {
   const nameList = ["亲切", "疑难解答", "启发", "友好", "扩展思维", "思考能力", "知识", "关心", "平易近人", "认真负责"];
   const valueList = [30, 50, 60, 65, 70, 80, 90, 100, 120, 150];
 
@@ -70,7 +70,7 @@ const GraphCode1 = () => {
   return option;
 }
 // 学生关系图
-const GraphCode2 = () => {
+const GraphCode2 = (myChart) => {
   /* 数据 */
   const stuName = '王文武'; // 当前学生名字
 // 家庭
