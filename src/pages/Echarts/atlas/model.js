@@ -17,23 +17,25 @@ export default {
     *fetchGetCodeList({ payload }, { call, put, select}) {
       const { data, code, message, meta } = yield call(reqGetCodeList,payload);
       let list = [];
-      const { type= "" } = payload;
+      let total = 0;
+      const { type= "", page= 1 } = payload;
       if (data && code === 200) {
         // 目前分类类型
-        const existType = ["bar", "line", "pie", "map"];
+        const existType = ["bar", "line", "pie", "map", 'linkage'];
         // 判断类型
         if(type === "all"){
-          list = data;
+          list = data['list'];
         }else {
           if(existType.indexOf(type) > -1){
-            list = data.filter(item => item.type === type);
+            list = data['list'].filter(item => item.type === type);
           }else {
-            list = data.filter(item => existType.indexOf(item.type) < 0);
+            list = data['list'].filter(item => existType.indexOf(item.type) < 0);
           }
         }
+        total = list.length
         // 按时间排序
         list.map(item => item.date = new Date(item.date).getTime());
-        list = jsonSort(list,"date",true);
+        list = jsonSort(list,"date",true).slice((Number(page) - 1) * 12, page * 12);
         yield put({
           type: 'save',
           payload: {
@@ -43,7 +45,7 @@ export default {
       } else {
         Message.error(meta.messages || '获取失败')
       }
-      return list
+      return total;
     },
     *fetchGetAtlasType({ payload }, { call, put, select}) {
       const { data, code, message, meta } = yield call(reqGetAtlasType,payload);

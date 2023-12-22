@@ -760,8 +760,217 @@ const LineCode2 = (myChart) => {
 
   return option;
 }
+// 轮播趋势折线图
+const LineCode3 = (myChart) => {
+  const dateList = ['05.01', '05.02', '05.03', '05.04', '05.05', '05.06', '05.07']; // 日期
+  const values = [81, 65, 76, 84, 59, 64, 65];
+
+  const option = {
+    backgroundColor: "#010d20",
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: "line",
+        lineStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 1,
+            x2: 0,
+            y2: 0,
+            colorStops: [{
+              offset: 0, color: 'rgba(66, 151, 255, 1)' // 0% 处的颜色
+            }, {
+              offset: 1, color: 'rgba(66, 151, 255, 0)' // 100% 处的颜色
+            }],
+            global: false // 缺省为 false
+          },
+        },
+        label: {
+          show: true,
+          fontSize: 12,
+          fontFamily: "Source Han Sans CN-Regular",
+          fontWeight: 400,
+          color: "#A0CAFF",
+          backgroundColor: "transparent",
+          margin:1
+        }
+      },
+      formatter: (params) => {
+        return ""
+      },
+      extraCssText: 'background: transparent;border: none'
+    },
+    grid: {
+      top: '48',//上边距
+      right: '48',//右边距
+      left: '48',//左边距
+      bottom: '48',//下边距
+      containLabel: true,
+    },
+    xAxis: {
+      type: 'category',
+      data: dateList,
+      boundaryGap: false,
+      axisTick: {
+        show: false //隐藏X轴刻度
+      },
+      axisLine: {
+        show: false //隐藏X轴
+      },
+      axisLabel: {
+        show: false,
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        show: false
+      },
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        show: false
+      }
+    },
+    series: [{
+      type: 'line',
+      data: values,
+      markLine: {
+        silent: true, // 是否不响应鼠标事件
+        precision: 0, // 精度
+        symbol: "none",
+        lineStyle: {
+          type: 'dashed',
+          color: "rgba(160, 202, 255, 0.3)"
+        },
+        label: {
+          show: true,
+          position: "start",
+          fontSize: 12,
+          fontFamily: "Source Han Sans CN-Regular",
+          fontWeight: 400,
+          color: "#A0CAFF",
+        },
+        data: [{
+          name: '平均线',
+          type: 'average',
+        }]
+      },
+      symbolSize: 2, //标记的大小
+      areaStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [{
+            offset: 0, color: 'rgba(47, 145, 255, 0.3)' // 0% 处的颜色
+          }, {
+            offset: 1, color: 'rgba(47,145,255,0)' // 100% 处的颜色
+          }],
+          global: false // 缺省为 false
+        },
+      },
+      lineStyle: {
+        color: "#4297FF",
+        width: 1,
+        shadowColor: '#0090FF',//设置折线阴影
+        shadowBlur: 5,
+      },
+      itemStyle: {
+        //折线拐点标志的样式
+        color: "#FFF",
+        shadowColor: '#0090FF',//设置折线阴影
+        shadowBlur: 5,
+      },
+      smooth: 0.5,
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 14,
+          position: [20, -50],
+          fontFamily: "HarmonyOS Sans-Regular",
+          fontWeight: 400,
+          color: "#4297FF",
+          formatter: '{c}人',
+          //padding: [0, 0, 0, 40]
+        }
+      }
+    }]
+  };
+  let count = 0;
+  var timer = null;
+
+  var dataLength = option.series[0].data.length;
+  timer && clearInterval(timer);
+  timer = setInterval(() => {
+    myChart.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0,
+    });
+    myChart.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0,
+      dataIndex: count % dataLength,
+    });
+    myChart.dispatchAction({
+      type: 'showTip',
+      seriesIndex: 0,
+      dataIndex: count % dataLength,
+    });
+    count++;
+  }, 3000);
+  myChart.on('mouseover', function (params) {
+    clearInterval(timer);
+    count = 0;
+    myChart.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0,
+    });
+    myChart.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0,
+      dataIndex: params.dataIndex,
+    });
+    myChart.dispatchAction({
+      type: 'showTip',
+      seriesIndex: 0,
+      dataIndex: params.dataIndex,
+    });
+  });
+  myChart.on('mouseout', function (params) {
+    count = 0;
+    timer && clearInterval(timer);
+    timer = setInterval(function () {
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+      });
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: count % dataLength,
+      });
+      myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: count % dataLength,
+      });
+      count++;
+    }, 2000);
+  });
+
+  return option;
+}
 
 export const LineCodeList = [
-  {name: "收支趋势对比图", type: "line", author: "biubiu", date: "2023.12.21", remark: "双折线对比图", code: `${LineCode2}`},
-  {name: "到账经费年度趋势", type: "line", author: "biubiu", date: "2023.12.19", remark: "折线面积图", code: `${LineCode1}`},
+  {id: "LineCode3", name: "轮播趋势折线图", type: "line", author: "biubiu", date: "2023.12.22", remark: "轮播，趋势折线图", code: `${LineCode3}`},
+  {id: "LineCode2", name: "收支趋势对比图", type: "line", author: "biubiu", date: "2023.12.21", remark: "双折线对比图", code: `${LineCode2}`},
+  {id: "LineCode1",name: "到账经费年度趋势", type: "line", author: "biubiu", date: "2023.12.19", remark: "折线面积图", code: `${LineCode1}`},
 ]

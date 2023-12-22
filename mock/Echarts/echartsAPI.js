@@ -5,6 +5,7 @@ const EchartsAtlasType = [
   {name: "折线图", icon: "lineIcon", type: "line"},
   {name: "饼图", icon: "pieIcon", type: "pie"},
   {name: "地图", icon: "mapIcon", type: "map"},
+  {name: "联动组合图", icon: "linkageIcon", type: "linkage"},
   {name: "其他", icon: "elseIcon", type: "other"},
 ];
 
@@ -15,6 +16,7 @@ import {PieCodeList} from "./code/pie";// 饼图
 import {SunburstCodeList} from "./code/sunburst";// 旭日图
 import {RadarCodeList} from "./code/radar";// 雷达图
 import {GraphCodeList} from "./code/graph";// 关系图
+import {LinkageCodeList} from "./code/linkage";// 关系图
 
 const EchartsCodeList = [
   ...BarCodeList,
@@ -23,6 +25,7 @@ const EchartsCodeList = [
   ...LineCodeList,
   ...RadarCodeList,
   ...GraphCodeList,
+  ...LinkageCodeList,
 ]
 
 
@@ -39,7 +42,10 @@ export default {
     res.json({
       success: true,
       code: 200,
-      data: EchartsCodeList,
+      data: {
+        list: EchartsCodeList,
+        total: EchartsCodeList.length
+      },
       errorCode: 0,
     });
   },

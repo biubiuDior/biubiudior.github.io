@@ -12,6 +12,7 @@ import {unicodeToChinese} from "@/utils/utils";
 
 const BiuEcharts = (props) => {
   const {
+    id = "",// key
     code = "",// 原始代码
     renderer = 'svg',// 默认渲染方式svg
   } = props;
@@ -20,11 +21,26 @@ const BiuEcharts = (props) => {
 
   useEffect(() => {
     let myChart = echartsRef.current.getEchartsInstance();
-    myChart.setOption(eval(unicodeToChinese(code))(myChart));
-  },[code])
+    try {
+      setOption(eval(unicodeToChinese(code))(myChart))
+    }catch (error) {
+      console.log("Echarts渲染失败",error)
+    }
+
+    return () => {
+      // myChart.clear();
+      // myChart.dispose();
+      // 暴力销毁定时器
+      for (let i = 0; i < 10000; i++) {
+        clearInterval(i)
+        clearTimeout(i)
+      }
+    }
+  },[id])
 
   return (
     <ReactEcharts
+      key={id}
       ref={echartsRef}
       option={option}
       style={{ width: "100%", height: "100%" }}
@@ -35,4 +51,4 @@ const BiuEcharts = (props) => {
     />
   )
 }
-export default BiuEcharts;
+export default React.memo(BiuEcharts);

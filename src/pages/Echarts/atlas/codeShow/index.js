@@ -83,7 +83,7 @@ const CodeShow = (props) => {
         </div>
         <div className={styles.echarts}>
           {codeError ? <div className={styles.tips}>编辑器内容有误！</div> :
-            <BiuEcharts key={newOption} code={newOption} />
+            <BiuEcharts key={newOption} code={newOption} renderer={currentCode['renderer'] || 'svg'} id={currentCode['id']}/>
           }
         </div>
       </div>

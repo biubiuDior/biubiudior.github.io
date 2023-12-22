@@ -19,20 +19,30 @@ const CardList = (props) => {
   } = props;
   const dispatch = useDispatch();
   const { codeList } = useSelector(state => state.EchartsAtlas);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);// 卡片加载
+  const [page, setPage] = useState(1);// 页码
+  const [total, setTotal] = useState(0);// 总数
 
   useEffect(() => {
     // 获取数据
-    fetchGetCodeList();
+    fetchGetCodeList(page);
   },[]);
 
   // 获取tab对应Echarts代码列表
-  const fetchGetCodeList = () => {
+  const fetchGetCodeList = (currentPage) => {
+    setLoading(true)
     dispatch({
       type: 'EchartsAtlas/fetchGetCodeList',
-      payload: {type},
+      payload: {
+        type,
+        page: currentPage
+      },
     }).then(res => {
-      setLoading(false)
+      setPage(currentPage);
+      setTotal(res);
+      setTimeout(() => {
+        setLoading(false)
+      },50)
     })
   }
   // 改变共享状态
@@ -42,22 +52,34 @@ const CardList = (props) => {
       payload: params
     });
   }
+  // 页码切换
+  const pageChange = (page, pageSize) => {
+    fetchGetCodeList(page)
+  }
+  // 暴力清除定时器
+/*  useEffect(() => {
+    for (let i = 0; i < 1000; i++) {
+      clearInterval(i)
+      clearTimeout(i)
+    }
+  },[])*/
 
   return(
     <div className={styles.cardList}>
       <List
         grid={{ gutter: [24,0], column: 4 }}
         pagination={codeList.length > 0 && {
-          defaultCurrent:1,
-          total:codeList.length,
-          pageSize: 12
+          current:page,
+          total:total,
+          pageSize: 12,
+          onChange: pageChange
         }}
         dataSource={codeList}
         renderItem={(item,index) => (
           <List.Item>
             <div className={styles.card} onClick={() => setShareData({codePage: true, currentCode: item},"EchartsAtlas")}>
               <div className={styles.echarts}>
-                {loading ? <Spin tip="加载中"/> : <BiuEcharts code={item['code']}/>}
+                {loading ? <Spin tip="加载中"/> : <BiuEcharts code={item['code']} renderer={item['renderer'] || 'svg'} id={item['id']}/>}
               </div>
               <div className={styles.infoBox}>
                 <div className={styles.content}>

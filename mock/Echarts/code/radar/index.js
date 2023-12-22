@@ -73,5 +73,5 @@ const RadarCode1 = (myChart) => {
 
 
 export const RadarCodeList = [
-  {name: "教学评教分布", type: "radar", author: "biubiu", date: "2023.12.19", remark: "雷达分布图", code: `${RadarCode1}`},
+  {id: "RadarCode1", name: "教学评教分布", type: "radar", author: "biubiu", date: "2023.12.19", remark: "雷达分布图", code: `${RadarCode1}`},
 ]

@@ -1535,19 +1535,167 @@ const BarCode11 = (myChart) => {
 
   return option;
 }
-// 
+// 人数对比柱状图
+const BarCode12 = (myChart) => {
+  /* 数据 */
+  let nameList = ['目标', '对标1', '对标2']; // 类别
+  let valueList = [36, 32, 38]; // 人数
+
+  /* 数据整合 */
+  let dataList = [];
+  nameList.map((item, index) => {
+    if (index === 0) {
+      dataList.push({
+        name: item,
+        value: valueList[index],
+        itemStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: '#FFA66A' // 0% 处的颜色
+              },
+              {
+                offset: 1,
+                color: '#EE607E' // 100% 处的颜色
+              }
+            ],
+            global: false // 缺省为 false
+          },
+          borderRadius: [4, 4, 0, 0]
+        },
+        label: {
+          show: true,
+          position: 'top',
+          fontSize: 14,
+          fontFamily: 'HarmonyOS Sans-Regular',
+          color: '#FF855C'
+        }
+      });
+    } else {
+      dataList.push({
+        name: item,
+        value: valueList[index]
+      });
+    }
+  });
+
+  const option = {
+    backgroundColor: '#113659',
+    grid: {
+      top: '32', //上边距
+      right: '16', //右边距
+      left: '16', //左边距
+      bottom: '16', //下边距
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: nameList,
+      axisTick: {
+        show: false //隐藏X轴刻度
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(49, 217, 255, 0.8)'
+        }
+      },
+      axisLabel: {
+        show: true,
+        color: '#B6E6FF',
+        fontSize: 13,
+        fontFamily: 'Source Han Sans CN-Regular'
+      }
+    },
+    yAxis: [
+      {
+        boundaryGap: ['0', '20%'],
+        type: 'value',
+        name: '人数(人)',
+        splitNumber: 5,
+        nameTextStyle: {
+          color: '#B6E6FF',
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          align: 'left',
+          verticalAlign: 'center'
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#B6E6FF',
+          fontFamily: 'HarmonyOS Sans-Regular'
+        },
+        axisLine: {
+          show: false
+        },
+        axisTick: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(49, 217, 255, 0.5)',
+            type: 'dashed'
+          }
+        }
+      }
+    ],
+    series: [
+      {
+        type: 'bar',
+        data: dataList,
+        itemStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(0, 255, 245, 1)' // 0% 处的颜色
+              },
+              {
+                offset: 1,
+                color: 'rgba(29, 130, 255, 1)' // 100% 处的颜色
+              }
+            ],
+            global: false // 缺省为 false
+          },
+          borderRadius: [4, 4, 0, 0]
+        },
+        barWidth: 15,
+        label: {
+          show: true,
+          position: 'top',
+          fontSize: 14,
+          fontFamily: 'HarmonyOS Sans-Regular',
+          color: '#53E6FF'
+        }
+      }
+    ]
+  };
+
+  return option;
+}
 
 export const BarCodeList = [
-  {name: "多柱状基础图", type: "bar", author: "biubiu", date: "2023.12.20", remark: "多柱状基础图", code: `${BarCode11}`},
-  {name: "岗位招聘趋势", type: "bar", author: "biubiu", date: "2023.12.20", remark: "柱状图重叠展示信息", code: `${BarCode10}`},
-  {name: "各省招生分数区间", type: "bar", author: "biubiu", date: "2023.12.20", remark: "堆叠柱状图，展示最低分到最高分区间", code: `${BarCode9}`},
-  {name: "环形占比图", type: "bar", author: "biubiu", date: "2023.12.19", remark: "环形柱状图", code: `${BarCode8}`},
-  {name: "主题访问人次排名", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图，顺序排名", code: `${BarCode7}`},
-  {name: "人数排名分布图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图", code: `${BarCode6}`},
-  {name: "民族人数占比图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图，显示百分比", code: `${BarCode5}`},
-  {name: "预警占比图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图", code: `${BarCode4}`},
-  {name: "办理进度条", type: "bar", author: "biubiu", date: "2023.12.18", remark: "单柱状占比条形图", code: `${BarCode3}`},
-  {name: "单柱状分布图", type: "bar", author: "biubiu", date: "2023.12.15", remark: "单柱状分布图", code: `${BarCode2}`},
-  {name: "单条形占比图", type: "bar", author: "biubiu", date: "2023.12.12", remark: "单柱状占比条形图", code: `${BarCode1}`},
+  {id: "BarCode12", name: "人数对比柱状图", type: "bar", author: "biubiu", date: "2023.12.22", remark: "异色柱状图，突出对比效果", code: `${BarCode12}`},
+  {id: "BarCode11", name: "多柱状基础图", type: "bar", author: "biubiu", date: "2023.12.20", remark: "多柱状基础图", code: `${BarCode11}`},
+  {id: "BarCode10", name: "岗位招聘趋势", type: "bar", author: "biubiu", date: "2023.12.20", remark: "柱状图重叠展示信息", code: `${BarCode10}`},
+  {id: "BarCode9", name: "各省招生分数区间", type: "bar", author: "biubiu", date: "2023.12.20", remark: "堆叠柱状图，展示最低分到最高分区间", code: `${BarCode9}`},
+  {id: "BarCode8", name: "环形占比图", type: "bar", author: "biubiu", date: "2023.12.19", remark: "环形柱状图", code: `${BarCode8}`},
+  {id: "BarCode7", name: "主题访问人次排名", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图，顺序排名", code: `${BarCode7}`},
+  {id: "BarCode6", name: "人数排名分布图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图", code: `${BarCode6}`},
+  {id: "BarCode5", name: "民族人数占比图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图，显示百分比", code: `${BarCode5}`},
+  {id: "BarCode4", name: "预警占比图", type: "bar", author: "biubiu", date: "2023.12.18", remark: "横向柱状图", code: `${BarCode4}`},
+  {id: "BarCode3", name: "办理进度条", type: "bar", author: "biubiu", date: "2023.12.18", remark: "单柱状占比条形图", code: `${BarCode3}`},
+  {id: "BarCode2", name: "单柱状分布图", type: "bar", author: "biubiu", date: "2023.12.15", remark: "单柱状分布图", code: `${BarCode2}`},
+  {id: "BarCode1", name: "单条形占比图", type: "bar", author: "biubiu", date: "2023.12.12", remark: "单柱状占比条形图", code: `${BarCode1}`},
 ]
 

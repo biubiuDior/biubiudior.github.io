@@ -150,5 +150,5 @@ const SunburstCode1 = (myChart) => {
 
 
 export const SunburstCodeList = [
-  {name: "教职工年龄分布图", type: "sunburst", author: "biubiu", date: "2023.12.19", remark: "旭日分布图", code: `${SunburstCode1}`},
+  {id: "SunburstCode1", name: "教职工年龄分布图", type: "sunburst", author: "biubiu", date: "2023.12.19", remark: "旭日分布图", code: `${SunburstCode1}`},
 ]

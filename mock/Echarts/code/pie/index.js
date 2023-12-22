@@ -807,13 +807,150 @@ const PieCode6 = (myChart) => {
 
   return option;
 }
+// 双指标对比图
+const PieCode7 = (myChart) => {
+  const data1 = 65;
+  const data2 = 35;
+
+  const option = {
+    backgroundColor: '#0c2358',
+    tooltip: {},
+    series: [
+      {
+        name: 'Pie',
+        type: 'pie',
+        startAngle: 180,
+        center: ['50%', '75%'],
+        radius: ['70%', '80%'],
+        label: { show: false },
+        //silent: true,
+        data: [
+          {
+            value: data1 / 2,
+            name: 'data1',
+            itemStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 1,
+                y2: 0,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(63, 249, 252, 1)' // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(46, 173, 216, 1)' // 100% 处的颜色
+                  }
+                ],
+                global: false // 缺省为 false
+              }
+            }
+          },
+          {
+            value: data2 / 2,
+            name: 'data2',
+            itemStyle: {
+              color: {
+                type: 'linear',
+                x: 0,
+                y: 0,
+                x2: 1,
+                y2: 0,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(25, 182, 148, 1)' // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(1, 244, 119, 1)' // 100% 处的颜色
+                  }
+                ],
+                global: false // 缺省为 false
+              }
+            }
+          },
+          {
+            value: 50,
+            name: '空白占比',
+            silent: true,
+            itemStyle: {
+              color: 'rgba(255,255,255,0)'
+            },
+            cursor: 'default',
+            tooltip: {
+              show: false
+            }
+          }
+        ]
+      },
+      {
+        // 外层圈
+        name: 'mark',
+        type: 'pie',
+        startAngle: 180,
+        center: ['50%', '75%'],
+        radius: ['70%', '80%'],
+        color: '#FFFFFF',
+        cursor: 'default',
+        silent: true,
+        label: { show: false },
+        itemStyle: {
+          borderRadius: 20
+        },
+        data: [
+          {
+            value: data1 / 2,
+            name: 'rateOut',
+            itemStyle: {
+              color: 'transparent'
+            }
+          },
+          {
+            value: 1,
+            name: 'mark',
+            itemStyle: {
+              color: 'rgba(255,255,255,1)',
+              borderRadius: 20,
+              shadowColor: '#6AD5F2',
+              shadowBlur: 5
+            }
+          },
+          {
+            value: data2 / 2,
+            name: 'blankOut',
+            itemStyle: {
+              color: 'transparent'
+            }
+          },
+          {
+            value: 50,
+            name: '空白占比',
+            itemStyle: {
+              color: 'rgba(255,255,255,0)'
+            },
+            tooltip: {
+              show: false
+            }
+          }
+        ]
+      }
+    ]
+  };
+
+  return option;
+}
 
 
 export const PieCodeList = [
-  {name: "精品课程类型占比图02", type: "pie", author: "biubiu", date: "2023.12.19", remark: "legend提示饼图", code: `${PieCode6}`},
-  {name: "精品课程类型占比图01", type: "pie", author: "biubiu", date: "2023.12.19", remark: "label提示饼图", code: `${PieCode5}`},
-  {name: "岗位分布图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "南丁格尔图(玫瑰图)", code: `${PieCode4}`},
-  {name: "男女比例分布图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "半圆饼图", code: `${PieCode3}`},
-  {name: "占比进度条", type: "pie", author: "biubiu", date: "2023.12.19", remark: "饼图 + 仪表盘结合，指针位置根据实际画布调整", code: `${PieCode2}`},
-  {name: "教职工类型分布占比图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "占比分布饼图", code: `${PieCode1}`},
+  {id: "PieCode7", name: "双指标对比图", type: "pie", author: "biubiu", date: "2023.12.22", remark: "半圆，渐变色", code: `${PieCode7}`},
+  {id: "PieCode6", name: "精品课程类型占比图02", type: "pie", author: "biubiu", date: "2023.12.19", remark: "legend提示饼图", code: `${PieCode6}`},
+  {id: "PieCode5", name: "精品课程类型占比图01", type: "pie", author: "biubiu", date: "2023.12.19", remark: "label提示饼图", code: `${PieCode5}`},
+  {id: "PieCode4", name: "岗位分布图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "南丁格尔图(玫瑰图)", code: `${PieCode4}`},
+  {id: "PieCode3", name: "男女比例分布图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "半圆饼图", code: `${PieCode3}`},
+  {id: "PieCode2", name: "占比进度条", type: "pie", author: "biubiu", date: "2023.12.19", remark: "饼图 + 仪表盘结合，指针位置根据实际画布调整", code: `${PieCode2}`},
+  {id: "PieCode1", name: "教职工类型分布占比图", type: "pie", author: "biubiu", date: "2023.12.19", remark: "占比分布饼图", code: `${PieCode1}`},
 ]

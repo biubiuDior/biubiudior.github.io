@@ -15,6 +15,7 @@ import { ReactComponent as barIcon } from '@/assets/icon/bar.svg';
 import { ReactComponent as lineIcon } from '@/assets/icon/line.svg';
 import { ReactComponent as pieIcon } from '@/assets/icon/pie.svg';
 import { ReactComponent as mapIcon } from '@/assets/icon/map.svg';
+import { ReactComponent as linkageIcon } from '@/assets/icon/linkage.svg';
 import { ReactComponent as elseIcon } from '@/assets/icon/else.svg';
 
 // 图标列表
@@ -24,6 +25,7 @@ const iconList = {
   lineIcon: lineIcon,
   pieIcon: pieIcon,
   mapIcon: mapIcon,
+  linkageIcon: linkageIcon,
   elseIcon: elseIcon,
 }
 

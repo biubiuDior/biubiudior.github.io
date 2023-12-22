@@ -378,6 +378,6 @@ const GraphCode2 = (myChart) => {
 
 
 export const GraphCodeList = [
-  {name: "学生关系图", type: "radar", author: "biubiu", date: "2023.12.19", remark: "学生关系图", code: `${GraphCode2}`},
-  {name: "教学评教分布", type: "radar", author: "biubiu", date: "2023.12.19", remark: "教学评教关系图", code: `${GraphCode1}`},
+  {id: "GraphCode2", name: "学生关系图", type: "radar", author: "biubiu", date: "2023.12.19", remark: "学生关系图", code: `${GraphCode2}`},
+  {id: "GraphCode1", name: "教学评教分布", type: "radar", author: "biubiu", date: "2023.12.19", remark: "教学评教关系图", code: `${GraphCode1}`},
 ]
