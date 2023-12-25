@@ -16,7 +16,10 @@ import {PieCodeList} from "./code/pie";// 饼图
 import {SunburstCodeList} from "./code/sunburst";// 旭日图
 import {RadarCodeList} from "./code/radar";// 雷达图
 import {GraphCodeList} from "./code/graph";// 关系图
-import {LinkageCodeList} from "./code/linkage";// 关系图
+import {LinkageCodeList} from "./code/linkage";// 组合图
+import {TreemapCodeList} from "./code/treemap";// 矩形树图
+import {ParallelCodeList} from "./code/parallel";// 平行坐标图
+import {ScatterCodeList} from "./code/scatter";// 散点图
 
 const EchartsCodeList = [
   ...BarCodeList,
@@ -26,6 +29,9 @@ const EchartsCodeList = [
   ...RadarCodeList,
   ...GraphCodeList,
   ...LinkageCodeList,
+  ...TreemapCodeList,
+  ...ParallelCodeList,
+  ...ScatterCodeList,
 ]
 
 

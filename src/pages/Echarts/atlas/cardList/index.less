@@ -7,7 +7,7 @@
     background: #FFFFFF;
     box-shadow: 0px 0 6px 0px rgba(4,53,90,0.1);
     padding: 12px;
-    height: 250px;
+    height: 255px;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.5s;
@@ -18,11 +18,8 @@
       scale: 0.5;
       transform-origin: 0 0;
       :global {
-        .ant-spin {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+        .ant-spin-nested-loading, .ant-spin-container {
+          height: 100%;
         }
       }
     }
@@ -90,6 +87,14 @@
   }
 
   :global {
+    // 列表
+    .ant-list {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px 0;
+    }
     .ant-col {
       padding: 12px !important;
     }
@@ -98,11 +103,19 @@
       border-radius: 8px;
     }
     .ant-list .ant-list-pagination {
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
+      position: relative;
+      margin-block-start: unset;
+      width: 100%;
     }
     // 分页样式
+    .ant-pagination .ant-pagination-total-text {
+      color: rgba(0,0,0,0.65);
+      position: absolute;
+      left: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
     .ant-pagination {
       font-size: 14px;
     }
@@ -127,7 +140,7 @@
       height: 32px;
       margin-inline-end: 8px;
       line-height: 30px;
-      border-radius: 6pxwwww;
+      border-radius: 6px;
     }
   }
 }

@@ -20,6 +20,9 @@ const BiuEcharts = (props) => {
   const [option, setOption] = useState({})
 
   useEffect(() => {
+    if(id === "LinkageCode1"){
+      console.log(code)
+    }
     let myChart = echartsRef.current.getEchartsInstance();
     try {
       setOption(eval(unicodeToChinese(code))(myChart))
@@ -28,8 +31,6 @@ const BiuEcharts = (props) => {
     }
 
     return () => {
-      // myChart.clear();
-      // myChart.dispose();
       // 暴力销毁定时器
       for (let i = 0; i < 10000; i++) {
         clearInterval(i)

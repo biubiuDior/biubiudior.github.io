@@ -15,7 +15,7 @@ export default [
         redirect: '/home',
       },
       {
-        name: '首页',
+        name: '导航',
         path: '/home',
         component: './Home',
       },

@@ -12,7 +12,7 @@ const Document = () => {
 
   return(
     <div className={styles.document}>
-      <iframe src={"https://echarts.apache.org/zh/option.html"}></iframe>
+
     </div>
   )
 }

@@ -968,8 +968,284 @@ const LineCode3 = (myChart) => {
 
   return option;
 }
+// 散点折线图
+const LineCode4 = (myChart) => {
+  let captions = ['学院1', '学院2', '学院3', '学院4', '学院5'];
+  let values = [60, 55, 63, 78, 49];
+
+  let maxValue = Math.max(...values);
+  let minValue = Math.min(...values);
+
+  const option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'none'
+      },
+      position: function (point, params, dom, rect, size) {
+        // 提示框位置
+        let x = 0;
+        let y = 0;
+        //固定在中间
+        if (point[0] + size.contentSize[0] < size.viewSize[0]) {
+          x = point[0];
+        } else if (point[0] > size.contentSize[0]) {
+          x = point[0] - size.contentSize[0];
+        } else {
+          x = '30%';
+        }
+        if (point[1] > size.contentSize[1]) {
+          y = point[1] - size.contentSize[1];
+        } else if (point[1] + size.contentSize[1] < size.viewSize[1]) {
+          y = point[1];
+        } else {
+          y = '30%';
+        }
+        return [x, y];
+      },
+      formatter: (params) => {
+        const { name, data } = params[0];
+        return `
+            <div style="font-size: 14px;font-family: Source Han Sans CN-Medium;font-weight: 500;color: #FFFFFF;margin-bottom:8px;">${name}</div>
+            <div style="font-size: 14px;font-family: Source Han Sans CN-Medium;font-weight: 500;color: #FFFFFF;">人均高质量论文：${data}篇/人</div>`;
+      },
+      extraCssText:
+        'opacity: 0.8;background-color:#050F1B;padding:12px;box-shadow: 1px 6px 15px 1px rgba(0,0,0,0.13);border-radius: 4px;filter: blur(undefinedpx);border:none;'
+    },
+    grid: {
+      left: '24',
+      right: '24',
+      top: '48',
+      bottom: '24',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: captions,
+      axisTick: {
+        show: false //隐藏X轴刻度
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(204, 204, 204, 1)'
+        }
+      },
+      axisLabel: {
+        show: true,
+        showMaxLabel: true,
+        showMinLabel: true,
+        // interval: 0, // 间距
+        // 设置X轴标签自定义样式  换行显示
+        formatter: function (value, index) {
+          if (index === 0 || index === values.length - 1) {
+            return value;
+          } else {
+            return ' ';
+          }
+        },
+        fontSize: 14,
+        color: 'rgba(0, 0, 0, 0.65)', //X轴文字颜色
+        fontFamily: 'Source Han Sans CN-Regular'
+      }
+    },
+    yAxis: {
+      name: '论文：篇/人',
+      nameTextStyle: {
+        fontSize: 14,
+        color: 'rgba(0, 0, 0, 0.65)', //X轴文字颜色
+        fontFamily: 'Source Han Sans CN-Regular',
+        align: 'left',
+        verticalAlign: 'center'
+      },
+      type: 'value',
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        lineStyle: {
+          type: 'dashed',
+          width: 1,
+          color: 'rgba(223, 223, 223, 1)',
+          opacity: '1'
+        }
+      },
+      axisLine: {
+        show: false
+      },
+      axisLabel: {
+        show: true,
+        fontSize: 14,
+        color: 'rgba(0, 0, 0, 0.65)',
+        fontFamily: 'HarmonyOS Sans-Regular'
+      },
+      splitArea: {
+        show: false
+      }
+    },
+    series: [
+      {
+        name: 'line',
+        type: 'line',
+        data: values,
+        symbolSize: 10, //标记的大小
+        symbol: 'circle',
+        lineStyle: {
+          color: 'rgba(255,255,255,0)',
+          width: 0
+        },
+        itemStyle: {
+          //折线拐点标志的样式
+          color: (params) => {
+            console.log(params);
+            let data = params.data;
+            if (data === minValue) {
+              return '#000';
+            } else if (data === maxValue) {
+              return '#999';
+            } else {
+              return '#FA8974';
+            }
+          }
+        },
+        emphasis: {
+          scale: 1.5
+        }
+      }
+    ]
+  };
+
+  return option;
+}
+// 多折线趋势图
+const LineCode5 = (myChart) => {
+  // 数据
+  const captions = ["2018", "2019", "2020", "2021", "2022", "2023"];//时间
+  const values1 = [33, 40, 43, 33, 42, 21];
+  const values2 = [50, 62, 82, 77, 72, 15];
+  const values3 = [43, 45, 46, 68, 64, 70];
+  const values4 = [36, 32, 28, 22, 28, 10];
+  const values5 = [125, 158, 141, 139, 129, 4];
+  let valueList = [values1, values2, values3, values4, values5]; // 数据汇合
+
+  let legendData = ['类型一', '类型二', '类型三', '类型四', '类型五']; // 图例数据
+  let colorList = ['#5B8FF9', '#61DDAA', '#F6BD16', '#2F467A', '#FA8974']; // 颜色系
+  let seriesData = []; // series数据
+  legendData.map((item, index) => {
+    seriesData.push({
+      name: item,
+      type: 'line',
+      data: valueList[index],
+      symbolSize: 8, //标记的大小
+      lineStyle: {
+        color: colorList[index],
+        width: 3,
+      },
+      itemStyle: {
+        //折线拐点标志的样式
+        color: colorList[index],
+        borderColor: colorList[index],
+        borderWidth: 5,
+      },
+      emphasis: {
+        scale: 1.5
+      }
+    })
+  })
+
+  const option = {
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: 'none'
+      },
+      formatter: '{b0}<br/>{a0}：{c0}篇<br/>{a1}：{c1}篇<br/>{a2}：{c2}篇<br/>{a3}：{c3}篇<br/>{a4}：{c4}篇'
+    },
+    legend: {
+      data: legendData,
+      top: "0",
+      left: '20',
+      itemWidth: 12,
+      itemHeight: 12,
+      itemGap: 20,
+      textStyle: {
+        fontSize: 14,
+        color: "rgba(0, 0, 0, 0.45)",
+        fontFamily: 'Source Han Sans CN-Regular',
+        padding:[0,0,0,4]
+      }
+    },
+    grid: {
+      left: '20',
+      right: '28',
+      top: '60',
+      bottom: '24',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: captions,
+      axisTick: {
+        show: false //隐藏X轴刻度
+      },
+      axisLine: {
+        lineStyle: {
+          color: 'rgba(204, 204, 204, 1)',
+        }
+      },
+      axisLabel: {
+        show: true,
+        textStyle: {
+          fontSize: 14,
+          color: "rgba(0, 0, 0, 0.65)", //X轴文字颜色
+          fontFamily: 'Source Han Sans CN-Regular'
+        }
+      },
+    },
+    yAxis: {
+      name: "单位：项",
+      nameTextStyle: {
+        fontSize: 14,
+        color: "rgba(0, 0, 0, 0.65)", //X轴文字颜色
+        fontFamily: 'Source Han Sans CN-Regular',
+        align:"left",
+        verticalAlign: "center",
+      },
+      type: 'value',
+      axisTick: {
+        show: false
+      },
+      splitLine: {
+        lineStyle: {
+          type: 'dashed',
+          width: 1,
+          color: 'rgba(223, 223, 223, 1)',
+          opacity: '1',
+        }
+      },
+      axisLine: {
+        show: false,
+      },
+      axisLabel: {
+        show: true,
+        textStyle: {
+          fontSize: 14,
+          color: "rgba(0, 0, 0, 0.65)",
+          fontFamily: 'HarmonyOS Sans-Regular'
+        }
+      },
+      splitArea: {
+        show: false
+      }
+    },
+    series: seriesData
+  };
+
+  return option;
+}
 
 export const LineCodeList = [
+  {id: "LineCode5", name: "多折线趋势图", type: "line", author: "biubiu", date: "2023.12.25", remark: "多折线趋势图", code: `${LineCode5}`},
+  {id: "LineCode4", name: "散点折线图", type: "line", author: "biubiu", date: "2023.12.25", remark: "特殊标记最大值最小值", code: `${LineCode4}`},
   {id: "LineCode3", name: "轮播趋势折线图", type: "line", author: "biubiu", date: "2023.12.22", remark: "轮播，趋势折线图", code: `${LineCode3}`},
   {id: "LineCode2", name: "收支趋势对比图", type: "line", author: "biubiu", date: "2023.12.21", remark: "双折线对比图", code: `${LineCode2}`},
   {id: "LineCode1",name: "到账经费年度趋势", type: "line", author: "biubiu", date: "2023.12.19", remark: "折线面积图", code: `${LineCode1}`},

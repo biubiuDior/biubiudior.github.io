@@ -6,13 +6,25 @@
 */
 
 import React from "react";
+import styles from "./index.less";
+import { Carousel } from "antd";
 
-const Echarts = () => {
+const Home = () => {
 
   return(
-    <div>
-      首页开发中...
+    <div className={styles.home}>
+      <div className={styles.carouselHead}>
+        <Carousel autoplay autoplaySpeed={5000}>
+          {['1','2','3'].map((item,index) => {
+            return(
+              <div className={styles.carouselCard}>
+                {item}
+              </div>
+            )
+          })}
+        </Carousel>
+      </div>
     </div>
   )
 }
-export default Echarts;
+export default Home;

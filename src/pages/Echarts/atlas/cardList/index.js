@@ -56,22 +56,16 @@ const CardList = (props) => {
   const pageChange = (page, pageSize) => {
     fetchGetCodeList(page)
   }
-  // 暴力清除定时器
-/*  useEffect(() => {
-    for (let i = 0; i < 1000; i++) {
-      clearInterval(i)
-      clearTimeout(i)
-    }
-  },[])*/
 
   return(
     <div className={styles.cardList}>
       <List
-        grid={{ gutter: [24,0], column: 4 }}
+        grid={{ gutter: [8,0], column: 4 }}
         pagination={codeList.length > 0 && {
           current:page,
           total:total,
           pageSize: 12,
+          showTotal: total => `图表总数：${total}`,
           onChange: pageChange
         }}
         dataSource={codeList}
@@ -79,7 +73,10 @@ const CardList = (props) => {
           <List.Item>
             <div className={styles.card} onClick={() => setShareData({codePage: true, currentCode: item},"EchartsAtlas")}>
               <div className={styles.echarts}>
-                {loading ? <Spin tip="加载中"/> : <BiuEcharts code={item['code']} renderer={item['renderer'] || 'svg'} id={item['id']}/>}
+                <Spin tip="加载中" spinning={loading}>
+                  <BiuEcharts key={item['id']} code={item['code']} renderer={item['renderer'] || 'svg'} id={item['id']}/>
+                </Spin>
+                {/*{loading ? <Spin tip="加载中"/> : <BiuEcharts code={item['code']} renderer={item['renderer'] || 'svg'} id={item['id']}/>}*/}
               </div>
               <div className={styles.infoBox}>
                 <div className={styles.content}>
