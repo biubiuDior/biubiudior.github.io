@@ -12,12 +12,12 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/home',
+        redirect: '/fragment',
       },
       {
-        name: '导航',
-        path: '/home',
-        component: './Home',
+        name: '碎片',
+        path: '/fragment',
+        component: './Fragment',
       },
       {
         name: 'Echarts',

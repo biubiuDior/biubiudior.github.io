@@ -9,6 +9,9 @@ import React, { Component } from 'react';
 import Icon from '@ant-design/icons';
 
 /* 引入svg */
+// 系统图标
+import { ReactComponent as developingIcon } from '@/assets/icon/developing.svg';
+
 // Echarts图集
 import { ReactComponent as menuIcon } from '@/assets/icon/menu.svg';
 import { ReactComponent as barIcon } from '@/assets/icon/bar.svg';
@@ -20,6 +23,9 @@ import { ReactComponent as elseIcon } from '@/assets/icon/else.svg';
 
 // 图标列表
 const iconList = {
+  // 系统图标
+  developingIcon: developingIcon,
+  // Echarts图集
   menuIcon: menuIcon,
   barIcon: barIcon,
   lineIcon: lineIcon,
