@@ -6,5 +6,5 @@
 */
 export default {
   layout: "mix",// 布局;side=侧边/top=顶部
-  title: "biubiu",// 系统名称
+  title: "脚手架",// 系统名称
 }

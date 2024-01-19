@@ -2,7 +2,7 @@
  * model模板
  */
 // import { } from '@/services/api';
-import { Message } from 'antd';
+import { message } from 'antd';
 
 export default {
   // 命名空间
@@ -30,7 +30,7 @@ export default {
           }
         })
       } else {
-        Message.error(meta.messages || '测试失败')
+        message.error(meta.messages || '测试失败')
       }
     }
   },

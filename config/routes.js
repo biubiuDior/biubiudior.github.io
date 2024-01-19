@@ -4,6 +4,7 @@
  * @Author: biubiu
  * @Date: 2023-10-12
 */
+
 export default [
   {
     path: '/',
@@ -12,33 +13,12 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/fragment',
+        redirect: `/home`,
       },
       {
-        name: '碎片零件',
-        path: '/fragment',
-        component: './Fragment',
-      },
-      {
-        name: 'Echarts',
-        path: '/echarts',
-        component: '../layouts/Sider',
-        routes: [
-          {
-            path: '/echarts',
-            redirect: '/echarts/atlas',
-          },
-          {
-            name: '图集',
-            path: '/echarts/atlas',
-            component: './Echarts/atlas',
-          },
-          {
-            name: '文档',
-            path: '/echarts/document',
-            component: './Echarts/document',
-          },
-        ]
+        name: '首页',
+        path: '/home',
+        component: `./${process.env.PROJECT}/Home`,
       },
     ]
   },

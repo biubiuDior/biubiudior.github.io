@@ -10,23 +10,24 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
-  title: "biubiu",
+  title: "脚手架",
   layout: {
     layout: defaultSetting['layout'],
     title: defaultSetting['title'],
   },
   dva: {},
+  // 路由
   routes: routers,
+  // 环境变量
+  define: {
+    'process.env': process.env
+  },
   npmClient: 'npm',
   jsMinifier: 'none',
-  // 注入HTML
-  scripts: [
-    { src: 'http://localhost:8000' },
-  ],
   // 转发代理
   proxy: {
     '/api': {
-      'target': 'http://localhost:8000/',
+      'target': 'http://localhost:1118/',
       'changeOrigin': true,
       'pathRewrite': { '^/api' : '' },
     },
