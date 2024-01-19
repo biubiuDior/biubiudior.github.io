@@ -156,7 +156,7 @@ const LineCode1 = (myChart) => {
   return option;
 }
 // 收支趋势对比图
-const LineCode2 = (myChart) => {
+const  LineCode2 = (myChart) => {
   /* 数据 */
   const nameList = ['2018', '2019', '2020', '2021', '2022']; // x轴数据
   const valueList = [

@@ -1683,8 +1683,642 @@ const BarCode12 = (myChart) => {
 
   return option;
 }
+// 各学院学生转出转入流向
+const BarCode13 = (myChart) => {
+  /* 数据 */
+  const nameList = [
+    '教育科学学院',
+    '理学院',
+    '体育学院',
+    '马克思主义学院',
+    '生命科学学院',
+    '人工智能学院',
+    '创新发展研究院',
+    '经济与管理学院',
+    '人文基础教育学院',
+    '教育人工智能研究院',
+    '运输管理学院',
+    '政治公共管理学院'
+  ];
+  const leftData = [44, 65, 26, 51, 24, 26, 57, 45, 69, 46, 29, 52];
+  const rightData = [70, 25, 66, 62, 69, 65, 30, 47, 34, 38, 59, 24];
+  const typeList = ['转入率(%)', '转出率(%)']; // 统计类型
+  const xMax1 = 100; // 左侧数据最大值
+  const xMax2 = 100; // 右侧数据最大值
+
+  /* 宽度计算 */
+// 获取字符串宽度
+  const getLetterWidth = (letter, fontSize) => {
+    // 文本：string,字体大小: num
+    const dom = document.createElement('span');
+    dom.style.display = 'inline-block';
+    dom.style.fontSize = fontSize + 'px';
+    dom.textContent = letter;
+    document.body.appendChild(dom);
+    const width = dom.getBoundingClientRect().width;
+    dom.remove();
+    return Number(width.toFixed(2));
+  };
+// 获取Echarts容器宽度
+  const eWidth = myChart.getWidth();
+// 获取最大宽度
+  let fontWidthMax = 0;
+  nameList.map((item) => {
+    if (getLetterWidth(item, 12) > fontWidthMax) {
+      fontWidthMax = getLetterWidth(item, 12);
+    }
+  });
+  const gridRate = ((fontWidthMax + 96) / eWidth) * 100;
+
+  /* 样式 */
+  const fontColor = ['#FFE58F', '#397EF0'];
+  const barColor = [
+    {
+      type: 'linear',
+      x: 0,
+      y: 0,
+      x2: 1,
+      y2: 0,
+      colorStops: [
+        {
+          offset: 0,
+          color: 'rgba(255, 250, 239, 1)' // 0% 处的颜色
+        },
+        {
+          offset: 1,
+          color: 'rgba(255, 225, 167, 1)' // 100% 处的颜色
+        }
+      ],
+      global: false // 缺省为 false
+    },
+    {
+      type: 'linear',
+      x: 1,
+      y: 0,
+      x2: 0,
+      y2: 0,
+      colorStops: [
+        {
+          offset: 0,
+          color: 'rgba(112, 238, 254, 1)' // 0% 处的颜色
+        },
+        {
+          offset: 1,
+          color: 'rgba(35, 89, 170, 1)' // 100% 处的颜色
+        }
+      ],
+      global: false // 缺省为 false
+    }
+  ];
+  const barRadius = [
+    [2, 0, 0, 2],
+    [0, 2, 2, 0]
+  ];
+
+  /* 数据整合 */
+  let dataList = [leftData, rightData];
+  let seriesData = [];
+  typeList.map((item, index) => {
+    // 展示数据
+    seriesData.push({
+      name: item,
+      type: 'bar',
+      barWidth: '5',
+      barGap: '-100%',
+      xAxisIndex: index,
+      yAxisIndex: index,
+      label: {
+        show: true,
+        fontSize: 12,
+        fontFamily: 'Source Han Sans CN-Regular',
+        fontWeight: 400,
+        position: index === 0 ? 'left' : 'right',
+        color: fontColor[index],
+        backgroundColor: 'rgba(0, 20, 53, 0.6)',
+        padding: [0, 2, 0, 2],
+        height: 16,
+        borderRadius: 2,
+        distance: 8
+      },
+      itemStyle: {
+        color: barColor[index],
+        borderRadius: barRadius[index]
+      },
+      data: dataList[index],
+      z: 2
+    });
+    // 隐藏数据
+    seriesData.push({
+      name: item,
+      type: 'bar',
+      barWidth: '5',
+      barGap: '-100%',
+      xAxisIndex: index + 2,
+      yAxisIndex: index,
+      label: { show: false },
+      itemStyle: {
+        color: 'transparent'
+      },
+      data: dataList[index],
+      z: 1
+    });
+  });
+
+  const option = {
+    backgroundColor: "#021236",
+    grid: [
+      {
+        width: `${(100 - gridRate) / 2}%`,
+        left: '24',
+        bottom: 24,
+        top: 44
+      },
+      {
+        width: `${(100 - gridRate) / 2}%`,
+        right: '24',
+        bottom: 24,
+        top: 44
+      },
+      {
+        width: `${gridRate}%`,
+        left: `50%`,
+        bottom: 24,
+        top: 44
+      }
+    ],
+    xAxis: [
+      {
+        type: 'value',
+        gridIndex: 0,
+        axisTick: { show: false },
+        position: 'bottom',
+        max: xMax1,
+        axisLabel: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7'
+        },
+        axisLine: { show: false },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(62, 102, 181, 0.5)',
+            type: 'dashed'
+          }
+        },
+        inverse: true
+      },
+      {
+        type: 'value',
+        gridIndex: 1,
+        position: 'bottom',
+        max: xMax2,
+        axisTick: { show: false }, //是否显示刻度
+        axisLine: { show: false },
+        axisLabel: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7'
+        },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(82, 200, 255, 0.2)',
+            type: 'dashed'
+          }
+        }
+      },
+      {
+        type: 'value',
+        gridIndex: 0,
+        position: 'top',
+        max: xMax1,
+        axisTick: { show: false },
+        axisLabel: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7'
+        },
+        axisLine: { show: false },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(62, 102, 181, 0.5)',
+            type: 'dashed'
+          }
+        },
+        inverse: true
+      },
+      {
+        type: 'value',
+        gridIndex: 1,
+        position: 'top',
+        max: xMax2,
+        axisTick: { show: false }, //是否显示刻度
+        axisLine: { show: false },
+        axisLabel: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7'
+        },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(82, 200, 255, 0.2)',
+            type: 'dashed'
+          }
+        }
+      },
+      {
+        type: 'value',
+        gridIndex: 2,
+        axisTick: { show: false }, //是否显示刻度
+        axisLine: { show: false },
+        axisLabel: { show: false },
+        splitLine: { show: false }
+      }
+    ],
+    yAxis: [
+      {
+        type: 'category',
+        gridIndex: 0,
+        data: nameList,
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        axisLine: { show: false },
+        name: typeList[0],
+        nameTextStyle: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7',
+          align: 'right',
+          verticalAlign: 'bottom',
+          padding: [0, 0, 16, 0]
+        }
+      },
+      {
+        type: 'category',
+        gridIndex: 1,
+        data: nameList,
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        axisLine: { show: false },
+        name: typeList[1],
+        nameTextStyle: {
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          color: '#ABC6F7',
+          align: 'left',
+          verticalAlign: 'bottom',
+          padding: [0, 0, 16, 0]
+        }
+      },
+      {
+        type: 'category',
+        gridIndex: 2,
+        data: nameList,
+        offset: -8,
+        axisTick: { show: false },
+        axisLabel: {
+          color: '#ABC6F7',
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          fontSize: 12,
+          align: 'center'
+        },
+        axisLine: { show: false }
+      }
+    ],
+    series: seriesData
+  };
+
+  return option;
+}
+// 各年级在籍学生人数
+const BarCode14 = (myChart) => {
+  /* 数据 */
+  const yName = '人数(人)';
+  const nameList = ['＜18岁', '18岁', '19岁', '20岁', '＞20岁'];
+  const valueList = [52, 63, 81, 85, 76];
+  const yMax = 100; // 最大值
+  const showNum = 5; // 展示条数
+
+  const option = {
+    backgroundColor: "#021236",
+    dataZoom: [
+      {
+        show: nameList.length > showNum, //flase直接隐藏图形
+        type: 'slider',
+        backgroundColor: 'transparent',
+        brushSelect: false, // 是否开启刷选功能
+        zoomLock: false, // 是否锁定选择区域大小
+        height: 7,
+        //left: 'center', //滚动条靠左侧的百分比
+        bottom: 0,
+        // yAxisIndex: [0],
+        startValue: 0, //滚动条的起始位置
+        endValue: showNum - 1, //滚动条的截止位置（按比例分割你的柱状图x轴长度）
+        handleStyle: {
+          color: 'rgba(57, 126, 240, 0.5)',
+          borderColor: 'rgba(57, 126, 240, 0.5)'
+        },
+        fillerColor: 'rgba(57, 126, 240, 0.5)',
+        borderColor: 'transparent',
+        showDetail: false,
+        dataBackground: {
+          areaStyle: {
+            opacity: 0
+          },
+          lineStyle: {
+            color: 'transparent'
+          }
+        }
+      }
+    ],
+    grid: {
+      left: '0',
+      right: '0',
+      bottom: nameList.length > showNum ? '16' : '0', //下边距,,
+      top: '38',
+      containLabel: true
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+        shadowStyle: {
+          color: 'rgba(57, 126, 240, 0.2)'
+        }
+      },
+      showContent: false
+    },
+    xAxis: [
+      {
+        type: 'category',
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: 'rgba(62, 102, 181, 1)'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          color: '#ABC6F7',
+          interval: 0,
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400
+        },
+        data: nameList
+      }
+    ],
+    yAxis: [
+      {
+        max: yMax,
+        name: yName,
+        nameTextStyle: {
+          color: '#ABC6F7',
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          align: 'left',
+          verticalAlign: 'center'
+        },
+        type: 'value',
+        boundaryGap: ['0%', '20%'],
+        splitNumber: 5,
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(62, 102, 181, 1)',
+            type: 'dashed'
+          }
+        },
+        axisLabel: {
+          color: '#ABC6F7',
+          interval: 0,
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400
+        },
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          show: false
+        }
+      }
+    ],
+    series: [
+      {
+        name: 'bar',
+        label: {
+          show: true,
+          fontSize: 12,
+          fontFamily: 'Source Han Sans CN-Regular',
+          fontWeight: 400,
+          position: 'top',
+          color: 'rgba(57, 126, 240, 1)',
+          backgroundColor: 'rgba(0, 20, 53, 0.6)',
+          padding: [0, 2, 0, 2],
+          height: 16,
+          lineHeight: 14,
+          borderRadius: 2
+        },
+        itemStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(112, 238, 254, 1)' // 0% 处的颜色
+              },
+              {
+                offset: 1,
+                color: 'rgba(35, 89, 170, 1)' // 100% 处的颜色
+              }
+            ],
+            global: false // 缺省为 false
+          },
+          barBorderRadius: [2, 2, 0, 0]
+        },
+        type: 'bar',
+        barWidth: '8', //柱型宽度
+        data: valueList,
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 16,
+            color: 'rgba(171, 198, 247, 1)',
+            backgroundColor: 'rgba(0, 20, 53, 1)',
+            height: 20,
+            lineHeight: 20
+          }
+        }
+      }
+    ]
+  };
+
+  let count = 0;
+  var timer = null;
+  let dataLength = option.series[0].data.length;
+  timer && clearInterval(timer);
+  timer = setInterval(() => {
+    myChart.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0,
+    });
+    myChart.dispatchAction({
+      type: 'dataZoom',
+      // 可选，dataZoom 组件的 index，多个 dataZoom 组件时有用，默认为 0
+      dataZoomIndex: 0,
+      // 开始位置的数值
+      startValue: count % dataLength > showNum - 1 ? count % dataLength - showNum + 1 : 0,
+      // 结束位置的数值
+      endValue: count % dataLength > showNum - 1 ? count % dataLength : showNum - 1,
+    })
+
+    myChart.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0,
+      dataIndex: count % dataLength,
+    });
+    myChart.dispatchAction({
+      type: 'select',
+      seriesIndex: 0,
+      dataIndex: count % dataLength,
+    });
+    myChart.dispatchAction({
+      type: 'showTip',
+      seriesIndex: 0,
+      dataIndex: count % dataLength,
+    });
+    count++;
+  }, 3000);
+  myChart.on('mouseover', function (params) {
+    clearInterval(timer);
+    clearTimeout(timer);
+
+    myChart.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0,
+    });
+    myChart.dispatchAction({
+      type: 'dataZoom',
+      // 可选，dataZoom 组件的 index，多个 dataZoom 组件时有用，默认为 0
+      dataZoomIndex: 0,
+      // 开始位置的数值
+      startValue: count % dataLength > showNum - 1 ? count % dataLength - showNum + 1 : 0,
+      // 结束位置的数值
+      endValue: count % dataLength > showNum - 1 ? count % dataLength : showNum - 1,
+    })
+
+    myChart.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0,
+      dataIndex: params.dataIndex,
+    });
+    myChart.dispatchAction({
+      type: 'showTip',
+      seriesIndex: 0,
+      dataIndex: params.dataIndex,
+    });
+  });
+  myChart.on('mouseout', function (params) {
+    clearInterval(timer);
+    clearTimeout(timer);
+
+    timer = setInterval(function () {
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: 0,
+      });
+      myChart.dispatchAction({
+        type: 'dataZoom',
+        // 可选，dataZoom 组件的 index，多个 dataZoom 组件时有用，默认为 0
+        dataZoomIndex: 0,
+        // 开始位置的数值
+        startValue: count % dataLength > showNum - 1 ? count % dataLength - showNum + 1 : 0,
+        // 结束位置的数值
+        endValue: count % dataLength > showNum - 1 ? count % dataLength : showNum - 1,
+      })
+
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: count % dataLength,
+      });
+      myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: count % dataLength,
+      });
+      myChart.dispatchAction({
+        type: 'select',
+        seriesIndex: 0,
+        dataIndex: count % dataLength,
+      });
+      count++;
+    }, 3000);
+  });
+  // 滚轴移动时
+  myChart.on('dataZoom', (params) => {
+    clearInterval(timer);
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      let currentIndex = count % dataLength;
+      // 滚轴位置
+      let startVal = currentIndex > showNum - 1 ? currentIndex - showNum + 1 : 0;
+      let endVal = currentIndex > showNum - 1 ? currentIndex : showNum - 1;
+
+      if(params.startValue == undefined) {
+        count = myChart.getOption().dataZoom[0].startValue;
+        startVal = myChart.getOption().dataZoom[0].startValue;
+        endVal = myChart.getOption().dataZoom[0].endValue;
+        currentIndex = count % dataLength
+      }
+
+      myChart.dispatchAction({
+        type: 'downplay',
+        seriesIndex: [0],
+      });
+      myChart.dispatchAction({
+        type: 'dataZoom',
+        // 可选，dataZoom 组件的 index，多个 dataZoom 组件时有用，默认为 0
+        dataZoomIndex: 0,
+        // 开始位置的数值
+        startValue: startVal,
+        // 结束位置的数值
+        endValue: endVal,
+      })
+      myChart.dispatchAction({
+        type: 'highlight',
+        seriesIndex: [0],
+        dataIndex: currentIndex
+      });
+      myChart.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: currentIndex,
+      });
+      count++;
+    }, 3000);
+  });
+
+  return option;
+}
 
 export const BarCodeList = [
+  {id: "BarCode14", name: "各年级在籍学生人数", type: "bar", author: "biubiu", date: "2024.01.09", remark: "轮播label柱状图", code: `${BarCode14}`},
+  {id: "BarCode13", name: "各学院学生转出转入流向", type: "bar", author: "biubiu", date: "2024.01.09", remark: "条形对比图", code: `${BarCode13}`},
   {id: "BarCode12", name: "人数对比柱状图", type: "bar", author: "biubiu", date: "2023.12.22", remark: "异色柱状图，突出对比效果", code: `${BarCode12}`},
   {id: "BarCode11", name: "多柱状基础图", type: "bar", author: "biubiu", date: "2023.12.20", remark: "多柱状基础图", code: `${BarCode11}`},
   {id: "BarCode10", name: "岗位招聘趋势", type: "bar", author: "biubiu", date: "2023.12.20", remark: "柱状图重叠展示信息", code: `${BarCode10}`},

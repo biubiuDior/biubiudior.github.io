@@ -20,6 +20,7 @@ import {LinkageCodeList} from "./code/linkage";// 组合图
 import {TreemapCodeList} from "./code/treemap";// 矩形树图
 import {ParallelCodeList} from "./code/parallel";// 平行坐标图
 import {ScatterCodeList} from "./code/scatter";// 散点图
+import {BoxplotCodeList} from "./code/boxplot";// 箱形图
 
 const EchartsCodeList = [
   ...BarCodeList,
@@ -32,6 +33,7 @@ const EchartsCodeList = [
   ...TreemapCodeList,
   ...ParallelCodeList,
   ...ScatterCodeList,
+  ...BoxplotCodeList,
 ]
 
 

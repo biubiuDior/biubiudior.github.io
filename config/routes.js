@@ -15,7 +15,7 @@ export default [
         redirect: '/fragment',
       },
       {
-        name: '碎片',
+        name: '碎片零件',
         path: '/fragment',
         component: './Fragment',
       },
