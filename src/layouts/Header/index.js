@@ -10,8 +10,9 @@ import styles from "./index.less";
 import { Menu, Layout } from "antd";
 const { Header } = Layout;
 import routes from "../../../config/routes";
-import { history, useDispatch } from "umi";
+import { useDispatch } from "react-redux";
 import luckyImg from "@/assets/image/lucky头像.jpg";
+import { history } from "umi"
 
 const HeaderLayout = (props) => {
   const dispatch = useDispatch();

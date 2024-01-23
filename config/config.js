@@ -1,21 +1,11 @@
 import { defineConfig } from '@umijs/max';
 import webpackConfig from './webpack.config';
-import px2vw from 'postcss-px-to-viewport';
+import px2vw from 'postcss-px-to-viewport-8-plugin';
 import defaultSetting from './defaultSetting'; // 默认配置
 import routers from './routes'; // 路由菜单
 
 export default defineConfig({
-  antd: {},
-  access: {},
-  model: {},
-  initialState: {},
-  request: {},
-  title: "脚手架",
-  layout: {
-    layout: defaultSetting['layout'],
-    title: defaultSetting['title'],
-  },
-  dva: {},
+  title: defaultSetting['title'],
   // 路由
   routes: routers,
   // 环境变量
