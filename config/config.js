@@ -5,6 +5,16 @@ import defaultSetting from './defaultSetting'; // 默认配置
 import routers from './routes'; // 路由菜单
 
 export default defineConfig({
+  antd: {},
+  access: {},
+  model: {},
+  initialState: {},
+  request: {},
+  dva: {},
+  layout: {
+    layout: defaultSetting['layout'],
+  },
+  // 标签标题
   title: defaultSetting['title'],
   // 路由
   routes: routers,
@@ -12,20 +22,24 @@ export default defineConfig({
   define: {
     'process.env': process.env
   },
+  // 路由前缀
+  // base: process.env.PROJECT,
+  // 打包分析
+  analyze: {
+    analyzerMode: 'server',
+    analyzerPort: 8888,
+    openAnalyzer: true,
+    generateStatsFile: false,
+    statsFilename: 'stats.json',
+    logLevel: 'info',
+    // parsed是我们关注的层级，其余两个运行后也可查看
+    defaultSizes: 'parsed', // stat  // gzip
+  },
   npmClient: 'npm',
   jsMinifier: 'none',
-  // 转发代理
-  proxy: {
-    '/api': {
-      'target': 'http://localhost:1118/',
-      'changeOrigin': true,
-      'pathRewrite': { '^/api' : '' },
-    },
-  },
+  // webpack配置
   chainWebpack: webpackConfig,
-  plugins: [
-
-  ],
+  // 配置额外的 postcss 插件
   extraPostCSSPlugins: [
     px2vw({
       unitToConvert: 'px', // 要转化的单位
@@ -43,4 +57,12 @@ export default defineConfig({
       landscape: false, // 是否处理横屏情况
     }),
   ],
+  // 转发代理
+  proxy: {
+    '/api': {
+      'target': 'http://localhost:1118/',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api' : '' },
+    },
+  },
 });

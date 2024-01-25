@@ -10,7 +10,7 @@ import ReactEcharts from "echarts-for-react";
 import * as echarts from "echarts";
 import {unicodeToChinese} from "@/utils/utils";
 
-const BiuEcharts = (props) => {
+const BEcharts = (props) => {
   const {
     id = "",// key
     code = "",// 原始代码
@@ -20,9 +20,6 @@ const BiuEcharts = (props) => {
   const [option, setOption] = useState({})
 
   useEffect(() => {
-    if(id === "LinkageCode1"){
-      console.log(code)
-    }
     let myChart = echartsRef.current.getEchartsInstance();
     try {
       setOption(eval(unicodeToChinese(code))(myChart))
@@ -52,4 +49,4 @@ const BiuEcharts = (props) => {
     />
   )
 }
-export default React.memo(BiuEcharts);
+export default React.memo(BEcharts);

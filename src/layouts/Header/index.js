@@ -11,7 +11,7 @@ import { Menu, Layout } from "antd";
 const { Header } = Layout;
 import routes from "../../../config/routes";
 import { useDispatch } from "react-redux";
-import luckyImg from "@/assets/image/lucky头像.jpg";
+import luckyImg from "@/assets/image/lucky头像.png";
 import { history } from "umi"
 
 const HeaderLayout = (props) => {
