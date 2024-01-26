@@ -9,7 +9,7 @@ import styles from "./index.less";
 import { history } from "umi";
 
 /* 静态资源 */
-import lucky from "@/assets/image/lucky头像.png";
+import lucky from "@/assets/image/lucky头像.png"
 
 const HomePage = (props) => {
 
@@ -19,19 +19,18 @@ const HomePage = (props) => {
 
   return(
     <div className={styles.homePage}>
-      首页
+      首页cs1
       <div
         className={styles.card}
         onClick={() => {
           history.push({
-            pathname: "/cs2",
+            pathname: "https://www.baidu.com",
             params: {a: "5555"}
           })
         }}
       >
         测试卡片
       </div>
-      <img src={lucky}/>
     </div>
   )
 }

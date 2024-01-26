@@ -2,7 +2,40 @@ import { defineConfig } from '@umijs/max';
 import webpackConfig from './webpack.config';
 import px2vw from 'postcss-px-to-viewport-8-plugin';
 import defaultSetting from './defaultSetting'; // 默认配置
-import routers from './routes'; // 路由菜单
+import routesList from './routes'; // 路由菜单
+
+// 路由控制
+const getRoutesList = () => {
+  let modulesList = ["base","xy/Home"];
+  // 筛选路由
+  const routersFilter = (list = []) => {
+    let newList = list.filter(item => {
+      if(item.module && modulesList.indexOf(item.module) > 0) {
+        return item
+      }else if(!item.module) {
+        return item
+      }
+    })
+    return newList
+  }
+  // 循环判断是否开启模块功能
+  let routesData = routersFilter(routesList).map((item,index) => {
+    if(item.routes){
+      return {
+        ...item,
+        layout: false,// 取消默认布局
+        routes: routersFilter(item.routes)
+      }
+    }else {
+      console.log(item)
+      return {
+        ...item,
+        layout: false,// 取消默认布局
+      }
+    }
+  })
+  return routesData;
+}
 
 export default defineConfig({
   antd: {},
@@ -11,13 +44,11 @@ export default defineConfig({
   initialState: {},
   request: {},
   dva: {},
-  layout: {
-    layout: defaultSetting['layout'],
-  },
+  layout: {},
   // 标签标题
   title: defaultSetting['title'],
   // 路由
-  routes: routers,
+  routes: [...getRoutesList()],
   // 环境变量
   define: {
     'process.env': process.env
@@ -37,6 +68,13 @@ export default defineConfig({
   },
   npmClient: 'npm',
   jsMinifier: 'none',
+  // 分包策略
+  codeSplitting: {
+    jsStrategy: 'granularChunks', // 'bigVendors' | 'depPerChunk' | 'granularChunks'
+    jsStrategyOptions: {}
+  },
+  // 复制输出
+  copy: ['.env'],
   // webpack配置
   chainWebpack: webpackConfig,
   // 配置额外的 postcss 插件
