@@ -2,11 +2,12 @@ import { defineConfig } from '@umijs/max';
 import webpackConfig from './webpack.config';
 import px2vw from 'postcss-px-to-viewport-8-plugin';
 import defaultSetting from './defaultSetting'; // 默认配置
-import routesList from './routes'; // 路由菜单
+import routesList from './routes';
+import {getRoutesData} from "../src/utils/utils"; // 路由菜单
 
-// 路由控制
+// 路由获取
 const getRoutesList = () => {
-  let modulesList = ["base","xy/Home"];
+  let modulesList = process.env.MODULE;
   // 筛选路由
   const routersFilter = (list = []) => {
     let newList = list.filter(item => {
@@ -27,7 +28,6 @@ const getRoutesList = () => {
         routes: routersFilter(item.routes)
       }
     }else {
-      console.log(item)
       return {
         ...item,
         layout: false,// 取消默认布局
@@ -48,7 +48,7 @@ export default defineConfig({
   // 标签标题
   title: defaultSetting['title'],
   // 路由
-  routes: [...getRoutesList()],
+  routes: [...getRoutesData(routesList,process.env.MODULE)],
   // 环境变量
   define: {
     'process.env': process.env

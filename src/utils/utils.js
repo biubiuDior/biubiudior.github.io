@@ -5,6 +5,8 @@
  * @Date: 2023-12-12
 */
 
+import routesList from "../../config/routes";
+
 /**
  * @description    根据某个字段实现对json数组的排序
  * @param   array  要排序的json数组对象
@@ -40,4 +42,39 @@ export const unicodeToChinese = (str) => {
     return String.fromCharCode(parseInt(group1, 16));
   });
   return chineseStr;
+}
+
+/**
+ * @description   筛选路由模块信息
+ * @param   routesList   路由数组
+ * @param   modulesList   模块开启数组
+ */
+export const getRoutesData = (routesList,modulesList) => {
+  // 筛选路由
+  const routersFilter = (list = []) => {
+    let newList = list.filter(item => {
+      if(item.module && modulesList.indexOf(item.module) > 0) {
+        return item
+      }else if(!item.module) {
+        return item
+      }
+    })
+    return newList
+  }
+  // 循环判断是否开启模块功能
+  let routesData = routersFilter(routesList).map((item,index) => {
+    if(item.routes){
+      return {
+        ...item,
+        layout: false,// 取消默认布局
+        routes: routersFilter(item.routes)
+      }
+    }else {
+      return {
+        ...item,
+        layout: false,// 取消默认布局
+      }
+    }
+  })
+  return routesData;
 }

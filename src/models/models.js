@@ -42,7 +42,7 @@ export default {
   }
 }
 /* index中输出
-*   导入：import {useDispatch,useSelector} from 'umi';
+*   导入：import {useDispatch,useSelector} from 'react-redux';
 *   定义：const dispatch = useDispatch();
 *   使用：const { testList } = useSelector(state => state.test);
 *   调用：
