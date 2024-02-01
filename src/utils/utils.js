@@ -5,8 +5,6 @@
  * @Date: 2023-12-12
 */
 
-import routesList from "../../config/routes";
-
 /**
  * @description    根据某个字段实现对json数组的排序
  * @param   array  要排序的json数组对象
