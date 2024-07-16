@@ -5,60 +5,47 @@
  * @Date: 2023-10-12
 */
 
-/**
- * 路由配置约定
- * 1. 新增 模块 && base替换 需要放在一级目录
- * 2. 新增定制模块需要添加 module 识别
- * module  模块对应id，.env中添加开启
- */
 export default [
   {
     path: '/',
+    layout: false, // 取消默认布局
     component: '../layouts',
     routes: [
       {
         path: '/',
-        redirect: `/home`,
+        redirect: `/atlas`,
       },
       {
-        name: '首页',
-        path: '/home',
-        component: `./${process.env.PROJECT}/Home`,
-      },
-      {
-        name: 'cs1',
-        path: '/cs1',
-        module: "xx/Home",
-        component: `./xx/Home`,
+        name: 'Chart集',
+        path: '/atlas',
+        component: '../layouts/Side',
+        routes: [
+          {
+            path: '/atlas',
+            redirect: `/atlas/all`,
+          },
+          {
+            name: '全部',
+            path: '/atlas/all',
+            component: './atlas',
+          },
+          {
+            name: '柱状图',
+            path: '/atlas/bar',
+            component: './atlas',
+          },
+          {
+            name: '折线图',
+            path: '/atlas/line',
+            component: './atlas',
+          },
+          {
+            name: '饼图',
+            path: '/atlas/pie',
+            component: './atlas',
+          },
+        ],
       },
     ]
-  },
-  {
-    name: 'cs2',
-    path: '/cs2',
-    module: "xy/Home",
-    component: '../layouts',
-    routes: [
-      {
-        path: '/cs2',
-        redirect: `/cs2/home`,
-      },
-      {
-        name: '测试首页',
-        path: '/cs2/home',
-        component: `./xx/Home`,
-      },
-      {
-        name: '测试1',
-        path: '/cs2/home2',
-        component: `./xx/Home`,
-      },
-    ]
-  },
-  {
-    name: 'cs3',
-    path: '/home/cs',
-    module: "xx/Home2",
-    component: `./xx/Home2`,
   },
 ]

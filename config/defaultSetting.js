@@ -5,5 +5,5 @@
  * @Date: 2023-12-06
 */
 export default {
-  title: "脚手架",// 系统名称
+  title: "BiuChart",// 系统名称
 }

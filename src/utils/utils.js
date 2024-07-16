@@ -5,6 +5,9 @@
  * @Date: 2023-12-12
 */
 
+import { saveAs } from 'file-saver';
+import {message} from "antd";
+
 /**
  * @description    根据某个字段实现对json数组的排序
  * @param   array  要排序的json数组对象
@@ -43,36 +46,55 @@ export const unicodeToChinese = (str) => {
 }
 
 /**
- * @description   筛选路由模块信息
- * @param   routesList   路由数组
- * @param   modulesList   模块开启数组
+ * @description   导出js文件
+ * @param   data   内容数据
+ * @param   name   文件名
  */
-export const getRoutesData = (routesList,modulesList) => {
-  // 筛选路由
-  const routersFilter = (list = []) => {
-    let newList = list.filter(item => {
-      if(item.module && modulesList.indexOf(item.module) > 0) {
-        return item
-      }else if(!item.module) {
-        return item
-      }
-    })
-    return newList
+export const exportToJsFile = (data,name) => {
+  let outData = data;
+  // 将数据转换为JSON字符串
+  if(typeof(data) !== 'string'){
+    outData = JSON.stringify(data, null, 2);
   }
-  // 循环判断是否开启模块功能
-  let routesData = routersFilter(routesList).map((item,index) => {
-    if(item.routes){
-      return {
-        ...item,
-        layout: false,// 取消默认布局
-        routes: routersFilter(item.routes)
-      }
-    }else {
-      return {
-        ...item,
-        layout: false,// 取消默认布局
-      }
-    }
-  })
-  return routesData;
+  // 创建Blob对象
+  const blob = new Blob([outData], { type: 'text/json;charset=utf-8' });
+  // 使用文件保存器保存文件
+  saveAs(blob, name + '.js');
+};
+
+/**
+ * @description		js计算字符串的宽度
+ * @param			letter	文本(string)
+ * @param			fontSize		预设字体大小(int)
+ * @return		letterWidth		文本宽度
+ */
+export const getLetterWidth = (letter, fontSize, fontFamily) => {
+  const dom = document.createElement('span');
+  dom.style.display = 'inline-block';
+  dom.style.fontSize = fontSize + 'px';
+  dom.style.fontFamily = fontFamily;
+  dom.textContent = letter;
+  document.body.appendChild(dom);
+  const width = dom.getBoundingClientRect().width;
+  dom.remove();
+  const letterWidth = Number(width.toFixed(2));
+  return letterWidth;
+};
+
+/**
+ * @description		文本复制
+ * @param			text	文本(string)
+ */
+export const copyUrl = (text) => {
+  try {
+    const textField = document.createElement('textarea')
+    textField.value = text;
+    document.body.appendChild(textField);// 添加临时实例
+    textField.select();// 选择临时实例
+    document.execCommand('copy')
+    document.body.removeChild(textField); // 删除临时实例
+    message.success('复制成功');
+  }catch (error) {
+    message.error('复制失败');
+  }
 }

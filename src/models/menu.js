@@ -1,12 +1,38 @@
 /*
- * @Name: 路由菜单
+ * @Name: 路由model
  * @Description: 描述信息
  * @Author: biubiu
- * @Date: 2024-01-29
+ * @Date: 2024-02-02
 */
+import { message } from 'antd';
+import routes from "../../config/routes"
 
-import routesList from "../../config/routes";
-import {getRoutesData} from "@/utils/utils";
+// 数组递归提取
+const listRecursion = (arr,parent,routesData) => {
+  arr.map((item,index) => {
+    let childrenList = [];
+    if(item.routes){
+      item.routes.map((childItem,childIndex) => {
+        if(childItem.redirect === undefined){
+          childrenList.push({
+            name: childItem.name || "",
+            path: childItem.path || "",
+          })
+        }
+      })
+      listRecursion(item.routes,item.path,routesData)
+    }
+    if(item.redirect === undefined){// 去除重定向
+      routesData.push({
+        name: item.name || "",
+        path: item.path || "",
+        children: childrenList,
+        parent: parent || "",
+        component: item.component || ""
+      });
+    }
+  })
+}
 
 export default {
   namespace: 'menu',
@@ -14,10 +40,10 @@ export default {
     menuData: []
   },
   effects: {
-    // 获取路由信息
     *getMenuData({ payload }, { put }) {
-      // 根据开启模块筛选路由
-      const routesData = getRoutesData(routesList,process.env.MODULE);
+      // 排序过滤路由信息
+      const routesData = [];
+      listRecursion(routes,"",routesData);
 
       yield put({
         type: 'save',
@@ -25,7 +51,6 @@ export default {
           menuData: routesData,
         }
       })
-
       return routesData
     }
   },
