@@ -11,6 +11,7 @@ import { Menu, Layout } from "antd";
 import {history, Outlet, useLocation} from "umi";
 import { Scrollbars } from "react-custom-scrollbars";
 import { useDispatch, useSelector } from 'react-redux';
+import BiuIcon from "@/components/BiuIcon";
 const { Sider } = Layout;
 
 const SideLayout = (props) => {
@@ -38,6 +39,7 @@ const SideLayout = (props) => {
             key: childItem.path,
             label: childItem.name,
             title: childItem.name,
+            icon: <BiuIcon type={childItem.icon}/>
           })
         })
       }else if(item.path === location.pathname) {
@@ -47,6 +49,7 @@ const SideLayout = (props) => {
             key: childItem.path,
             label: childItem.name,
             title: childItem.name,
+            icon: <BiuIcon type={childItem.icon}/>
           })
         })
       }

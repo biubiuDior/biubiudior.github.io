@@ -17,6 +17,7 @@ const listRecursion = (arr,parent,routesData) => {
           childrenList.push({
             name: childItem.name || "",
             path: childItem.path || "",
+            icon: childItem.icon || "",
           })
         }
       })
@@ -26,6 +27,7 @@ const listRecursion = (arr,parent,routesData) => {
       routesData.push({
         name: item.name || "",
         path: item.path || "",
+        icon: item.icon || "",
         children: childrenList,
         parent: parent || "",
         component: item.component || ""

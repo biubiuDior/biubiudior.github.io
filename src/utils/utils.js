@@ -98,3 +98,16 @@ export const copyUrl = (text) => {
     message.error('复制失败');
   }
 }
+
+/**
+ * @description		下载图片
+ * @param      img  图片，base64
+ * @param      fileName    下载文件名
+ */
+export const downloadImage = (img, fileName) => {
+  const a = document.createElement('a');
+  a.href = img || '';//base64
+  a.download = fileName || 'chart.png'; // 设置下载文件名
+  a.click();
+  // document.body.removeChild(a);
+};

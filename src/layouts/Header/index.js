@@ -61,15 +61,6 @@ const HeaderLayout = (props) => {
     history.push({
       pathname: e.key,
     })
-    setShareData({codePage: false},"EchartsAtlas");
-  }
-
-  // 改变共享状态
-  const setShareData = (params,type) => {
-    dispatch({
-      type: `${type}/save`,
-      payload: params
-    });
   }
 
   return(
