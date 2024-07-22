@@ -13,7 +13,7 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: `/example`,
+        redirect: `/`,
       },
       {
         name: 'Chart示例',
