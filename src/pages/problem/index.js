@@ -48,6 +48,14 @@ const Problem = (props) => {
   // 表格columns
   const tableColumns = [
     {
+      title: '序号',
+      dataIndex: 'index',
+      width: "5%",
+      render: (text, record, index) => {
+        return <span>{index + 1}</span>
+      }
+    },
+    {
       title: '问题名',
       dataIndex: 'name',
       width: "30%",
@@ -58,7 +66,7 @@ const Problem = (props) => {
     {
       title: '简介',
       dataIndex: 'intro',
-      width: "50%",
+      width: "45%",
       ellipsis: {
         showTitle: true,
       },
@@ -87,6 +95,9 @@ const Problem = (props) => {
 
   return(
     <div className={styles.problem}>
+      <div className={styles.selectBox}>
+        筛选过滤区
+      </div>
       <Table
         columns={tableColumns}
         dataSource={tableData}
