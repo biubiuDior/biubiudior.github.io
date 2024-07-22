@@ -6,4 +6,5 @@
 */
 export default {
   title: "BiuChart",// 系统名称
+  base: "biuChart",// 路由前缀
 }
