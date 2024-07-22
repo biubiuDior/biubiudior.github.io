@@ -6,7 +6,6 @@
 */
 
 import styles from "./index.less";
-// import {useLocation} from "@/.umi/exports";
 import {useLocation} from "@umijs/max";
 import {useCallback, useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
