@@ -6,5 +6,5 @@
 */
 export default {
   title: "BiuChart",// 系统名称
-  base: "",// 路由前缀
+  base: "biubiudior.github.io",// 路由前缀
 }
