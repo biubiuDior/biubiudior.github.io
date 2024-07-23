@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage": "biubiudior.github.io",
   "author": "biubiu",
   "scripts": {
     "build": "max build",
@@ -10,7 +11,8 @@
     "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
