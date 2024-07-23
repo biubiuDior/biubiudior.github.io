@@ -16,7 +16,7 @@ export default defineConfig({
   // mock: false,
   routes: routers,
   npmClient: 'npm',
-  jsMinifier: 'none',
+  // jsMinifier: 'none',
   // 打包分析
   analyze: {
     analyzerMode: 'server',
