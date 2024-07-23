@@ -11,8 +11,6 @@ export default defineConfig({
   initialState: {},
   request: {},
   dva: {},
-  // 路由前缀
-  base: defaultSetting['base'].length > 0 ? `/${defaultSetting['base']}/` : "",
   title: defaultSetting['title'],
   layout: {},
   // mock: false,
