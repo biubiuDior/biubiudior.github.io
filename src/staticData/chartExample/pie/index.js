@@ -19,7 +19,7 @@ export const PieChartData = [
   {
     id: "pie9",
     name: "贫困生类型分布",
-    type: "pie",
+    type: ["pie"],
     date: "2024.07.19",
     exampleImg: pie9Img,
     remark: "半圆饼图",
@@ -29,7 +29,7 @@ export const PieChartData = [
   {
     id: "pie8",
     name: "预警情况分布",
-    type: "pie",
+    type: ["pie"],
     date: "2024.07.18",
     exampleImg: pie8Img,
     remark: "legend + label 提示饼图",
@@ -39,7 +39,7 @@ export const PieChartData = [
   {
     id: "pie7",
     name: "双指标对比图",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.22",
     exampleImg: pie7Img,
     remark: "半圆，渐变色",
@@ -49,7 +49,7 @@ export const PieChartData = [
   {
     id: "pie6",
     name: "精品课程类型占比图02",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.19",
     exampleImg: pie6Img,
     remark: "legend提示饼图",
@@ -59,7 +59,7 @@ export const PieChartData = [
   {
     id: "pie5",
     name: "精品课程类型占比图01",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.19",
     exampleImg: pie5Img,
     remark: "label提示饼图",
@@ -69,7 +69,7 @@ export const PieChartData = [
   {
     id: "pie4",
     name: "岗位分布图",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.19",
     exampleImg: pie4Img,
     remark: "南丁格尔图(玫瑰图)",
@@ -79,7 +79,7 @@ export const PieChartData = [
   {
     id: "pie3",
     name: "男女比例分布图",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.19",
     exampleImg: pie3Img,
     remark: "半圆饼图",
@@ -99,7 +99,7 @@ export const PieChartData = [
   {
     id: "pie1",
     name: "教职工类型分布占比图",
-    type: "pie",
+    type: ["pie"],
     date: "2023.12.19",
     exampleImg: pie1Img,
     remark: "占比分布饼图",

@@ -12,7 +12,7 @@ export const ScatterChartData = [
   {
     id: "scatter2",
     name: "学生表现",
-    type: "scatter",
+    type: ["scatter"],
     date: "2024.07.18",
     exampleImg: scatter2Img,
     remark: "双类型分布",
@@ -22,7 +22,7 @@ export const ScatterChartData = [
   {
     id: "scatter1",
     name: "人均项目数量分布",
-    type: "scatter",
+    type: ["scatter"],
     date: "2023.12.25",
     exampleImg: scatter1Img,
     remark: "中心坐标轴突出均值",

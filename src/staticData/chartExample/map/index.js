@@ -14,7 +14,7 @@ export const MapChartData = [
   {
     id: "map4",
     name: "河北省新生人数分布",
-    type: "map",
+    type: ["map"],
     date: "2024-07-18",
     exampleImg: map4Img,
     remark: "河北省",
@@ -24,7 +24,7 @@ export const MapChartData = [
   {
     id: "map3",
     name: "全国新生人数流向",
-    type: "map",
+    type: ["map"],
     date: "2024-05-07",
     exampleImg: map3Img,
     remark: "流线动效",
@@ -34,7 +34,7 @@ export const MapChartData = [
   {
     id: "map2",
     name: "广东省各市招生人数",
-    type: "map",
+    type: ["map"],
     date: "2024-04-23",
     exampleImg: map2Img,
     remark: "扩散标记",
@@ -44,7 +44,7 @@ export const MapChartData = [
   {
     id: "map1",
     name: "全国招生人数分布",
-    type: "map",
+    type: ["map"],
     date: "2024-03-08",
     exampleImg: map1Img,
     remark: "地图结合热力图展示数据",

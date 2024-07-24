@@ -19,7 +19,7 @@ export const LineChartData = [
   {
     id: "line9",
     name: "消费趋势",
-    type: "line",
+    type: ["line"],
     date: "2024.07.19",
     exampleImg: line9Img,
     remark: "多条标记线，多折线图",
@@ -29,7 +29,7 @@ export const LineChartData = [
   {
     id: "line8",
     name: "贫困生消费趋势",
-    type: "line",
+    type: ["line"],
     date: "2024.07.19",
     exampleImg: line8Img,
     remark: "标记线，多折线图",
@@ -39,7 +39,7 @@ export const LineChartData = [
   {
     id: "line7",
     name: "各学年荣誉称号获评最低绩点",
-    type: "line",
+    type: ["line"],
     date: "2024.07.18",
     exampleImg: line7Img,
     remark: "散点折线图，鼠标移入移出改变背景状态",
@@ -49,7 +49,7 @@ export const LineChartData = [
   {
     id: "line6",
     name: "各学期到课率",
-    type: "line",
+    type: ["line"],
     date: "2024.04.01",
     exampleImg: line6Img,
     remark: "面积折线图",
@@ -59,7 +59,7 @@ export const LineChartData = [
   {
     id: "line5",
     name: "轮播趋势折线图",
-    type: "line",
+    type: ["line"],
     date: "2023.12.25",
     exampleImg: line5Img,
     remark: "多折线趋势图",
@@ -69,7 +69,7 @@ export const LineChartData = [
   {
     id: "line4",
     name: "散点折线图",
-    type: "line",
+    type: ["line"],
     date: "2023.12.25",
     exampleImg: line4Img,
     remark: "特殊标记最大值最小值",
@@ -79,7 +79,7 @@ export const LineChartData = [
   {
     id: "line3",
     name: "轮播趋势折线图",
-    type: "line",
+    type: ["line"],
     date: "2023.12.22",
     exampleImg: line3Img,
     remark: "轮播，标记线",
@@ -89,7 +89,7 @@ export const LineChartData = [
   {
     id: "line2",
     name: "收支趋势对比图",
-    type: "line",
+    type: ["line"],
     date: "2023.12.21",
     exampleImg: line2Img,
     remark: "双折线对比图，legend改变",
@@ -99,7 +99,7 @@ export const LineChartData = [
   {
     id: "line1",
     name: "到账经费年度趋势",
-    type: "line",
+    type: ["line"],
     date: "2023.12.19",
     exampleImg: line1Img,
     remark: "折线面积图",

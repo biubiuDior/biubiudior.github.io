@@ -11,7 +11,7 @@ export const SunburstChartData = [
   {
     id: "sunburst1",
     name: "教职工年龄分布图",
-    type: "sunburst",
+    type: ["sunburst"],
     date: "2023.12.19",
     exampleImg: sunburst1Img,
     remark: "旭日分布图",

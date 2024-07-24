@@ -13,7 +13,7 @@ export const GraphChartData = [
   {
     id: "graph3",
     name: "双层学生关系图",
-    type: "graph",
+    type: ["graph"],
     date: "2024.05.09",
     exampleImg: graph3Img,
     remark: "复杂学生关系图",
@@ -23,7 +23,7 @@ export const GraphChartData = [
   {
     id: "graph2",
     name: "单层学生关系图",
-    type: "graph",
+    type: ["graph"],
     date: "2023.12.19",
     exampleImg: graph2Img,
     remark: "简易学生关系图",
@@ -33,7 +33,7 @@ export const GraphChartData = [
   {
     id: "graph1",
     name: "教学评教分布",
-    type: "graph",
+    type: ["graph"],
     date: "2023.12.19",
     exampleImg: graph1Img,
     remark: "教学评教关系图",

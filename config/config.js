@@ -28,6 +28,7 @@ export default defineConfig({
     // parsed是我们关注的层级，其余两个运行后也可查看
     defaultSizes: 'parsed', // stat  // gzip
   },
+  outputPath: "docs",
   // 分包策略
   codeSplitting: {
     jsStrategy: 'granularChunks', // 'bigVendors' | 'depPerChunk' | 'granularChunks'

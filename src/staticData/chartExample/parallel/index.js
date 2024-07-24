@@ -11,7 +11,7 @@ export const ParallelChartData = [
   {
     id: "parallel1",
     name: "基础平行坐标图",
-    type: "parallel",
+    type: ["parallel"],
     date: "2023.12.25",
     exampleImg: parallel1Img,
     remark: "基础平行坐标图",

@@ -11,7 +11,7 @@ export const TreeChartData = [
 /*  {
     id: "tree1",
     name: "树图",
-    type: "tree",
+    type: ["tree"],
     date: "2024.01.09",
     exampleImg: boxplot1Img,
     remark: "基础箱形图，均值对比，离散点对比",

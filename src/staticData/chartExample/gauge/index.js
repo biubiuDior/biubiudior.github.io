@@ -11,7 +11,7 @@ export const GaugeChartData = [
   {
     id: "gauge1",
     name: "心理异常检出人数",
-    type: "gauge",
+    type: ["gauge"],
     date: "2024.07.19",
     exampleImg: gauge1Img,
     remark: "基础仪表盘",

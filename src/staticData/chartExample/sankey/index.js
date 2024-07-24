@@ -11,7 +11,7 @@ export const SankeyChartData = [
   {
     id: "sankey1",
     name: "各院系选课情况",
-    type: "sankey",
+    type: ["sankey"],
     date: "2024.04.01",
     exampleImg: sankey1Img,
     remark: "基础桑葚图",

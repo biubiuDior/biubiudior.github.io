@@ -12,7 +12,7 @@ export const BoxplotChartData = [
   {
     id: "boxplot2",
     name: "周消费趋势",
-    type: "boxplot",
+    type: ["boxplot"],
     date: "2024.07.18",
     exampleImg: boxplot2Img,
     remark: "高低均线对比",
@@ -22,7 +22,7 @@ export const BoxplotChartData = [
   {
     id: "boxplot1",
     name: "历年成绩趋势分析",
-    type: "boxplot",
+    type: ["boxplot"],
     date: "2024.01.09",
     exampleImg: boxplot1Img,
     remark: "基础箱形图，均值对比，离散点对比",

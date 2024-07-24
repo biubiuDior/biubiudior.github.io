@@ -11,7 +11,7 @@ export const HeatmapChartData = [
   {
     id: "heatmap1",
     name: "排课分布图",
-    type: "heatmap",
+    type: ["heatmap"],
     date: "2024.04.01",
     exampleImg: heatmap1Img,
     remark: "基础热力分布图",

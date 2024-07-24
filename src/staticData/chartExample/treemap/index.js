@@ -11,7 +11,7 @@ export const TreemapChartData = [
   {
     id: "treemap1",
     name: "部门人数分布占比",
-    type: "treemap",
+    type: ["treemap"],
     date: "2023.12.25",
     exampleImg: treemap1Img,
     remark: "基础矩形树图",

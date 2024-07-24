@@ -12,7 +12,7 @@ export const RadarChartData = [
   {
     id: "radar2",
     name: "行为预警情况",
-    type: "radar",
+    type: ["radar"],
     date: "2024.07.19",
     exampleImg: radar2Img,
     remark: "多类型圆角雷达分布图",
@@ -22,7 +22,7 @@ export const RadarChartData = [
   {
     id: "radar1",
     name: "教学评教分布",
-    type: "radar",
+    type: ["radar"],
     date: "2023.12.19",
     exampleImg: radar1Img,
     remark: "雷达分布图",

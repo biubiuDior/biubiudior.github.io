@@ -32,7 +32,7 @@ export const BarChartData = [
   {
     id: "bar22",
     name: "性别分布",
-    type: "bar",
+    type: ["bar"],
     date: "2024.07.19",
     exampleImg: bar22Img,
     remark: "水平堆叠对比图",
@@ -42,7 +42,7 @@ export const BarChartData = [
   {
     id: "bar21",
     name: "各年获奖人数比例",
-    type: "bar",
+    type: ["bar"],
     date: "2024.07.19",
     exampleImg: bar21Img,
     remark: "水平堆叠柱状图",
@@ -52,7 +52,7 @@ export const BarChartData = [
   {
     id: "bar20",
     name: "专业人数排名TOP5",
-    type: "bar",
+    type: ["bar"],
     date: "2024.07.17",
     exampleImg: bar20Img,
     remark: "双向对比",
@@ -62,7 +62,7 @@ export const BarChartData = [
   {
     id: "bar19",
     name: "学分预警人数",
-    type: "bar",
+    type: ["bar"],
     date: "2024.07.17",
     exampleImg: bar19Img,
     remark: "条形占比图，双Y轴",
@@ -72,7 +72,7 @@ export const BarChartData = [
   {
     id: "bar18",
     name: "性别分布",
-    type: "bar",
+    type: ["bar"],
     date: "2024.07.17",
     exampleImg: bar18Img,
     remark: "双向条形对比图",
@@ -82,7 +82,7 @@ export const BarChartData = [
   {
     id: "bar17",
     name: "教室利用数分布区间",
-    type: "bar",
+    type: ["bar"],
     date: "2024.04.01",
     exampleImg: bar17Img,
     remark: "单柱状图，区间柱状图",
@@ -92,7 +92,7 @@ export const BarChartData = [
   {
     id: "bar16",
     name: "学院科研项目类别数量对比",
-    type: "bar",
+    type: ["bar"],
     date: "2024.03.29",
     exampleImg: bar16Img,
     remark: "多条堆叠柱状图对比",
@@ -102,7 +102,7 @@ export const BarChartData = [
   {
     id: "bar15",
     name: "应届毕业生主要就业行业月收入分布",
-    type: "bar",
+    type: ["bar"],
     date: "2024.02.28",
     exampleImg: bar15Img,
     remark: "横向柱状图，平均值对比",
@@ -112,7 +112,7 @@ export const BarChartData = [
   {
     id: "bar14",
     name: "各年级在籍学生人数",
-    type: "bar",
+    type: ["bar"],
     date: "2024.01.09",
     exampleImg: bar14Img,
     remark: "轮播label柱状图",
@@ -122,7 +122,7 @@ export const BarChartData = [
   {
     id: "bar13",
     name: "各学院学生转出转入流向",
-    type: "bar",
+    type: ["bar"],
     date: "2024.01.09",
     exampleImg: bar13Img,
     remark: "双向条形对比图",
@@ -132,7 +132,7 @@ export const BarChartData = [
   {
     id: "bar12",
     name: "人数对比柱状图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.22",
     exampleImg: bar12Img,
     remark: "异色柱状图，突出对比效果",
@@ -142,7 +142,7 @@ export const BarChartData = [
   {
     id: "bar11",
     name: "多柱状基础图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.20",
     exampleImg: bar11Img,
     remark: "多柱状基础图",
@@ -152,7 +152,7 @@ export const BarChartData = [
   {
     id: "bar10",
     name: "岗位招聘趋势",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.20",
     exampleImg: bar10Img,
     remark: "柱状图重叠展示信息",
@@ -162,7 +162,7 @@ export const BarChartData = [
   {
     id: "bar9",
     name: "环形占比图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.20",
     exampleImg: bar9Img,
     remark: "环形柱状图",
@@ -172,7 +172,7 @@ export const BarChartData = [
   {
     id: "bar8",
     name: "环形占比图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.19",
     exampleImg: bar8Img,
     remark: "环形柱状图",
@@ -182,7 +182,7 @@ export const BarChartData = [
   {
     id: "bar7",
     name: "主题访问人次排名",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.18",
     exampleImg: bar7Img,
     remark: "横向柱状图，顺序排名",
@@ -192,7 +192,7 @@ export const BarChartData = [
   {
     id: "bar6",
     name: "人数排名分布图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.18",
     exampleImg: bar6Img,
     remark: "横向柱状图，顺序排名",
@@ -202,7 +202,7 @@ export const BarChartData = [
   {
     id: "bar5",
     name: "民族人数占比图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.18",
     exampleImg: bar5Img,
     remark: "横向柱状图，显示百分比",
@@ -212,7 +212,7 @@ export const BarChartData = [
   {
     id: "bar4",
     name: "预警占比图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.18",
     exampleImg: bar4Img,
     remark: "横向柱状图",
@@ -222,7 +222,7 @@ export const BarChartData = [
   {
     id: "bar3",
     name: "办理进度条",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.18",
     exampleImg: bar3Img,
     remark: "单柱状占比条形图",
@@ -232,7 +232,7 @@ export const BarChartData = [
   {
     id: "bar2",
     name: "单柱状分布图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.15",
     exampleImg: bar2Img,
     remark: "单柱状分布图",
@@ -242,7 +242,7 @@ export const BarChartData = [
   {
     id: "bar1",
     name: "单条形占比图",
-    type: "bar",
+    type: ["bar"],
     date: "2023.12.12",
     exampleImg: bar1Img,
     remark: "单柱状占比条形图",
