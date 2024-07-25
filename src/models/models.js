@@ -2,7 +2,6 @@
  * model模板
  */
 // import { } from '@/services/api';
-import { message } from 'antd';
 
 export default {
   // 命名空间

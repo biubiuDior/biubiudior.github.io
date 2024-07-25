@@ -9,7 +9,7 @@ import styles from "./index.less";
 import {useLocation} from "@umijs/max";
 import {useCallback, useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
-import {Divider, Modal, Pagination, Tooltip} from "antd";
+import {Divider, Modal, Pagination, Tooltip, Spin} from "antd";
 import noImg from "@/assets/image/chartExample/暂无图片.png";
 import BiuChart from "@/components/BiuChart";
 import {copyUrl, downloadImage} from "@/utils/utils";
@@ -22,6 +22,7 @@ const ChartExample = (props) => {
   const location  = useLocation();
   const [chartType, setChartType] = useState(location.pathname.split("/")[2]);
   const [chartData, setChartData] = useState([]);// chart列表数据
+  const [chartLoading, setChartLoading] = useState(true);// chart列表数据
   const [chartTotal, setChartTotal] = useState(0);// 总数
   const [currentPage, setCurrentPage] = useState(1);// 当前分页
   const [pageSize, setPageSize] = useState(15);// 每页展示条数
@@ -36,6 +37,7 @@ const ChartExample = (props) => {
 
   // 获取Chart数据
   const fetchGetChartData = (page,size) => {
+    setChartLoading(true)
     dispatch({
       type: "chartExample/fetchGetChartData",
       payload: {
@@ -45,7 +47,8 @@ const ChartExample = (props) => {
       }
     }).then(res => {
       setChartData(res.list);
-      setChartTotal(res.total)
+      setChartTotal(res.total);
+      setChartLoading(false)
     });
   }
 
@@ -96,32 +99,34 @@ const ChartExample = (props) => {
         <div className={styles.cardList}>
           {chartData.map((item,index) => {
             return <div key={index} className={styles.card}>
-              <img className={styles.bg} src={item.exampleImg ? item.exampleImg : noImg}/>
-              <div className={styles.content}>
-                <div className={styles.operateRow}>
-                  <Tooltip title="编辑图表">
-                    <BiuIcon type={"editIcon"} className={styles.icon} onClick={() => editClick(item)}/>
-                  </Tooltip>
-                  <Tooltip title="复制代码">
-                    <BiuIcon type={"copyIcon"} className={styles.icon} onClick={() => copyUrl(item.code)}/>
-                  </Tooltip>
-                  <Tooltip title="下载图片">
-                    <BiuIcon type={"downLoadIcon"} className={styles.icon} onClick={() => downloadImage(item.exampleImg,item.name)}/>
-                  </Tooltip>
+              {chartLoading ? <Spin/> : <>
+                <img className={styles.bg} src={item.exampleImg ? item.exampleImg : noImg}/>
+                <div className={styles.content}>
+                  <div className={styles.operateRow}>
+                    <Tooltip title="编辑图例">
+                      <BiuIcon type={"editIcon"} className={styles.icon} onClick={() => editClick(item)}/>
+                    </Tooltip>
+                    <Tooltip title="复制代码">
+                      <BiuIcon type={"copyIcon"} className={styles.icon} onClick={() => copyUrl(item.code)}/>
+                    </Tooltip>
+                    <Tooltip title="下载图片">
+                      <BiuIcon type={"downLoadIcon"} className={styles.icon} onClick={() => downloadImage(item.exampleImg,item.name)}/>
+                    </Tooltip>
+                  </div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.text} style={{width: "65%"}}>图表名：<span>{item.name}</span></div>
+                    <div className={styles.text} style={{width: "35%"}}>类型：<span>{chartType === "all" ? item.type : chartType}</span></div>
+                  </div>
+                  <div className={styles.text}>备注：<span>{item.remark}</span></div>
                 </div>
-                <div className={styles.infoRow}>
-                  <div className={styles.text} style={{width: "65%"}}>图表名：<span>{item.name}</span></div>
-                  <div className={styles.text} style={{width: "35%"}}>类型：<span>{chartType === "all" ? item.type : chartType}</span></div>
-                </div>
-                <div className={styles.text}>备注：<span>{item.remark}</span></div>
-              </div>
+              </>}
             </div>
           })}
         </div>
         <Pagination
           total={chartTotal}
           pageSize={pageSize}
-          showTotal={(total) => `图表总数：${total}`}
+          showTotal={(total) => `chart图例总数：${total}`}
           current={currentPage}
           onChange={onPageChange}
           showSizeChanger={false}

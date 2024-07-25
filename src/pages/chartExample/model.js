@@ -12,9 +12,9 @@ export default {
       const { type, page, pageSize } = payload;
 
       /* echarts注册地图 */
-      echarts.registerMap('china', mapJSON['china']);// 中国
-      echarts.registerMap('广东省', mapJSON['广东省']);
+      echarts.registerMap('china', mapJSON['china']);
       echarts.registerMap('河北省', mapJSON['河北省']);
+      echarts.registerMap('广东省', mapJSON['广东省']);
 
       let resultList = [];
       let resultTotal = 0;

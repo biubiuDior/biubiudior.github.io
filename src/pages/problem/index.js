@@ -20,7 +20,7 @@ const Problem = (props) => {
   const [tableTotal, setTableTotal] = useState(0);
   const [tableLoading, setTableLoading] = useState(true);
   const [tableModal, setTableModal] = useState(false);
-  const [problemData, setProblemData] = useState([]);
+  const [problemData, setProblemData] = useState({});
 
   useEffect(() => {
     fetchGetTableData(tablePage,tablePageSize)
@@ -119,10 +119,9 @@ const Problem = (props) => {
         onCancel={() => setTableModal(false)}
         footer={null}
         centered={true}
-        width={800}
         destroyOnClose={true}
       >
-        <div style={{height: 500, padding: 16, borderTop: "1px solid #f0f0f0"}}>
+        <div>
           <BiuCodeEditor code={problemData.code}/>
         </div>
       </Modal>

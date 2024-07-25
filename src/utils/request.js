@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { message } from 'antd';
 
 export const query = (url, params, config = {}) => {
   return new Promise((resolve, reject) => {

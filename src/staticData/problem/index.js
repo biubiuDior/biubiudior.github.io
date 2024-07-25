@@ -5,7 +5,6 @@
  * @Date: 2024-07-19
 */
 
-
 export const ProblemStaticData = [
   {
     id: "problem4",

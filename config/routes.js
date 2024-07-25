@@ -16,7 +16,7 @@ export default [
         redirect: `/chartExample`,
       },
       {
-        name: 'Chart示例',
+        name: 'Chart图例',
         path: '/chartExample',
         component: '../layouts/Side',
         routes: [
@@ -127,6 +127,11 @@ export default [
             component: './chartExample',
           },
         ],
+      },
+      {
+        name: 'CSS样式库',
+        path: '/cssLibrary',
+        component: './cssLibrary',
       },
       {
         name: '问题·方法',

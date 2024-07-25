@@ -1,0 +1,266 @@
+.cssLibrary {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+
+  .cardList {
+    width: 100%;
+    height: calc(100% - 48px);
+    display: flex;
+    flex-wrap: wrap;
+    // padding: 16px;
+    gap: 16px;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+
+    .card {
+      width: calc((100% - 64px) / 5);
+      height: calc((100% - 36px) / 3);
+      background: #FFFFFF;
+      box-shadow: 0px 0 6px 0px rgba(4,53,90,0.1);
+      padding: 12px;
+      border-radius: 8px;
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+
+      .bg {
+        width: auto;
+        max-width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        padding: 12px;
+      }
+
+      .tip {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        font-size: 14px;
+        opacity: 0;
+        z-index: 5;
+        transition: opacity .3s;
+        display: flex;
+        align-items: center;
+        gap: 0 12px;
+
+        >div {
+          cursor: pointer;
+          color: #f2f2f2;
+          padding: 4px 8px;
+          border-radius: 8px;
+          background: #2c2c2c;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          >svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .name {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 16px;
+        opacity: 0;
+        z-index: 5;
+        transition: opacity .3s;
+        color: #f2f2f2;
+        padding: 8px 12px;
+        background: #2c2c2c;
+        display: flex;
+        align-items: center;
+      }
+
+      &:hover {
+        .name {
+          opacity: 1;
+        }
+        .tip {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  :global {
+    // 分页样式
+    .ant-pagination .ant-pagination-total-text {
+      color: rgba(0,0,0,0.65);
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .ant-pagination {
+      font-size: 14px;
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      width: calc(100% - 32px);
+      height: max-content;
+      bottom: 16px;
+      left: 16px;
+    }
+    .ant-pagination .ant-pagination-prev {
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px;
+      >button {
+        font-size: 12px;
+      }
+    }
+    .ant-pagination .ant-pagination-next {
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px;
+      >button {
+        font-size: 12px;
+      }
+    }
+    .ant-pagination .ant-pagination-item {
+      min-width: 32px;
+      height: 32px;
+      margin-inline-end: 8px;
+      line-height: 30px;
+      border-radius: 6px;
+    }
+  }
+}
+
+:global {
+  // 提示框
+  .ant-modal-root .ant-modal-centered .ant-modal {
+    width: 800px !important;
+  }
+  .ant-modal .ant-modal-title {
+    font-size: 16px;
+
+    >div {
+      display: flex;
+      gap: 0 8px;
+      align-items: center;
+
+      >span {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        color: #9a9a9a;
+        transition: all 0.3s;
+
+        >svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        &:hover {
+          color: #1677ff;
+        }
+      }
+    }
+  }
+  .ant-modal .ant-modal-content {
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px 24px;
+    overflow: hidden;
+    width: 800px;
+  }
+  .ant-modal .ant-modal-close {
+    top: 17px;
+    inset-inline-end: 17px;
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+  }
+  .ant-modal .ant-modal-close-x {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .ant-modal .ant-modal-header {
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
+  }
+  .ant-modal .ant-modal-body {
+    height: 600px;
+    padding: 16px;
+    border-top: 1px solid #f0f0f0;
+
+    >div {
+      width: 100%;
+      height: 100%;
+      }
+
+      :global {
+        .ant-tabs, .ant-tabs .ant-tabs-content, .ant-tabs-left >.ant-tabs-content-holder >.ant-tabs-content>.ant-tabs-tabpane {
+          height: 100%;
+
+          >span {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            color: #9a9a9a;
+            transition: all 0.3s;
+            position: absolute;
+            left: -92px;
+            top: 11px;
+
+            >svg {
+              width: 100%;
+              height: 100%;
+            }
+
+            &:hover {
+              color: #1677ff;
+            }
+        }
+      }
+    }
+  }
+  // 提示文本
+  .ant-tooltip {
+    font-size: 14px;
+    max-width: 250px;
+    //transform-origin: var(11px, 50%) var(23px, 50%);
+    --antd-arrow-background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  .ant-tooltip .ant-tooltip-arrow {
+    width: 16px;
+    height: 16px;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 8.970562748477143px;
+      height: 8.970562748477143px;
+      border-radius: 0 0 2px 0;
+      transform: translateY(50%) rotate(-135deg);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      background: rgba(0, 0, 0, 0.85);
+    }
+  }
+
+  .ant-tooltip .ant-tooltip-inner {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  }
+
+}

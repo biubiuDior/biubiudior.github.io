@@ -18,7 +18,6 @@ const BiuChart = (props) => {
   } = props;
   const echartsRef = useRef(null);
   const [option, setOption] = useState({})
-  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
     // 获取并渲染实例
@@ -26,12 +25,9 @@ const BiuChart = (props) => {
     try {
       setOption(eval(unicodeToChinese(code))(myChart,echarts))
     }catch (error) {
-      messageApi.open({
-        type: 'error',
-        content: 'Echarts渲染失败',
-      });
+      message.error('Echarts渲染失败');
     }
-  },[])
+  },[code])
 
   return (
     <ReactEcharts
