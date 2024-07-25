@@ -25,7 +25,7 @@ export default {
         resultTotal = ChartStaticData.length;
       }else {
         resultList = ChartStaticData.filter(item => item.type.includes(type));
-        resultTotal = ChartStaticData.filter(item => item.type === type).length;
+        resultTotal = ChartStaticData.filter(item => item.type.includes(type)).length;
       }
 
       // 按时间排序
