@@ -35,6 +35,9 @@
 
   :global {
     // 表格
+    .ant-table-wrapper {
+      height: calc(100% - 64px) !important;
+    }
     .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
       padding: 8px 16px !important;
       color: rgba(0, 0, 0, 0.65);
@@ -55,30 +58,49 @@
     .ant-table-wrapper, .ant-spin-nested-loading, .ant-spin-container {
       height: 100%;
     }
-    // 分页
-    .ant-table-pagination.ant-pagination {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-    .ant-pagination-total-text {
+    // 分页样式
+    .ant-pagination .ant-pagination-total-text {
+      color: rgba(0,0,0,0.65);
       position: absolute;
       left: 0;
-      font-family: Source Han Sans CN-Regular;
-      font-weight: 400;
-      color: rgba(0,0,0,0.65) !important;
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
-    .ant-pagination-item-active {
-      background: #397EF0;
+    .ant-pagination {
+      font-size: 14px;
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      width: 100%;
+      height: max-content;
+      bottom: 16px;
+      left: 0;
+      margin: unset !important;
     }
-    .ant-pagination-item-active a {
-      color: #FFFFFF !important;
+    .ant-pagination .ant-pagination-prev {
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px;
+      margin-inline-end: 8px;
+      >button {
+        font-size: 12px;
+      }
     }
-    .ant-pagination-item {
-      margin: 0 4px;
+    .ant-pagination .ant-pagination-next {
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px;
+      >button {
+        font-size: 12px;
+      }
     }
-    .ant-table-header > table > thead > tr:nth-child(1) > th.ant-table-cell.ant-table-cell-scrollbar {
-      display: none;
+    .ant-pagination .ant-pagination-item {
+      min-width: 32px;
+      height: 32px;
+      margin-inline-end: 8px;
+      line-height: 30px;
+      border-radius: 6px;
     }
   }
 }

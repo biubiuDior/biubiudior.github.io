@@ -23,7 +23,19 @@ const Problem = (props) => {
   const [problemData, setProblemData] = useState({});
 
   useEffect(() => {
-    fetchGetTableData(tablePage,tablePageSize)
+    fetchGetTableData(tablePage,tablePageSize);
+
+
+    const chineseToInitial = (chinese) => {
+      let initials = chinese.match(/[\u4e00-\u9fa5]/g).map(char => {
+        let code = char.charCodeAt(0);
+        let initialCode = 65 + Math.floor((code - 45217) / 183.5);
+        return String.fromCharCode(initialCode);
+      });
+      return initials.join('');
+    };
+
+    console.log(chineseToInitial("梁梓铭"))
   },[])
 
   // 获取table数据
@@ -122,7 +134,7 @@ const Problem = (props) => {
         destroyOnClose={true}
       >
         <div>
-          <BiuCodeEditor code={problemData.code}/>
+          <BiuCodeEditor code={problemData.code} language={problemData.type}/>
         </div>
       </Modal>
     </div>

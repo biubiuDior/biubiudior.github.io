@@ -14,8 +14,30 @@ import pie6Img from "@/assets/image/chartExample/pie/pie6.png";
 import pie7Img from "@/assets/image/chartExample/pie/pie7.png";
 import pie8Img from "@/assets/image/chartExample/pie/pie8.png";
 import pie9Img from "@/assets/image/chartExample/pie/pie9.png";
+import pie10Img from "@/assets/image/chartExample/pie/pie10.png";
+import pie11Img from "@/assets/image/chartExample/pie/pie11.png";
 
 export const PieChartData = [
+  {
+    id: "pie11",
+    name: "占比图",
+    type: ["pie"],
+    date: "2024.07.29",
+    exampleImg: pie11Img,
+    remark: "l中心abel占比图",
+    renderer: "svg",
+    code: "const pieValue = 45;\n\nconst pieColor = 'rgba(98, 133, 255';\n\noption = {\n  series: [\n    {\n      // 中间圆\n      name: 'centerPie',\n      type: 'pie',\n      center: ['50%', '50%'],\n      radius: '75%',\n      color: [`${pieColor}, 0.1)`],\n      label: { show: false },\n      data: [100]\n    },\n    {\n      // 外层圈\n      name: 'outPie',\n      type: 'pie',\n      center: ['50%', '50%'],\n      radius: ['90%', '100%'],\n      color: [`${pieColor}, 1)`, `${pieColor}, 0.1)`],\n      label: { show: false },\n      data: [\n        { value: pieValue, name: 'rateOut' },\n        { value: 100 - pieValue, name: 'blankOut' }\n      ]\n    },\n    {\n      // 主占比图\n      name: 'pie',\n      type: 'pie',\n      center: ['50%', '50%'],\n      radius: '100%',\n      color: [`${pieColor}, 0.1)`, 'transparent'],\n      label: {\n        show: true,\n        position: 'center',\n        fontSize: 38,\n        fontFamily: 'HarmonyOS Sans-Medium',\n        fontWeight: 500,\n        color: `${pieColor}, 1)`,\n        formatter: (params) => {\n          return pieValue + '%';\n        }\n      },\n      data: [\n        { value: pieValue, name: 'rate' },\n        { value: 100 - pieValue, name: 'blank' }\n      ]\n    }\n  ]\n};"
+  },
+  {
+    id: "pie10",
+    name: "学位分布",
+    type: ["pie"],
+    date: "2024.07.26",
+    exampleImg: pie10Img,
+    remark: "legend提示饼图，中心title",
+    renderer: "svg",
+    code: "const nameList = ['国家级', '省部级', '学会/协会类', '校级', '其他']; // 课程名\nconst percentList = [11.24, 13.68, 20.7, 21.41, 32.95]; // 比例\nconst valueList = [8, 9, 16, 21, 26]; // 数量\nconst title = '学位\\n分布';\nconst unit = '人';\n\nconst pieData = [];\nnameList.map((item, index) => {\n  pieData.push({\n    name: item,\n    value: valueList[index]\n  });\n});\n\nconst colorList = [\n  {\n    type: 'linear',\n    x: 0,\n    y: 0,\n    x2: 0,\n    y2: 1,\n    colorStops: [\n      {\n        offset: 0,\n        color: 'rgba(71, 142, 242, 1)' // 0% 处的颜色\n      },\n      {\n        offset: 1,\n        color: '#2AB0FF' // 100% 处的颜色\n      }\n    ],\n    global: false\n  },\n  {\n    type: 'linear',\n    x: 0,\n    y: 0,\n    x2: 0,\n    y2: 1,\n    colorStops: [\n      {\n        offset: 0,\n        color: 'rgba(68, 109, 255, 1)' // 0% 处的颜色\n      },\n      {\n        offset: 1,\n        color: 'rgba(142, 168, 255, 1)' // 100% 处的颜色\n      }\n    ],\n    global: false\n  },\n  {\n    type: 'linear',\n    x: 0,\n    y: 0,\n    x2: 0,\n    y2: 1,\n    colorStops: [\n      {\n        offset: 0,\n        color: '#3ED89B' // 0% 处的颜色\n      },\n      {\n        offset: 1,\n        color: '#59EBD7' // 100% 处的颜色\n      }\n    ],\n    global: false\n  },\n  {\n    type: 'linear',\n    x: 0,\n    y: 0,\n    x2: 0,\n    y2: 1,\n    colorStops: [\n      {\n        offset: 0,\n        color: '#FACB36'\n        // 0% 处的颜色\n      },\n      {\n        offset: 1,\n        color: '#FCBE2E'\n        // 100% 处的颜色\n      }\n    ],\n    global: false\n  },\n  {\n    type: 'linear',\n    x: 0,\n    y: 0,\n    x2: 0,\n    y2: 1,\n    colorStops: [\n      {\n        offset: 0,\n        color: 'rgba(255, 160, 91, 1)' // 0% 处的颜色\n      },\n      {\n        offset: 1,\n        color: 'rgba(250, 117, 20, 0.98)' // 100% 处的颜色\n      }\n    ],\n    global: false\n  }\n];\n\noption = {\n  legend: {\n    type: 'scroll',\n    orient: 'vertical',\n    right: '15%',\n    top: 'center',\n    //icon: \"circle\", //设置为圆，删除则为矩形\n    itemWidth: 14,\n    itemHeight: 14,\n    itemGap: 25,\n    data: nameList,\n    formatter: function (name) {\n      for (let i = 0; i < nameList.length; i++) {\n        if (name === pieData[i].name) {\n          return `{name|${name}}{value|${valueList[i]}${unit}}{percent|${percentList[i]}%}`;\n        }\n      }\n    },\n    textStyle: {\n      rich: {\n        name: {\n          fontSize: 12,\n          fontWeight: 400,\n          width: 80,\n          height: 20,\n          color: 'rgba(0, 0, 0, 0.45)',\n          fontFamily: 'Source Han Sans CN-Regular'\n        },\n        value: {\n          fontSize: 12,\n          fontWeight: 500,\n          height: 20,\n          width: 60,\n          align: 'right',\n          color: 'rgba(0, 0, 0, 0.65)',\n          fontFamily: 'Source Han Sans CN-Regular'\n        },\n        percent: {\n          fontSize: 12,\n          fontWeight: 500,\n          height: 20,\n          width: 60,\n          align: 'right',\n          color: 'rgba(0, 0, 0, 0.65)',\n          fontFamily: 'Source Han Sans CN-Regular'\n        }\n      }\n    }\n  },\n  series: [\n    {\n      type: 'pie',\n      radius: ['43%', '55%'],\n      center: ['35%', '50%'],\n      itemStyle: {\n        shadowBlur: 8,\n        shadowColor: 'rgba(255, 255, 255, 0)',\n        borderColor: '#FFF',\n        borderWidth: 2,\n        borderRadius: 4,\n        color: function (params) {\n          return colorList[params.dataIndex];\n        }\n      },\n      label: {\n        show: true,\n        position: 'center',\n        fontSize: 14,\n        color: 'rgba(0, 0, 0, 0.85)',\n        fontFamily: 'Source Han Sans CN-Regular',\n        lineHeight: 16,\n        formatter: (params) => {\n          return title;\n        }\n      },\n      labelLine: {\n        show: false\n      },\n      data: pieData\n    }\n  ]\n};"
+  },
   {
     id: "pie9",
     name: "贫困生类型分布",
