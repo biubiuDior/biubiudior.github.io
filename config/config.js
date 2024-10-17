@@ -5,6 +5,9 @@ import defaultSetting from './defaultSetting'; // 默认配置
 import routers from './routes'; // 路由菜单
 
 export default defineConfig({
+  qiankun: {
+    // slave: {},
+  },
   antd: {},
   access: {},
   model: {},
