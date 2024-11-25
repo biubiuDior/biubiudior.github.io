@@ -8,8 +8,19 @@
 import graph1Img from "@/assets/image/chartExample/graph/graph1.png";
 import graph2Img from "@/assets/image/chartExample/graph/graph2.png";
 import graph3Img from "@/assets/image/chartExample/graph/graph3.png";
+import graph4Img from "@/assets/image/chartExample/graph/graph4.png";
 
 export const GraphChartData = [
+  {
+    id: "graph4",
+    name: "各国人数占比分布",
+    type: ["graph"],
+    date: "2024.11.02",
+    exampleImg: graph4Img,
+    remark: "词云图",
+    renderer: "svg",
+    code: "/* 数据 */\nconst nameList = ['中国','美国','英国','法国','俄罗斯','新加坡','泰国','菲律宾','印度尼西亚','韩国','日本'];\nconst valueList = [1000, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10];\n\n/* 整合 */\nlet maxNum = Math.max(valueList); // 最大值\n// 样式\nlet maxColor = '#73A0FB'; // 最大值颜色\nlet maxFontSize = 20; // 最大值字号\nlet colorList = ['#73DEB4', '#F9CA41', '#2F467A', '#F98973']; // 颜色系列\nlet fontSizeList = [16, 14, 12, 10]; // 字号系列\nlet data = [];\n// 添加数据\ndata.push({\n  name: nameList[0],\n  value: valueList[0],\n  label: {\n    color: maxColor,\n    fontSize: maxFontSize\n  }\n});\n// 数组四等分\nlet currentIndex = 0;\nfor (let i = 1; i < nameList.length; i += Math.floor(nameList.length / 4)) {\n  for (let j = i; j < i + Math.floor(nameList.length / 4); j++) {\n    data.push({\n      name: nameList[j],\n      value: valueList[j],\n      label: {\n        color: colorList[currentIndex],\n        fontSize: fontSizeList[currentIndex]\n      }\n    });\n  }\n  currentIndex++;\n}\n\n/* 函数 */\n// 数字分割：1653 => 1,653\nconst formatNum = (value) => {\n  if (!value && value !== 0) return 0;\n  let str = value.toString();\n  let reg =\n    str.indexOf('.') > -1 ? /(\\d)(?=(\\d{3})+\\.)/g : /(\\d)(?=(?:\\d{3})+$)/g;\n  return str.replace(reg, '$1,');\n};\n\noption = {\n  color: colorList,\n  tooltip: {\n    trigger: 'item',\n    axisPointer: {\n      type: 'none'\n    },\n    confine: true,\n    formatter: (params) => {\n      let pieColor = params.data.label['color'];\n      return `\n            <div style=\"position:relative;\">\n               <div style=\"width: 9px;height: 9px;background: ${pieColor};border: 1px solid #FFFFFF;position:absolute;top:50%;transform:translateY(-50%);left:0;border-radius:50%;\"></div>\n               <span style=\"margin:0 0 0 15px;font-size: 14px;font-family: Source Han Sans CN-Medium;font-weight: 400;color: #FFFFFF;\">${\n                 params.name\n               }</span>\n            </div>\n            <div style=\"margin:12px 0 0 15px;font-size: 14px;font-family: Source Han Sans CN-Regular;font-weight: 500;color: #FFFFFF;\">${formatNum(\n              params.value\n            )}人</div>\n         `;\n    },\n    extraCssText:\n      'opacity: 0.8;background-color:#050F1B;padding:16px;box-shadow: 1px 6px 15px 1px rgba(0,0,0,0.13);border-radius: 4px;filter: blur(undefinedpx);border:none;'\n  },\n  series: [\n    {\n      type: 'graph',\n      layout: 'force',\n      force: {\n        repulsion: 50, // 斥力\n        gravity: 0.1,\n        edgeLength: [10, 80],\n        layoutAnimation: false // 不展示牵引动画\n      },\n      roam: false,\n      symbol: '',\n      symbolSize: 0,\n      label: {\n        show: true,\n        color: 'auto'\n      },\n      draggable: false,\n      itemStyle: {\n        color: 'rgba(225,225,225,0)'\n      },\n      data: data\n    }\n  ]\n};"
+  },
   {
     id: "graph3",
     name: "双层学生关系图",

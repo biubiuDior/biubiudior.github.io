@@ -28,8 +28,41 @@ import bar20Img from "@/assets/image/chartExample/bar/bar20.png";
 import bar21Img from "@/assets/image/chartExample/bar/bar21.png";
 import bar22Img from "@/assets/image/chartExample/bar/bar22.png";
 import bar23Img from "@/assets/image/chartExample/bar/bar23.png";
+import bar24Img from "@/assets/image/chartExample/bar/bar24.png";
+import bar25Img from "@/assets/image/chartExample/bar/bar25.png";
+import bar26Img from "@/assets/image/chartExample/bar/bar26.png";
 
 export const BarChartData = [
+  {
+    id: "bar26",
+    name: "项目完成度",
+    type: ["bar"],
+    date: "2024.11.25",
+    exampleImg: bar26Img,
+    remark: "圆环占比图",
+    renderer: "svg",
+    code: "const value = 68.6;\nconst maxValue = 100;\n\noption = {\n  title: [\n    {\n      text: `${value}%`,\n      textStyle: {\n        color: '#397EF0',\n        fontSize: 27,\n        fontFamily: 'HarmonyOS Sans',\n        fontWeight: 400\n      },\n      subtext: '完成度',\n      subtextStyle: {\n        fontSize: 18,\n        color: 'rgba(0, 0, 0, 0.65)',\n        fontFamily: 'Source Han Sans CN',\n        fontWeight: 400\n      },\n      y: 'center',\n      x: 'center',\n      itemGap: 10\n    }\n  ],\n  angleAxis: {\n    show: false,\n    max: (maxValue * 360) / 270, //-45度到225度，二者偏移值是270度除360度\n    type: 'value',\n    startAngle: 225, //极坐标初始角度\n    splitLine: {\n      show: false\n    }\n  },\n  barMaxWidth: 15, //圆环宽度\n  radiusAxis: {\n    show: false,\n    type: 'category'\n  },\n  polar: {\n    center: ['50%', '50%'],\n    radius: '140%'\n  },\n  series: [\n    {\n      type: 'bar',\n      data: [\n        {\n          value: value,\n          itemStyle: {\n            color: '#1598FF'\n          }\n        }\n      ],\n      barGap: '-100%', //柱间距离,上下两层圆环重合\n      coordinateSystem: 'polar',\n      roundCap: true, //顶端圆角\n      z: 3 //圆环层级，同zindex\n    },\n    {\n      //下层圆环，显示最大值\n      name: '底层圆环',\n      type: 'bar',\n      data: [\n        {\n          value: maxValue,\n          itemStyle: {\n            color: '#DAE8FD',\n            opacity: 0.2,\n            borderWidth: 0\n          }\n        }\n      ],\n      barGap: '-100%',\n      coordinateSystem: 'polar',\n      roundCap: true,\n      z: 1\n    }\n  ]\n};"
+  },
+  {
+    id: "bar25",
+    name: "人均消费金额",
+    type: ["bar"],
+    date: "2024.11.25",
+    exampleImg: bar25Img,
+    remark: "平均值",
+    renderer: "svg",
+    code: "const nameList = [\n  '机电',\n  '机电2',\n  '机电1',\n  '生命科学',\n  '生命科学1',\n  '生命科学2',\n  '会计',\n  '会计1',\n  '会计2'\n]; // x轴\nconst valueList = [110, 204, 301, 404, 510, 55, 200, 100, 333];\nconst yName = '消费额：元';\n\noption = {\n  tooltip: {\n    trigger: 'axis',\n    axisPointer: {\n      type: 'none'\n    },\n    textStyle: {\n      fontSize: 14\n    }\n  },\n  grid: {\n    left: '24',\n    right: '48',\n    bottom: '24',\n    top: '60',\n    containLabel: true\n  },\n  legend: {\n    left: '24',\n    itemHeight: 0,\n    itemWidth: 24,\n    icon: 'rect',\n    itemStyle: {\n      color: 'rgba(57, 126, 240, 0)',\n      borderWidth: 2,\n      borderColor: '#397EF0',\n      borderType: 'dashed',\n      borderDashOffset: 4\n    },\n    textStyle: {\n      color: 'rgba(0, 0, 0, 0.45)',\n      fontSize: 14,\n      fontFamily: 'Source Han Sans CN-Regular',\n      padding: [2, 0, 0, 0]\n    }\n  },\n  xAxis: [\n    {\n      type: 'category',\n      axisLine: {\n        lineStyle: {\n          color: 'rgba(204, 204, 204, 1)'\n        }\n      },\n      axisTick: {\n        show: false\n      },\n      axisLabel: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        fontSize: 14,\n        fontFamily: 'Source Han Sans CN-Regular'\n      },\n      data: nameList\n    }\n  ],\n  yAxis: [\n    {\n      name: yName,\n      nameTextStyle: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        fontSize: 14,\n        fontFamily: 'Source Han Sans CN-Regular',\n        align: 'left',\n        verticalAlign: 'center'\n      },\n      type: 'value',\n      splitLine: {\n        lineStyle: {\n          color: 'rgba(223, 223, 223, 1)',\n          type: 'dashed'\n        }\n      },\n      axisLabel: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        fontSize: 14,\n        fontFamily: 'Source Han Sans CN-Regular'\n      },\n      axisTick: {\n        show: false\n      },\n      axisLine: {\n        show: false\n      }\n    }\n  ],\n  series: [\n    {\n      name: '均值',\n      markLine: {\n        symbol: 'none',\n        data: [{ type: 'average', name: 'Avg' }]\n      },\n      color: {\n        type: 'linear',\n        x: 1,\n        y: 1,\n        x2: 0,\n        y2: 0,\n        colorStops: [\n          {\n            offset: 0,\n            color: '#33CFC9'\n          },\n          {\n            offset: 1,\n            color: '#397EF0'\n          }\n        ],\n        global: false\n      },\n      itemStyle: {\n        borderRadius: [3, 3, 0, 0]\n      },\n      type: 'bar',\n      barWidth: 13, //柱型宽度\n      data: valueList\n    }\n  ]\n};"
+  },
+  {
+    id: "bar24",
+    name: "近5年高层次人才流动",
+    type: ["bar"],
+    date: "2024.11.25",
+    exampleImg: bar24Img,
+    remark: "双柱图对比",
+    renderer: "svg",
+    code: "const nameList = ['2018', '2019', '2020', '2021', '2022']; //年份\nconst valueList = [\n  [404, 510, 222, 100, 333],\n  [44, 51, 90, 50, 20]\n];\nconst typeList = ['新进', '流失'];\nconst yName = '人数：人';\n\n/* 数据整合 */\nconst colorList = [\n  {\n    type: 'linear',\n    x: 1,\n    y: 1,\n    x2: 0,\n    y2: 0,\n    colorStops: [\n      {\n        offset: 0,\n        color: '#397EF0'\n      },\n      {\n        offset: 1,\n        color: '#33CFC9'\n      }\n    ],\n    global: false\n  },\n  {\n    type: 'linear',\n    x: 1,\n    y: 1,\n    x2: 0,\n    y2: 0,\n    colorStops: [\n      {\n        offset: 0,\n        color: '#E07247'\n      },\n      {\n        offset: 1,\n        color: '#FFB026'\n      }\n    ],\n    global: false\n  }\n];\nlet seriesData = [];\ntypeList.map((item, index) => {\n  seriesData.push({\n    name: item,\n    color: colorList[index],\n    itemStyle: {\n      barBorderRadius: [3, 3, 0, 0]\n    },\n    type: 'bar',\n    barWidth: 13, //柱型宽度\n    data: valueList[index]\n  });\n});\n\noption = {\n  tooltip: {\n    trigger: 'axis',\n    axisPointer: {\n      type: 'none'\n    },\n    textStyle: {\n      fontSize: 14\n    }\n  },\n  legend: {\n    data: typeList,\n    left: '24',\n    top: '0%',\n    itemWidth: 10, // 设置宽度\n    itemHeight: 10, // 设置高度\n    itemGap: 15,\n    textStyle: {\n      color: 'rgba(0, 0, 0, 0.45)',\n      fontSize: 14,\n      fontFamily: 'Source Han Sans CN-Regular',\n      padding: [2, 0, 0, 0]\n    }\n  },\n  grid: {\n    left: '24',\n    right: '24',\n    bottom: '24',\n    top: '60',\n    containLabel: true\n  },\n\n  xAxis: [\n    {\n      type: 'category',\n      axisLine: {\n        show: true,\n        lineStyle: {\n          color: 'rgba(204, 204, 204, 1)'\n        }\n      },\n      axisTick: {\n        show: false\n      },\n      axisLabel: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        textStyle: {\n          fontSize: 14,\n          fontFamily: 'Source Han Sans CN-Regular'\n        }\n      },\n      data: nameList\n    }\n  ],\n  yAxis: [\n    {\n      name: yName,\n      nameTextStyle: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        fontSize: 14,\n        fontFamily: 'Source Han Sans CN-Regular',\n        align: 'left',\n        verticalAlign: 'center'\n      },\n      type: 'value',\n      splitLine: {\n        lineStyle: {\n          color: 'rgba(223, 223, 223, 1)',\n          opacity: '1',\n          type: 'dashed'\n        }\n      },\n      axisLabel: {\n        color: 'rgba(0, 0, 0, 0.65)',\n        textStyle: {\n          fontSize: 14,\n          fontFamily: 'Source Han Sans CN-Regular'\n        }\n      },\n      axisTick: {\n        show: false\n      },\n      axisLine: {\n        show: false\n      }\n    }\n  ],\n  series: seriesData\n};"
+  },
   {
     id: "bar23",
     name: "申请量对比图",

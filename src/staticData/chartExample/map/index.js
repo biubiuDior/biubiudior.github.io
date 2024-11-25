@@ -10,8 +10,19 @@ import map2Img from "@/assets/image/chartExample/map/map2.png";
 import map3Img from "@/assets/image/chartExample/map/map3.png";
 import map4Img from "@/assets/image/chartExample/map/map4.png";
 import map5Img from "@/assets/image/chartExample/map/map5.png";
+import map6Img from "@/assets/image/chartExample/map/map6.png";
 
 export const MapChartData = [
+  {
+    id: "map6",
+    name: "全国各省生源分布",
+    type: ["map"],
+    date: "2024-11-25",
+    exampleImg: map6Img,
+    remark: "中国，颜色分布",
+    renderer: "svg",
+    code: "//学生来源地区分布\nvar nameList = [\n  '台湾省',\n  '黑龙江省',\n  '内蒙古自治区',\n  '吉林省',\n  '北京省',\n  '辽宁省',\n  '河北省',\n  '天津市',\n  '山西省',\n  '陕西省',\n  '甘肃省',\n  '宁夏回族自治区',\n  '青海省',\n  '新疆维吾尔自治区',\n  '西藏自治区',\n  '四川省',\n  '重庆市',\n  '山东省',\n  '河南省',\n  '江苏省',\n  '安徽省',\n  '湖北省',\n  '浙江省',\n  '福建省',\n  '江西省',\n  '湖南省',\n  '贵州省',\n  '云南省',\n  '广东省',\n  '广西壮族自治区',\n  '海南省',\n  '上海市',\n  '香港特别行政区',\n  '澳门特别行政区'\n]; //数据点名称\nvar valueList = [\n  0, 0, 100, 100, 100, 100, 100, 800, 100, 100, 100, 100, 100, 0, 0, 100, 100,\n  100, 100, 0, 400, 800, 100, 100, 100, 100, 100, 100, 800, 100, 800, 100, 0,\n  100\n]; //数据点值域\n\n/* 数据整合 */\nlet mapData = [];\nnameList.map((item, index) => {\n  mapData.push({\n    name: item,\n    value: valueList[index]\n  });\n});\nconst mapPlaceSetting = {\n  left: 'center',\n  top: '30%',\n  aspectScale: 0.88,\n  zoom: 1.38\n};\n\noption = {\n  tooltip: {\n    show: true,\n    formatter: function (params) {\n      return (\n        '&nbsp;&nbsp;' +\n        params.name +\n        '&nbsp;&nbsp;&nbsp;' +\n        params.value +\n        '人&nbsp;&nbsp;'\n      );\n    }\n  },\n  visualMap: {\n    type: 'piecewise',\n    right: '20',\n    bottom: '20',\n    align: 'left',\n    itemWidth: 27,\n    itemHeight: 15,\n    textStyle: {\n      color: 'rgba(0, 0, 0, 0.65)',\n      fontSize: 14,\n      fontFamily: 'SourceHanSansCN-Regular'\n    },\n    pieces: [\n      {\n        min: 500,\n        label: '>500'\n      },\n      {\n        max: 500,\n        min: 200,\n        label: '200-500'\n      },\n      {\n        max: 200,\n        min: 0,\n        label: '<200'\n      },\n      {\n        value: 0,\n        label: '无数据'\n      }\n    ],\n    inRange: {\n      color: ['#B2CAE0', '#94C0FF', '#729FF7', '#457EEF']\n    },\n    outOfRange: {\n      color: ['#999999']\n    }\n  },\n  geo: {\n    map: 'china',\n    ...mapPlaceSetting,\n    show: true,\n    roam: false,\n    label: {\n      emphasis: {\n        show: false\n      }\n    },\n    itemStyle: {\n      color: 'rgba(0,63,140,0)',\n      borderColor: 'rgba(0,63,140,0.2)',\n      shadowColor: 'rgba(0,63,140,0.2)',\n      shadowOffsetY: 20,\n      shadowBlur: 30\n    }\n  },\n  series: [\n    {\n      type: 'map',\n      map: 'china',\n      ...mapPlaceSetting,\n      label: {\n        show: false\n      },\n      itemStyle: {\n        areaColor: '#B2CAE0',\n        borderColor: '#fff',\n        borderWidth: 1,\n        emphasis: {\n          areaColor: '#FFAE00'\n        }\n      },\n      emphasis: {\n        label: {\n          show: false\n        }\n      },\n      data: mapData\n    }\n  ]\n};"
+  },
   {
     id: "map5",
     name: "河北省各市招生人数",
