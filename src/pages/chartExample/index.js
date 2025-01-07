@@ -91,7 +91,7 @@ const ChartExample = (props) => {
           </div>
           <div className={styles.chart}>
             {codeError ? <div className={styles.tips}>编辑内容有误！</div> :
-              <BiuChart code={chartCode}/>
+              <BiuChart code={chartCode} renderer={editData['renderer']}/>
             }
           </div>
         </div>
