@@ -34,8 +34,6 @@ const Problem = (props) => {
       });
       return initials.join('');
     };
-
-    console.log(chineseToInitial("梁梓铭"))
   },[])
 
   // 获取table数据

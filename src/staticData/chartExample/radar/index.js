@@ -7,8 +7,19 @@
 
 import radar1Img from "@/assets/image/chartExample/radar/radar1.png";
 import radar2Img from "@/assets/image/chartExample/radar/radar2.png";
+import radar3Img from "@/assets/image/chartExample/radar/radar3.png";
 
 export const RadarChartData = [
+  {
+    id: "radar3",
+    name: "高亮联动雷达图",
+    type: ["radar"],
+    date: "2025.03.03",
+    exampleImg: radar3Img,
+    remark: "点击可高亮，显示数据",
+    renderer: "svg",
+    code: "const nameList = ['教学态度', '教学内容', '教学方式', '教学基本功', '教学效果']; // 名字\nconst valueList = [85, 80, 60, 76, 85]; // 分数,最大值为100\nlet currentType = '';\n\nlet indicatorList = [];\nnameList.map((item, index) => {\n  indicatorList.push({\n    name: item,\n    value: valueList[index],\n    max: 100\n  });\n});\n\noption = {\n  radar: {\n    // shape: 'circle',\n    indicator: indicatorList,\n    axisName: {\n      formatter: (value, indicator) => {\n        if (value === currentType) {\n          return `{b|${value}}`;\n        } else {\n          return `{a|${value}}`;\n        }\n      },\n      rich: {\n        a: {\n          fontSize: '14px',\n          fontFamily: ' Source Han Sans CN-Regular',\n          fontWeight: 400,\n          color: '#333333',\n          padding: [0, 8, 0, 0]\n        },\n        b: {\n          fontSize: '14px',\n          fontFamily: ' Source Han Sans CN-Regular',\n          fontWeight: 400,\n          color: '#397EF0',\n          padding: [0, 8, 0, 0]\n        }\n      }\n    }\n  },\n  series: [\n    {\n      name: '雷达图',\n      type: 'radar',\n      color: 'rgba(57, 126, 240, 1)',\n      label: {\n        show: false\n      },\n      areaStyle: {\n        color: 'rgba(170, 217, 255, 0.35)'\n      },\n      data: [\n        {\n          value: valueList,\n          name: 'Allocated Budget'\n        }\n      ]\n    }\n  ]\n};\n// 点击事件\nmyChart.on('click', function (params) {\n  if (params.event.topTarget.__dimIdx !== undefined) {\n    //  点击的是图中拐点   e.event.topTarget.__dimIdx代表当前点击的是第几项\n    const index = params.event.topTarget.__dimIdx;\n    if (currentType === nameList[index]) {\n      currentType = '';\n    } else {\n      currentType = nameList[index];\n    }\n    myChart.setOption({\n      radar: {\n        axisName: {\n          formatter: (value, indicator) => {\n            if (value === currentType) {\n              return `{b|${value}}\\n{value|${valueList[index]}}`;\n            } else {\n              return `{a|${value}}`;\n            }\n          },\n          rich: {\n            a: {\n              fontSize: '14px',\n              fontFamily: ' Source Han Sans CN-Regular',\n              fontWeight: 400,\n              color: '#333333',\n              padding: [0, 8, 0, 0]\n            },\n            b: {\n              fontSize: '14px',\n              fontFamily: ' Source Han Sans CN-Regular',\n              fontWeight: 400,\n              color: '#397EF0',\n              padding: [0, 8, 0, 0]\n            },\n            value: {\n              fontSize: '18px',\n              fontFamily: ' Source Han Sans CN-Bold',\n              fontWeight: \"bold\",\n              color: '#397EF0',\n              align: \"center\",\n              padding: [5, 8, 0, 0]\n            }\n          }\n        }\n      }\n    });\n  }\n});"
+  },
   {
     id: "radar2",
     name: "行为预警情况",

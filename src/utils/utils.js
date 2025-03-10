@@ -9,6 +9,17 @@ import { saveAs } from 'file-saver';
 import {message} from "antd";
 
 /**
+ * 检查数组是否包含具有指定属性和值的对象
+ * @param {Array} array 要搜索的数组
+ * @param {string} property 属性名
+ * @param {*} value 期望的属性值
+ * @returns {boolean} 是否存在符合条件的对象
+ */
+export const hasObjectWithProperty = (array, property, value) => {
+  return array.some(item => item[property] === value);
+}
+
+/**
  * @description    根据某个字段实现对json数组的排序
  * @param   array  要排序的json数组对象
  * @param   field  排序字段（此参数必须为字符串）

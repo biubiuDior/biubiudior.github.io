@@ -1,0 +1,182 @@
+.lowCode {
+  width: 100%;
+  height: 100%;
+
+  .header {
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .report {
+    width: 100%;
+    height: calc(100% - 48px);
+    display: flex;
+
+    .panel {
+      width: 100%;
+      position: relative;
+
+      .operate {
+        width: 100%;
+        height: 36px;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid #ebebeb;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        position: absolute;
+        background: #FFFFFF;
+        z-index: 99;
+
+        .add {
+          cursor: pointer;
+
+          &:hover {
+            color: #397EF0;
+          }
+        }
+      }
+
+      :global {
+        .ant-spin-nested-loading, .ant-spin-container {
+          height: 100%;
+          width: 100%;
+        }
+
+        .gridLayout {
+          position: relative;
+          top: 36px;
+          height: calc(100% - 36px);
+        }
+
+        .gridItem {
+          width: 100%;
+          height: 100%;
+          background: #FFFFFF;
+          box-shadow: 0px 0 0.3125vw 0px rgba(4, 53, 90, 0.1);
+          border-radius: 4px;
+
+          &:hover {
+            border: 1px solid #397EF0;
+          }
+        }
+      }
+    }
+
+    .setting {
+      width: 350px;
+      border-left: 1px solid #ebebeb;
+
+      .operateRow {
+        padding: 12px;
+        border-bottom: 1px solid #ebebeb;
+        position: relative;
+
+        .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 12px;
+
+          .limit {
+            color: rgba(0,0,0,0.45);
+          }
+        }
+
+        .dropArea {
+          width: 100%;
+          height: max-content;
+          border: 1px dashed #e6e6e6;
+          padding: 8px;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+
+          >div {
+            width: 100%;
+            height: max-content;
+            border-radius: 4px;
+            padding: 4px;
+            display: flex;
+            justify-content: space-between;
+
+            .close {
+              cursor: pointer;
+              opacity: 0;
+              transition: opacity 0.2s;
+            }
+
+            &:hover {
+              .close {
+                opacity: 1;
+              }
+            }
+          }
+
+          .tip {
+            color: rgba(0,0,0,0.45);
+            text-align: center;
+          }
+
+          .dimensionItem {
+            border: 1px solid #4b87ff;
+            background: #e0eaff;
+          }
+
+          .measureItem {
+            border: 1px solid #54cc7c;
+            background: #dff5e6;
+          }
+        }
+      }
+    }
+
+    .dataSource {
+      width: 350px;
+      border-left: 1px solid #ebebeb;
+
+      .dimension {
+        border-bottom: 1px solid #ebebeb;
+        padding: 12px;
+        height: 500px;
+
+        .list {
+          margin-top: 8px;
+          padding-left: 8px;
+
+          .dimensionItem {
+            padding: 4px;
+            border: 1px solid transparent;
+
+            &:hover {
+              border: 1px solid #4b87ff;
+            }
+          }
+        }
+      }
+
+      .measure {
+        padding: 12px;
+
+        .list {
+          margin-top: 8px;
+          padding-left: 8px;
+
+          .measureItem {
+            padding: 4px;
+            border: 1px solid transparent;
+
+            &:hover {
+              border: 1px solid #42c76e;
+            }
+          }
+        }
+      }
+    }
+  }
+}

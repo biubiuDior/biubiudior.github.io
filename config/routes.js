@@ -137,7 +137,28 @@ export default [
         name: '问题·方法',
         path: '/problem',
         component: './problem',
+      },
+      {
+        name: '低代码开发',
+        path: '/lowCode',
+        routes: [
+          {
+            path: '/lowCode',
+            redirect: `/lowCode/edit`,
+          },
+          {
+            name: '编辑',
+            path: '/lowCode/edit',
+            component: './lowCode',
+          },
+        ]
       }
     ]
+  },
+  {
+    name: '预览',
+    layout: false,
+    path: '/preview',
+    component: './lowCode/preview',
   },
 ]

@@ -1,0 +1,22 @@
+:global {
+  .gridLayout {
+    width: 100%;
+    height: 100%;
+    background: #fafafa;
+
+    :global {
+      /* 拖拽时的元素样式 */
+      .react-grid-item.react-draggable-dragging {
+        opacity: 1;
+        //border: 1px solid #397EF0;
+        background: #FFFFFF;
+      }
+      /* 覆盖默认占位符样式 */
+      .react-grid-layout .react-grid-placeholder {
+        background: #e0eaff !important;
+        border: 1px dashed #397EF0 !important;
+        opacity: 0.5;
+      }
+    }
+  }
+}
