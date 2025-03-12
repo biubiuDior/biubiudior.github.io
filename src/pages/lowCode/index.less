@@ -28,13 +28,15 @@
         border-bottom: 1px solid #ebebeb;
         display: flex;
         align-items: center;
+        gap: 24px;
         padding: 0 16px;
         position: absolute;
         background: #FFFFFF;
         z-index: 99;
 
-        .add {
+        >div {
           cursor: pointer;
+          transition: all 0.3s;
 
           &:hover {
             color: #397EF0;
@@ -51,7 +53,8 @@
         .gridLayout {
           position: relative;
           top: 36px;
-          height: calc(100% - 36px);
+          min-height: calc(100% - 36px);
+          height: max-content;
         }
 
         .gridItem {

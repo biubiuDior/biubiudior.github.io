@@ -10,7 +10,6 @@ import React, {useMemo, useRef, useState} from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import { debounce } from "lodash";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -49,7 +48,7 @@ const GridLayout = (props) => {
         layouts={{ lg: layoutData }} // 响应式断点布局
         breakpoints={{ lg: 1200 }}
         cols={{ lg: 24 }} // 不同断点的列数
-        onLayoutChange={debounce(onLayoutChange, 100)}
+        onLayoutChange={onLayoutChange}
         onDragStart={(layout, oldItem, newItem, placeholder, e, element) => handleDragStart(layout, oldItem, newItem, placeholder, e, element)}
         isDraggable={isDraggable}
         isResizable={isResizable}

@@ -12,9 +12,10 @@ import {HTML5Backend} from 'react-dnd-html5-backend';
 import DragContainer from "@/pages/lowCode/dragContainer";
 import DropArea from "@/pages/lowCode/dropArea";
 import GridLayout from "@/pages/lowCode/gridLayout";
-import {Button, Spin} from "antd";
+import {Button, message, Spin, Tooltip} from "antd";
 import {Scrollbars} from "react-custom-scrollbars";
 import {debounce} from "lodash";
+import {AppstoreAddOutlined, BarChartOutlined, LayoutOutlined} from "@ant-design/icons";
 
 // 主应用组件
 const LowCode = () => {
@@ -22,6 +23,7 @@ const LowCode = () => {
   const [panelData, setPanelData] = useState([]);
   const [panelLoading, setPanelLoading] = useState(true);
   const [currentGridItem, setCurrentGridItem] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
   // 维度
   const [dimensionData, setDimensionData] = useState([]);
   // 度量
@@ -73,23 +75,32 @@ const LowCode = () => {
     window.open("/preview", '_blank');
   }
 
-  // 画板改变 TODO: 自动吸顶逻辑需完善
-  const onPanelChange = (newLayout) => {
-    // 自定义排序规则
-    const sortedLayout = newLayout.sort((a, b) => a.y - b.y || a.x - b.x);
-    // 添加边界检查
-    const validatedLayout = sortedLayout.map((item, index) => {
+  // 自动排序布局
+  const autoLayout = (newLayout) => {
+    // 当前行高
+    let currentH = 0;
+    // 边界检查
+    const validatedLayout = newLayout.map((item, index) => {
       let new_y = item.y;
       let new_x = item.x;
+      if (index === 0) {
+        currentH = item.h;
+      }
       if (index > 0) {
-        if (item.w + sortedLayout[index - 1].x + sortedLayout[index - 1].w < 25) {// 判断是否可行对齐
-          new_x = sortedLayout[index - 1].w + sortedLayout[index - 1].x;
-          //new_y = sortedLayout[index - 1].y
-        }
-        if(item.h + sortedLayout[index - 1].y + sortedLayout[index - 1].w < 25) {// 判断是否可列对齐
-
+        // 行对齐
+        if (item.w + newLayout[index - 1].x + newLayout[index - 1].w < 25) {
+          new_x = newLayout[index - 1].w + newLayout[index - 1].x;
+        }else if (item.w < newLayout[index - 1].w + 1) {
+          // 列对齐
+          if(item.h < currentH) {
+            new_x = newLayout[index - 1].x;
+            currentH -= item.h;
+          }else {
+            currentH = item.h
+          }
         }
       }
+
       return {
         ...item,
         x: new_x,
@@ -97,13 +108,24 @@ const LowCode = () => {
         node: panelData.filter(panelItem => panelItem.i === item.i)[0].node,
       }
     });
-    console.log(validatedLayout)
-    setPanelData(validatedLayout)
+
+    return validatedLayout;
+  }
+  // 画板改变
+  const onPanelChange = (newLayout) => {
+    const layoutData = newLayout.map((item,index) => {
+      return {
+        ...item,
+        node: panelData.filter(panelItem => panelItem.i === item.i)[0].node,
+      }
+    })
+
+    setPanelData(layoutData)
   }
   // 面板容器变化时
   const gridItemChange = useMemo((id) => {
 
-  }, [currentGridItem])
+  }, [currentGridItem]);
   // 画板添加容器
   const panelAddContainer = () => {
     const layoutData = [...panelData];
@@ -113,7 +135,7 @@ const LowCode = () => {
     layoutData.push({
       i: `panelItem-${panelData.length}`,
       x: 0,
-      y: 0,
+      y: panelData.length > 0 ? panelData[panelData.length - 1].h + panelData[panelData.length - 1].y : 0,
       w: 24,
       h: 10.75,
       node: <div id={`panelItem-${panelData.length}`} className="gridItem">
@@ -122,9 +144,15 @@ const LowCode = () => {
     });
     setPanelData(layoutData)
   }
+  // 点击排序布局
+  const layoutClick = () => {
+    setPanelData(autoLayout(panelData));
+    messageApi.info('已排序布局');
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
+      {contextHolder}
       <div className={styles.lowCode}>
         {/* 顶部 */}
         <div className={styles.header}>
@@ -135,7 +163,14 @@ const LowCode = () => {
           {/* 面板 */}
           <div className={styles.panel}>
             <div className={styles.operate}>
-              <div onClick={debounce(panelAddContainer, 100)} className={styles.add}>+添加</div>
+              <div onClick={debounce(panelAddContainer, 100)}>
+                <BarChartOutlined /> 添加图表
+              </div>
+              <div onClick={layoutClick}>
+                <Tooltip title="排序布局">
+                  <LayoutOutlined />
+                </Tooltip>
+              </div>
             </div>
             <Spin spinning={panelLoading}>
               <Scrollbars>
