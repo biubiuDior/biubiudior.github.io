@@ -24,9 +24,9 @@ const GridLayout = (props) => {
     isResizable = true,// 是否可调整大小
     onLayoutChange = (newLayout) => {},// 布局变化时的回调 layout=新的布局数据
     gridItemClick = (id) => {},// 点击事件
+    rowCols = 24,// 行列数
   } = props;
 
-  const [layouts, setLayouts] = useState(layoutData);
   const [selectItem, setSelectItem] = useState("");
 
   // 拖拽开始标记
@@ -47,7 +47,7 @@ const GridLayout = (props) => {
         rowHeight={rowHeight}
         layouts={{ lg: layoutData }} // 响应式断点布局
         breakpoints={{ lg: 1200 }}
-        cols={{ lg: 24 }} // 不同断点的列数
+        cols={{ lg: rowCols }} // 不同断点的列数
         onLayoutChange={onLayoutChange}
         onDragStart={(layout, oldItem, newItem, placeholder, e, element) => handleDragStart(layout, oldItem, newItem, placeholder, e, element)}
         isDraggable={isDraggable}
@@ -55,7 +55,7 @@ const GridLayout = (props) => {
         allowOverlap={allowOverlap}
       >
         {layoutData.map((item,index) => {
-          return <div id={item.i} key={item.i}>
+          return <div key={item.i}>
             {item?.node}
           </div>
         })}
