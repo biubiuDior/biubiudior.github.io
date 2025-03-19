@@ -6,7 +6,7 @@
 */
 
 import styles from "./index.less";
-import React, {useMemo, useRef, useState} from "react";
+import React, {useEffect, useRef, useState, useCallback} from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -27,6 +27,9 @@ const GridLayout = (props) => {
     rowCols = 24,// 行列数
   } = props;
 
+  const containerRef = useRef(null);
+  const [showGrid, setShowGrid] = useState(false);
+  const [gridSize, setGridSize] = useState({ colWidth: 0, rowHeight: 0 });
   const [selectItem, setSelectItem] = useState("");
 
   // 拖拽开始标记
@@ -37,8 +40,62 @@ const GridLayout = (props) => {
     }
   };
 
+  // 计算网格尺寸
+  const calculateGrid = useCallback(() => {
+    if (!containerRef.current) return;
+    const { clientWidth } = containerRef.current;
+    setGridSize({
+      colWidth: clientWidth / rowCols,
+      rowHeight
+    });
+  }, []);
+
+  // 网格背景样式
+  const gridStyle = {
+    backgroundImage: `
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(${gridSize.colWidth}px - 1px),
+      #eee calc(${gridSize.colWidth}px - 1px),
+      #eee ${gridSize.colWidth}px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(${gridSize.rowHeight}px - 1px),
+      #eee calc(${gridSize.rowHeight}px - 1px),
+      #eee ${gridSize.rowHeight}px
+    )`,
+    backgroundSize: `${gridSize.colWidth}px ${gridSize.rowHeight}px`,
+    opacity: showGrid ? 1 : 0,
+    transition: 'opacity 0.2s'
+  };
+
+  useEffect(() => {
+    calculateGrid();
+    window.addEventListener('resize', calculateGrid);
+    return () => window.removeEventListener('resize', calculateGrid);
+  }, []);
+
+  // 调整大小事件处理
+  const handleResize = (layout, oldItem, newItem) => {
+    calculateGrid();
+  };
+
   return (
-    <div className={"gridLayout"}>
+    <div className={"gridLayout"} ref={containerRef}>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          pointerEvents: 'none',
+          ...gridStyle
+        }}
+      />
       <ResponsiveGridLayout
         className="layout"
         margin={gutter}
@@ -53,6 +110,11 @@ const GridLayout = (props) => {
         isDraggable={isDraggable}
         isResizable={isResizable}
         allowOverlap={allowOverlap}
+        onResizeStart={() => setShowGrid(true)}
+        onResize={handleResize}
+        onResizeStop={() => {
+          setShowGrid(false);
+        }}
       >
         {layoutData.map((item,index) => {
           return <div key={item.i}>
