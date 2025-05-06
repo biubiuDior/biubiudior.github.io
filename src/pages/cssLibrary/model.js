@@ -1,4 +1,3 @@
-import {ProblemStaticData} from "@/staticData/problem";
 import {CssStaticData} from "@/staticData/cssLibrary";
 
 export default {

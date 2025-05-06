@@ -1,0 +1,97 @@
+.fixedLayout1 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .header {
+    width: 100%;
+    height: 110px;
+    border: 1px dashed #FFFFFF;
+  }
+
+  .module {
+    width: 100%;
+    height: 100%;
+  }
+
+  .leftContainer {
+    position: absolute;
+    left: 30px;
+    top: 110px;
+    width: 410px;
+    height: 940px;
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: space-between;
+  }
+
+  .rightContainer {
+    position: absolute;
+    right: 30px;
+    top: 110px;
+    width: max-content;
+    height: 940px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .module4 {
+      width: 410px;
+      height: 320px;
+      border: 1px dashed #FFFFFF;
+      flex: 1 1 auto;
+    }
+
+    .module5 {
+      width: 410px;
+      height: 306px;
+      border: 1px dashed #FFFFFF;
+      flex: 1 1 auto;
+    }
+
+    .module6 {
+      width: 410px;
+      height: 314px;
+      border: 1px dashed #FFFFFF;
+      flex: 1 1 auto;
+    }
+  }
+
+  .bottomContainer {
+    position: absolute;
+    left: 480px;
+    bottom: 30px;
+    width: 960px;
+    height: 314px;
+    display: flex;
+    justify-content: space-between;
+
+    .module7 {
+      width: 410px;
+      height: 100%;
+      border: 1px dashed #FFFFFF;
+      flex: 1 1 auto;
+    }
+
+    .module8 {
+      width: 410px;
+      height: 100%;
+      border: 1px dashed #FFFFFF;
+      flex: 1 1 auto;
+    }
+  }
+
+  .centerContainer {
+    position: absolute;
+    left: 480px;
+    top: 110px;
+    width: 960px;
+    height: 626px;
+
+    .module9 {
+      width: 100%;
+      height: 100%;
+      border: 1px dashed #FFFFFF;
+    }
+  }
+}

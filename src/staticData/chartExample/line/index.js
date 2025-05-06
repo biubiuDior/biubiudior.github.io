@@ -16,8 +16,19 @@ import line8Img from "@/assets/image/chartExample/line/line8.png";
 import line9Img from "@/assets/image/chartExample/line/line9.png";
 import line10Img from "@/assets/image/chartExample/line/line10.png";
 import line11Img from "@/assets/image/chartExample/line/line11.png";
+import line12Img from "@/assets/image/chartExample/line/line12.png";
 
 export const LineChartData = [
+  {
+    id: "line12",
+    name: "年龄架构",
+    type: ["line"],
+    date: "2025.04.18",
+    exampleImg: line12Img,
+    remark: "平均值",
+    renderer: "svg",
+    code: "const nameList = ['2017', '2018', '2019', '2020', '2021'];\nconst valueList = [\n  ['81', '65', '76', '84', '49'],\n  ['71', '71', '71', '71', '71']\n];\nconst typeList = ['人数', '平均年龄'];\nconst yNameList = ['人', '岁'];\nconst unitList = ['人', '岁'];\n\n/*数据整合*/\n// y轴\nconst yAxisData = [];\nyNameList.map((item, index) => {\n  yAxisData.push({\n    type: 'value',\n    name: item,\n    alignTicks: true,\n    nameTextStyle: {\n      color: '#000000',\n      fontSize: 12,\n      fontFamily: 'Source Han Sans CN-Regular',\n      align: index === 0 ? 'left' : 'right',\n      verticalAlign: 'center'\n    },\n    axisLabel: {\n      color: '#000000',\n      textStyle: {\n        fontSize: 12\n      }\n    },\n    axisLine: {\n      show: true,\n      lineStyle: {\n        color: '#D9D9D9'\n      }\n    },\n    axisTick: {\n      show: false\n    },\n    splitLine: {\n      lineStyle: {\n        color: '#E8E8E8'\n      }\n    }\n  });\n});\n// series\nconst seriesData = [];\nconst legendData = [];\nconst lineStyle = [\n  { symbol: \"circle\", type: \"solid\", color: '#1890FF', shadowColor: 'rgba(57, 126, 240, 0.58)' },\n  { symbol: \"none\", type: \"dashed\", color: '#FFC329', shadowColor: 'rgba(255, 195, 41, 0.30)' }\n];\ntypeList.map((item, index) => {\n  seriesData.push({\n    name: item,\n    type: 'line',\n    data: valueList[index],\n    symbol: lineStyle[index].symbol,\n    symbolSize: 10,\n    yAxisIndex: index,\n    lineStyle: {\n      type: lineStyle[index].type,\n      color: lineStyle[index].color,\n      width: 2,\n      shadowColor: lineStyle[index].shadowColor,\n      shadowBlur: 6,\n      shadowOffsetY: 3\n    },\n    itemStyle: {\n      color: \"#FFFFFF\",\n      borderColor: lineStyle[index].color,\n      borderWidth: 2\n    },\n    emphasis: {\n      scale: 1.5\n    }\n  });\n  legendData.push({\n    name: item,\n    \n  })\n});\n\noption = {\n  tooltip: {\n    trigger: 'axis',\n    axisPointer: {\n      type: 'line',\n      lineStyle: {\n        color: \"rgba(24,144,255,0.85)\",\n        width: 2\n      },\n    },\n    confine: true,\n    formatter: (params) => {\n      const { name, data } = params[0];\n      return `\n            <div style=\"font-size: 15px;font-family: Source Han Sans CN-Medium;font-weight: 500;color: #1890FF\">${data}${unitList[0]}</div>\n      `;\n    },\n    extraCssText:\n      'background-color:#FFFFFF;padding:6px 16px;box-shadow: 0px 7px 19px -6px rgba(58,77,233,0.15);border-radius: 7px;border:1px solid #E4E4E9;'\n  },\n  legend: {\n    data: typeList,\n    top: '0',\n    right: '0',\n    itemWidth: 33,\n    itemHeight: 12,\n    itemGap: 24,\n    textStyle: {\n      fontSize: 14,\n      color: 'rgba(0, 0, 0, 0.85)',\n      fontFamily: 'Source Han Sans CN-Regular',\n      padding: [0, 0, 0, 4]\n    }\n  },\n  grid: {\n    top: '56',\n    right: '2',\n    left: '0',\n    bottom: '0',\n    containLabel: true\n  },\n  xAxis: {\n    type: 'category',\n    data: nameList,\n    axisTick: {\n      show: false //隐藏X轴刻度\n    },\n    axisLine: {\n      lineStyle: {\n        color: '#D9D9D9'\n      }\n    },\n    axisLabel: {\n      show: true,\n      textStyle: {\n        color: '#000000',\n        fontSize: 12,\n        fontFamily: 'Source Han Sans CN-Regular'\n      }\n    }\n  },\n  yAxis: yAxisData,\n  series: seriesData\n};"
+  },
   {
     id: "line11",
     name: "季度风险漏洞通知趋势",

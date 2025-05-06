@@ -1,0 +1,130 @@
+.customScreen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .screenHeader {
+    width: 100%;
+    height: 109px;
+
+  }
+
+  .leftImg {
+    width: 525px;
+    height: 750px;
+    background-image: url("~@/assets/image/lowCode/customScreen/左@2x.png");
+    background-size: 100% 100%;
+    position: absolute;
+    left: 16px;
+    top: 221px;
+    z-index: 1;
+  }
+
+  .rightImg {
+    width: 525px;
+    height: 750px;
+    background-image: url("~@/assets/image/lowCode/customScreen/右@2x.png");
+    background-size: 100% 100%;
+    position: absolute;
+    right: 16px;
+    top: 221px;
+    z-index: 1;
+  }
+
+  .selectBox {
+    width: 100%;
+    height: 64px;
+    border: 1px dashed #91caff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin-top: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .screenContainer {
+    width: calc(100% - 316px);
+    height: calc(100% - 217px);
+    margin-top: 16px;
+    margin-left: 158px;
+    position: relative;
+    z-index: 2;
+
+    .cardList {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 12px;
+      gap: 16px;
+
+      .card {
+        width: 380px;
+        height: 215px;
+        cursor: pointer;
+        position: relative;
+
+        .name {
+          font-weight: 500;
+          font-size: 20px;
+          color: #A0CBFF;
+          position: absolute;
+          bottom: 24px;
+          left: 24px;
+        }
+
+        .borderImg {
+          width: 384px;
+          height: 217px;
+          background-image: url("~@/assets/image/lowCode/customScreen/框@2x.png");
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .screenBg {
+          width: 100%;
+          height: 100%;
+
+        }
+
+        &:hover {
+          .borderImg {
+            width: 419px;
+            height: 256px;
+            background-image: url("~@/assets/image/lowCode/customScreen/框-鼠标移上@2x.png");
+            background-size: 100% 100%;
+          }
+        }
+      }
+
+      :global {
+        .rc-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+
+    .scrollbars {
+      >div:last-child {
+        >div {
+          background-color: #0352b2 !important;
+        }
+      }
+    }
+
+    :global {
+      .ant-spin-nested-loading {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%);
+      }
+    }
+  }
+}

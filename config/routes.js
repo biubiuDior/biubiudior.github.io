@@ -141,24 +141,44 @@ export default [
       {
         name: '低代码开发',
         path: '/lowCode',
-        routes: [
-          {
-            path: '/lowCode',
-            redirect: `/lowCode/edit`,
-          },
-          {
-            name: '编辑',
-            path: '/lowCode/edit',
-            component: './lowCode',
-          },
-        ]
+        component: './lowCode',
       }
+    ]
+  },
+  /*低代码开发*/
+  {
+    name: '数据报表',
+    layout: false,
+    path: '/dataReport',
+    component: './lowCode/dataReport',
+  },
+  {
+    name: '定制大屏',
+    layout: false,
+    path: '/customScreen',
+    routes: [
+      {
+        path: '/customScreen',
+        redirect: `/customScreen/home`,
+      },
+      {
+        name: '首页',
+        layout: false,
+        path: '/customScreen/home',
+        component: './lowCode/customScreen',
+      },
+      {
+        name: '大屏',
+        layout: false,
+        path: '/customScreen/screen',
+        component: './lowCode/customScreen/screen',
+      },
     ]
   },
   {
     name: '预览',
     layout: false,
     path: '/preview',
-    component: './lowCode/preview',
+    component: './preview',
   },
 ]
