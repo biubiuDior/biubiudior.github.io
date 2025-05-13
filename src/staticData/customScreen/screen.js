@@ -10,25 +10,27 @@ export const screen = {
     screenId: "zcgldp",
     screenName: "资产管理大屏",
     layout: "fixed1",
-    modules: [
-      {
-        id: "",
-        layoutPos: "1",
-        width: 410,
-        height: 313,
-      },
-      {
-        id: "",
-        layoutPos: "2",
-        width: 410,
-        height: 313,
-      },
-      {
-        id: "",
-        layoutPos: "3",
-        width: 410,
-        height: 314,
-      },
-    ]
+    backgroundColor: "#062352",
+    screenWidth: 1920,
+    screenHeight: 1080,
+    modules: {
+      leftContainer: [
+        {
+          id: "1",
+          layoutPos: "leftModule1",
+          size: 313,
+        },
+        {
+          id: "2",
+          layoutPos: "leftModule2",
+          size: 313,
+        },
+        {
+          id: "3",
+          layoutPos: "leftModule3",
+          size: 314,
+        },
+      ]
+    }
   }
 }

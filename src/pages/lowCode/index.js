@@ -6,13 +6,14 @@
 */
 
 import styles from "./index.less";
-import dataReportPage from "@/assets/image/lowCode/dataReportPage.png"
+import dataReportPage from "@/assets/image/lowCode/dataReportPage.png";
+import customScreenPage from "@/assets/image/lowCode/customScreenPage.png";
 
 const LowCode = (props) => {
 
   const typeData = [
     {name: "数据报表", url: "/dataReport", img: dataReportPage},
-    {name: "定制大屏", url: "/customScreen", img: ""},
+    {name: "定制大屏", url: "/customScreen", img: customScreenPage},
   ]
 
   // 卡片点击

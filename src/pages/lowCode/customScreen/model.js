@@ -1,8 +1,10 @@
-import {screenCenterData, screenData} from "@/staticData/customScreen";
+import {screenCenterData, screenData, modulesData} from "@/staticData/customScreen";
 
 export default {
   namespace: 'customScreen',
-  state: {},
+  state: {
+    saveEditScreen: false,
+  },
 
   effects: {
     *fetchGetScreenCenterData({ payload }, { call, put, select}) {
@@ -15,6 +17,19 @@ export default {
       const { id } = payload;
 
       const resultData = screenData[id]
+
+      return resultData;
+    },
+
+    *fetchGetModuleList({ payload }, { call, put, select}) {
+
+      const resultData = modulesData.map((item,index) => {
+        return {
+          ...item,
+          dragId: item.id,
+          type: "module",
+        }
+      })
 
       return resultData;
     }

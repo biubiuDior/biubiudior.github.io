@@ -7,6 +7,7 @@
 
 import { screen } from "./screen";
 import zcgldpBgImg from "@/assets/image/lowCode/customScreen/screen/bg/资产管理大屏.png";
+import {modules} from "@/staticData/customScreen/modules";
 
 // 大屏导航数据
 export const screenCenterData = [
@@ -19,3 +20,6 @@ export const screenCenterData = [
 
 // 大屏数据
 export const screenData = screen;
+
+// 模块数据
+export const modulesData = modules;

@@ -13,6 +13,7 @@ import {history} from "@/.umi/core/history";
 import {useDispatch} from "react-redux";
 import ScreenLayouts from "@/pages/lowCode/customScreen/screen/layouts";
 import {Spin} from "antd";
+import ScreenEdit from "@/pages/lowCode/customScreen/screen/edit";
 
 const Screen = (props) => {
   const location = useLocation();
@@ -45,13 +46,21 @@ const Screen = (props) => {
   }
 
   return(
-    <ScalePage>
-      <div className={styles.screen}>
-        {screenLoading ? <Spin size="large"/> :
-          <ScreenLayouts {...screenData}/>
+    <div className={styles.screen}>
+      {screenLoading ? <Spin size="large"/> : <>
+        {location.state.mode === "read" ?
+          <ScalePage screenWidth={screenData.screenWidth} screenHeight={screenData.screenHeight} backgroundColor={screenData.backgroundColor}>
+            <ScreenLayouts screenData={screenData} mode={location.state.mode}/>
+          </ScalePage>
+          :
+          <ScreenEdit screenWidth={screenData.screenWidth} screenHeight={screenData.screenHeight} backgroundColor={screenData.backgroundColor}>
+            <ScreenLayouts screenData={screenData} mode={location.state.mode}/>
+          </ScreenEdit>
         }
-      </div>
-    </ScalePage>
+      </>
+
+      }
+    </div>
   )
 }
 export default Screen;

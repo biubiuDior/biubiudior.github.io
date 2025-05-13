@@ -1,0 +1,69 @@
+:global {
+  .moduleContainer {
+    width: 100%;
+    height: 100%;
+
+    .panelResizeHandle {
+      height: 2px;
+      background: #efeeef;
+      cursor: row-resize;
+      font-size: 8px;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: "YouSheBiaoTiHei-Regular";
+    }
+
+    .module {
+      width: 100%;
+      height: 100%;
+      border: 1px dashed rgba(255, 255, 255, 0.5);
+      position: relative;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      .delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 16px;
+        color: #e43c59;
+        cursor: pointer;
+      }
+
+      :global {
+        .dropArea {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .activeModule {
+      cursor: default;
+      border: 1px solid #efeeef;
+    }
+  }
+
+  .moveItem {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .handle {
+      width: max-content;
+      height: max-content;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: move;
+
+      .move {
+        font-size: 16px;
+        color: #FFFFFF;
+      }
+    }
+  }
+}

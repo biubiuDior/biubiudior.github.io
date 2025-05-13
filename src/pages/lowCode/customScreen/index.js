@@ -13,6 +13,7 @@ import ScalePage from "@/components/ScalePage";
 import { history } from "umi";
 import ScreenHeader from "@/pages/lowCode/customScreen/components/screenHeader";
 import {useDispatch} from "react-redux";
+import {FormOutlined} from "@ant-design/icons";
 
 const CustomScreen = (props) => {
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ const CustomScreen = (props) => {
   }
 
   // 点击跳转
-  const screenClick = (value) => {
-    history.push("/customScreen/screen",{...value})
+  const screenClick = (value,mode) => {
+    history.push("/customScreen/screen",{...value,mode})
   }
 
   return(
@@ -56,7 +57,10 @@ const CustomScreen = (props) => {
             <Scrollbars className={styles.scrollbars}>
               <div className={styles.cardList}>
                 {screenData.map((item,index) => {
-                  return <div className={styles.card} onClick={() => screenClick(item)}>
+                  return <div className={styles.card} onClick={() => screenClick(item,"read")}>
+                    <div className={styles.edit}>
+                      <FormOutlined onClick={event => {event.stopPropagation(); screenClick(item,"edit")}}/>
+                    </div>
                     <div className={styles.borderImg}/>
                     <div className={styles.name}>{item.name}</div>
                     <img className={styles.screenBg} src={item.bgImg}/>
