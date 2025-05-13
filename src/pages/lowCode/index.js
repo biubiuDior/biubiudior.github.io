@@ -8,6 +8,7 @@
 import styles from "./index.less";
 import dataReportPage from "@/assets/image/lowCode/dataReportPage.png";
 import customScreenPage from "@/assets/image/lowCode/customScreenPage.png";
+import { history } from "umi";
 
 const LowCode = (props) => {
 
@@ -18,7 +19,8 @@ const LowCode = (props) => {
 
   // 卡片点击
   const cardClick = (data) => {
-    window.open(data.url)
+    // window.open(data.url)
+    history.push(data.url)
   }
 
   return(
