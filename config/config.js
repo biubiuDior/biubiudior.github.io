@@ -37,6 +37,7 @@ export default defineConfig({
     jsStrategy: 'granularChunks', // 'bigVendors' | 'depPerChunk' | 'granularChunks'
     jsStrategyOptions: {}
   },
+  esbuildMinifyIIFE: true,
   chainWebpack: webpackConfig,
   extraPostCSSPlugins: [
     px2vw({
