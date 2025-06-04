@@ -139,6 +139,26 @@ export default [
         component: './problem',
       },
       {
+        name: '组件库',
+        path: '/module',
+        routes: [
+          {
+            path: '/module',
+            redirect: `/module/home`,
+          },
+          {
+            name: '首页',
+            path: '/module/home',
+            component: './module',
+          },
+          {
+            name: 'G6',
+            path: '/module/G6',
+            component: './module/modules/AntV_G6',
+          }
+        ]
+      },
+      {
         name: '低代码开发',
         path: '/lowCode',
         component: './lowCode',
