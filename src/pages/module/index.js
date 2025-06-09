@@ -7,7 +7,7 @@
 
 import styles from "./index.less";
 import antvG6 from "@/assets/image/module/antvG6.png";
-import {history} from "@/.umi/core/history";
+import { history } from "umi";
 
 const Module = (props) => {
 

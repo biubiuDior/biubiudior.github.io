@@ -146,17 +146,24 @@ const AntV_G6 = (props) => {
         {
           type: 'toolbar',
           position: 'top-left',
-          onClick: (item) => {
-            if(item === "zoom-in") {
-              graph.zoomBy(1.2);
-            }else {
-
+          onClick: (value) => {
+            switch (value) {
+              case 'zoom-in':
+                graph.zoomBy(1.2, {duration: 300,});
+                break;
+              case 'zoom-out':
+                graph.zoomBy(0.8, {duration: 300,});
+                break;
+              case 'auto-fit':
+                graph.fitView();
+                break;
             }
           },
           getItems: () => {
             return [
-              { id: 'zoom-in', value: 'zoom-in' },
-              { id: 'zoom-out', value: 'zoom-out' },
+              { id: 'zoom-in', value: 'zoom-in' },// 放大
+              { id: 'zoom-out', value: 'zoom-out' },// 缩小
+              { id: 'auto-fit', value: 'auto-fit' },// 自适应画布
             ];
           },
         },
