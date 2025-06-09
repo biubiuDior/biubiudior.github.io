@@ -148,7 +148,7 @@ const AntV_G6 = (props) => {
           position: 'top-left',
           onClick: (item) => {
             if(item === "zoom-in") {
-              graph.zoomBy(1.5);
+              graph.zoomBy(1.2);
             }else {
 
             }
