@@ -119,7 +119,7 @@ const AntV_G6 = (props) => {
           state: 'dragActive',
           enable: event => {
             const targetData = graph.getNodeData(event.target?.id);
-            return targetData.data.level === 1
+            return targetData.data.level > 0
           },
         },
         {
@@ -134,15 +134,34 @@ const AntV_G6 = (props) => {
             }
             return false;
           },
-          onHover: (event) => {
-            event.view.setCursor('pointer');
+          // onHover: (event) => {
+          //   event.view.setCursor('pointer');
+          // },
+          // onHoverEnd: (event) => {
+          //   event.view.setCursor('default');
+          // },
+        },
+      ],
+      plugins: [
+        {
+          type: 'toolbar',
+          position: 'top-left',
+          onClick: (item) => {
+            if(item === "zoom-in") {
+              graph.zoomBy(1.5);
+            }else {
+
+            }
           },
-          onHoverEnd: (event) => {
-            event.view.setCursor('default');
+          getItems: () => {
+            return [
+              { id: 'zoom-in', value: 'zoom-in' },
+              { id: 'zoom-out', value: 'zoom-out' },
+            ];
           },
         },
       ],
-      // animation: false,
+      animation: false,
     });
 
     graphRef.current = graph;
